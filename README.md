@@ -1,26 +1,30 @@
-An open-source academic skills suite for continuous paper tracking, literature review, research design, and evidence-grounded academic writing.
 
-也就是：开源学术 Skills 套件，用于持续论文追踪、文献综述、研究设计与证据驱动写作。
+# 🎓 PaperSkills
 
-开源学术工作流框架
-A set of ready to use Agent Skills for research, science, engineering, analysis, finance and writing.
+> **专为 AI Agent 打造的学术技能套件**
+> 一个开源的学术工作流框架，用于持续论文追踪、文献综述、研究设计与证据驱动写作。
 
+PaperSkills 提供了一套开箱即用的 Agent Skills，旨在帮助 AI 代理更好地完成科研、科学、工程、分析、金融以及学术写作任务。
 
+### ✨ 核心优势
 
-PaperSkills: The Academic Skillset for AI Agents
-An open-source academic skills suite for continuous paper tracking, literature review, research design, and evidence-grounded academic writing.
+* 🚀 **开箱即用**：零学习门槛，小白也能快速上手，专注于学术本身而非工具配置。
+* 🌐 **通用生态**：天然兼容当前主流的 AI 辅助工具和生态，包括 **Claude Code**、**Codex**、**VS Code** 以及 **OpenClaw**。
+* 🪶 **极致轻量**：采用 Web 内置设计，供 Agent 直接调用。无需繁琐的本地安装步骤，开户即用，直接生成所需内容。
 
+### 🧰 当前支持的 Skills
 
+目前，PaperSkills 已支持以下核心学术技能：
 
-优势：
-1.开箱即用：小白也能快速上手
-2.通用：天然兼容 Claude Code、Codex、VS Code、OpenClaw 这些生态
-3.轻量:web 内置供 agent 调用的 skill。无需安装。可以直接生成。
+* `skills/literature-review`：文献综述生成与结构化梳理。
+* `skills/paper-tracker`：持续追踪前沿论文与学术动态。
+* `skills/peer-review`：提供基于证据的同行评审意见与修改建议。
 
+### 🚀 快速开始
 
+*（您可以在这里补充 1-2 句具体的使用方法，例如：“只需让您的 Agent 读取对应 Skill 的 Web 链接即可开始工作...”）*
 
-当前支持的 skills：
+### 🤝 参与贡献
 
-skills/literature-review
-skills/paper-tracker
-skills/peer-review
+欢迎任何形式的贡献！无论是提交新的 Skill 提案、修复问题，还是完善文档，我们都期待您的加入，共同打造更强大的开源学术工具。
+
