@@ -1,0 +1,15 @@
+{
+  "window": {
+    "days": 365
+  },
+  "filters": {
+    "journals": [],
+    "authors": [
+      "Michael I. Jordan"
+    ],
+    "topics": [],
+    "domain": ""
+  },
+  "limit": 5,
+  "include_preprints": false
+}

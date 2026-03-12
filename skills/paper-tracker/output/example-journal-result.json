@@ -1,0 +1,493 @@
+{
+  "brief": {
+    "window": {
+      "days": 365
+    },
+    "filters": {
+      "journals": [
+        "Management Science",
+        "Operations Research"
+      ],
+      "authors": [],
+      "topics": [],
+      "domain": ""
+    },
+    "limit": 5,
+    "include_preprints": false,
+    "registry_path": "skills/paper-tracker/examples/om-or-journal-registry.md"
+  },
+  "normalized_window": {
+    "from": "2025-03-12",
+    "to": "2026-03-12"
+  },
+  "coverage": [
+    {
+      "type": "journal",
+      "value": "Management Science",
+      "source": "crossref-journal-endpoint",
+      "count": 20
+    },
+    {
+      "type": "journal",
+      "value": "Operations Research",
+      "source": "crossref-journal-endpoint",
+      "count": 20
+    }
+  ],
+  "shortlist": [
+    {
+      "title": "The Task Space: An Integrative Framework for Team Research",
+      "authors": [
+        "Xinlan Emily Hu",
+        "Mark E. Whiting",
+        "Linnea Gandhi",
+        "Duncan J. Watts",
+        "Abdullah Almaatouq"
+      ],
+      "journal": "Management Science",
+      "published_at": "2026-03-05",
+      "date_source": "published-online",
+      "doi": "10.1287/mnsc.2023.03544",
+      "url": "https://doi.org/10.1287/mnsc.2023.03544",
+      "abstract": "<jats:p>Research on teams spans many contexts, but integrating knowledge from heterogeneous sources is challenging because studies typically examine different tasks that cannot be directly compared. Most investigations involve teams working on just one or a handful of tasks, and researchers lack principled ways to quantify how similar or different these tasks are from one another. We address this challenge by introducing the “Task Space,” a multidimensional space in which tasks—and the distances between them—can be represented formally, and use it to create a “Task Map” of 102 crowd-annotated tasks from the published experimental literature. We then demonstrate the Task Space’s utility by performing an integrative experiment that addresses a fundamental question in team research: when do interacting groups outperform individuals? Our experiment samples 20 diverse tasks from the Task Map at three complexity levels and recruits 1,231 participants to work either individually or in groups of three or six (180 experimental conditions). We find striking heterogeneity in group advantage, with groups performing anywhere from three times worse to 60% better than the best individual working alone, depending on the task context. Critically, the Task Space makes this heterogeneity predictable: it significantly outperforms traditional typologies in predicting group advantage on unseen tasks. Our models also reveal theoretically meaningful interactions between task features; for example, group advantage on creative tasks depends on whether the answers are objectively verifiable. We conclude by arguing that the Task Space enables researchers to integrate findings across different experiments, thereby building cumulative knowledge about team performance.</jats:p>\n                  <jats:p>This paper was accepted by Sameer Srivastava, organizations.</jats:p>\n                  <jats:p>Funding: The authors thank the Alfred P. Sloan Foundation [Grant #202-13924] and the MIT Wade Fund for their generous support of this research.</jats:p>\n                  <jats:p>Supplemental Material: The online appendix and data files are available at https://doi.org/10.1287/mnsc.2023.03544 .</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Management Science"
+    },
+    {
+      "title": "Continuity, Uniqueness, and Long-Term Behavior of Nash Flows over Time",
+      "authors": [
+        "Neil Olver",
+        "Leon Sering",
+        "Laura Vargas Koch"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-03-05",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2024.1007",
+      "url": "https://doi.org/10.1287/opre.2024.1007",
+      "abstract": "<jats:p>Properties of Nash Flows over Time</jats:p>\n                  <jats:p>In the paper “Continuity, Uniqueness, and Long-Term Behavior of Nash Flows over Time” by Neil Olver, Leon Sering, and Laura Vargas Koch, a dynamic model of traffic based on the Vickrey bottleneck model is studied. In this model, a continuous flow of users travels over time through a network from an origin to a destination, aiming to minimize their travel time. Equilibrium flows in this model, in which no user has a better route available to the user considering delays because of the other users, have recently received significant attention. The paper answers several basic questions that have remained open in the single-commodity setting. It shows that equilibrium travel times are unique. Moreover, it proves that equilibria are continuous, meaning that small changes in the network parameters or starting conditions do not lead to drastically different outcomes. Surprisingly, the understanding of the long-term behavior of equilibria turns out to be crucial.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "Dynamic Pricing Under Self-Exciting Arrival Processes",
+      "authors": [
+        "Quan Yuan",
+        "Longyuan Du",
+        "Ming Hu"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-03-05",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2024.1172",
+      "url": "https://doi.org/10.1287/opre.2024.1172",
+      "abstract": "<jats:p>Pricing with a Ripple Effect</jats:p>\n                  <jats:p>How should firms price when each sale sparks the next? In their paper, “Dynamic Pricing Under Self-Exciting Arrival Processes,” Quan Yuan, Longyuan Du, and Ming Hu study pricing decisions in markets where customer purchases actively stimulate future demand through word-of-mouth and social influence. Using a self-exciting (Hawkes) process to model the demand process, the authors show that optimal prices depend on both time and an “excitement level” summarizing accumulated customer influence. A key insight is that optimal prices may rise or fall with demand momentum, depending on whether the market is in a growth or saturation phase. The paper further demonstrates that simple, easy-to-implement deterministic (nonstationary) pricing heuristics can perform nearly as well as fully dynamic policies at large demand volumes. These results provide actionable guidance for firms operating in social media–driven markets, where this hour’s customers shape the next hour’s demand, and highlight the importance of explicitly accounting for the ripple effect of purchases in pricing design.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "Beyond Discounted Returns: Robust Markov Decision Processes with Average and Blackwell Optimality",
+      "authors": [
+        "Julien Grand-Clément",
+        "Marek Petrik",
+        "Nicolas Vieille"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-03-04",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2023.0694",
+      "url": "https://doi.org/10.1287/opre.2023.0694",
+      "abstract": "<jats:p>Novel Insights on Robust Markov decision Processes with Average Reward and Blackwell Optimality Criteria</jats:p>\n                  <jats:p>Robust Markov decision processes (RMDPs) have been studied extensively when the objective is the discounted return, but little is known for average optimality and Blackwell optimality. We show that average optimal policies can be chosen stationary and deterministic for sa-rectangular RMDPs, but perhaps surprisingly, we show that for s-rectangular RMDPs average optimal policies may not exist, and if they do exist, they may not be stationary. We also study Blackwell optimality for sa-rectangular RMDPs, where we show that approximately Blackwell optimal policies always exist, although exact Blackwell optimal policies may not exist. We provide a general sufficient condition for their existence. We then discuss the connection between average and Blackwell optimality, and we describe several algorithms to compute the optimal average return. Interestingly, our approach leverages the connections between RMDPs and stochastic games. Overall, our paper emphasizes the superior practical properties of distance-based sa-rectangular models over s-rectangular models for average and Blackwell optimality.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "Stochastic Gradient Descent with Adaptive Data",
+      "authors": [
+        "Ethan Che",
+        "Jing Dong",
+        "Xin T. Tong"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-03-04",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2024.1014",
+      "url": "https://doi.org/10.1287/opre.2024.1014",
+      "abstract": "<jats:p>Stochastic Gradient Descent with Adaptive Data</jats:p>\n                  <jats:p>Stochastic gradient descent (SGD) is a central tool in modern optimization, but its classical theory relies on the assumption that data are independent of the decisions being optimized. In many operations research settings, this assumption fails: policies influence system dynamics, and the resulting data feed back into subsequent updates. In “Stochastic Gradient Descent with Adaptive Data,” Che, Dong, and Tong address this challenge by developing a general framework for analyzing SGD when data are generated adaptively by policy-dependent Markov processes. Their analysis shows that fully adaptive SGD can still attain convergence rates comparable to the classical i.i.d. setting, provided the underlying system satisfies mild ergodicity and continuity conditions. The theory is illustrated through canonical applications in operations research and reinforcement learning. Overall, the paper provides rigorous and reassuring theoretical foundations for deploying learning algorithms in dynamic environments where decisions and data are fundamentally intertwined.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    }
+  ],
+  "full_list": [
+    {
+      "title": "The Task Space: An Integrative Framework for Team Research",
+      "authors": [
+        "Xinlan Emily Hu",
+        "Mark E. Whiting",
+        "Linnea Gandhi",
+        "Duncan J. Watts",
+        "Abdullah Almaatouq"
+      ],
+      "journal": "Management Science",
+      "published_at": "2026-03-05",
+      "date_source": "published-online",
+      "doi": "10.1287/mnsc.2023.03544",
+      "url": "https://doi.org/10.1287/mnsc.2023.03544",
+      "abstract": "<jats:p>Research on teams spans many contexts, but integrating knowledge from heterogeneous sources is challenging because studies typically examine different tasks that cannot be directly compared. Most investigations involve teams working on just one or a handful of tasks, and researchers lack principled ways to quantify how similar or different these tasks are from one another. We address this challenge by introducing the “Task Space,” a multidimensional space in which tasks—and the distances between them—can be represented formally, and use it to create a “Task Map” of 102 crowd-annotated tasks from the published experimental literature. We then demonstrate the Task Space’s utility by performing an integrative experiment that addresses a fundamental question in team research: when do interacting groups outperform individuals? Our experiment samples 20 diverse tasks from the Task Map at three complexity levels and recruits 1,231 participants to work either individually or in groups of three or six (180 experimental conditions). We find striking heterogeneity in group advantage, with groups performing anywhere from three times worse to 60% better than the best individual working alone, depending on the task context. Critically, the Task Space makes this heterogeneity predictable: it significantly outperforms traditional typologies in predicting group advantage on unseen tasks. Our models also reveal theoretically meaningful interactions between task features; for example, group advantage on creative tasks depends on whether the answers are objectively verifiable. We conclude by arguing that the Task Space enables researchers to integrate findings across different experiments, thereby building cumulative knowledge about team performance.</jats:p>\n                  <jats:p>This paper was accepted by Sameer Srivastava, organizations.</jats:p>\n                  <jats:p>Funding: The authors thank the Alfred P. Sloan Foundation [Grant #202-13924] and the MIT Wade Fund for their generous support of this research.</jats:p>\n                  <jats:p>Supplemental Material: The online appendix and data files are available at https://doi.org/10.1287/mnsc.2023.03544 .</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Management Science"
+    },
+    {
+      "title": "Continuity, Uniqueness, and Long-Term Behavior of Nash Flows over Time",
+      "authors": [
+        "Neil Olver",
+        "Leon Sering",
+        "Laura Vargas Koch"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-03-05",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2024.1007",
+      "url": "https://doi.org/10.1287/opre.2024.1007",
+      "abstract": "<jats:p>Properties of Nash Flows over Time</jats:p>\n                  <jats:p>In the paper “Continuity, Uniqueness, and Long-Term Behavior of Nash Flows over Time” by Neil Olver, Leon Sering, and Laura Vargas Koch, a dynamic model of traffic based on the Vickrey bottleneck model is studied. In this model, a continuous flow of users travels over time through a network from an origin to a destination, aiming to minimize their travel time. Equilibrium flows in this model, in which no user has a better route available to the user considering delays because of the other users, have recently received significant attention. The paper answers several basic questions that have remained open in the single-commodity setting. It shows that equilibrium travel times are unique. Moreover, it proves that equilibria are continuous, meaning that small changes in the network parameters or starting conditions do not lead to drastically different outcomes. Surprisingly, the understanding of the long-term behavior of equilibria turns out to be crucial.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "Dynamic Pricing Under Self-Exciting Arrival Processes",
+      "authors": [
+        "Quan Yuan",
+        "Longyuan Du",
+        "Ming Hu"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-03-05",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2024.1172",
+      "url": "https://doi.org/10.1287/opre.2024.1172",
+      "abstract": "<jats:p>Pricing with a Ripple Effect</jats:p>\n                  <jats:p>How should firms price when each sale sparks the next? In their paper, “Dynamic Pricing Under Self-Exciting Arrival Processes,” Quan Yuan, Longyuan Du, and Ming Hu study pricing decisions in markets where customer purchases actively stimulate future demand through word-of-mouth and social influence. Using a self-exciting (Hawkes) process to model the demand process, the authors show that optimal prices depend on both time and an “excitement level” summarizing accumulated customer influence. A key insight is that optimal prices may rise or fall with demand momentum, depending on whether the market is in a growth or saturation phase. The paper further demonstrates that simple, easy-to-implement deterministic (nonstationary) pricing heuristics can perform nearly as well as fully dynamic policies at large demand volumes. These results provide actionable guidance for firms operating in social media–driven markets, where this hour’s customers shape the next hour’s demand, and highlight the importance of explicitly accounting for the ripple effect of purchases in pricing design.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "Beyond Discounted Returns: Robust Markov Decision Processes with Average and Blackwell Optimality",
+      "authors": [
+        "Julien Grand-Clément",
+        "Marek Petrik",
+        "Nicolas Vieille"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-03-04",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2023.0694",
+      "url": "https://doi.org/10.1287/opre.2023.0694",
+      "abstract": "<jats:p>Novel Insights on Robust Markov decision Processes with Average Reward and Blackwell Optimality Criteria</jats:p>\n                  <jats:p>Robust Markov decision processes (RMDPs) have been studied extensively when the objective is the discounted return, but little is known for average optimality and Blackwell optimality. We show that average optimal policies can be chosen stationary and deterministic for sa-rectangular RMDPs, but perhaps surprisingly, we show that for s-rectangular RMDPs average optimal policies may not exist, and if they do exist, they may not be stationary. We also study Blackwell optimality for sa-rectangular RMDPs, where we show that approximately Blackwell optimal policies always exist, although exact Blackwell optimal policies may not exist. We provide a general sufficient condition for their existence. We then discuss the connection between average and Blackwell optimality, and we describe several algorithms to compute the optimal average return. Interestingly, our approach leverages the connections between RMDPs and stochastic games. Overall, our paper emphasizes the superior practical properties of distance-based sa-rectangular models over s-rectangular models for average and Blackwell optimality.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "Stochastic Gradient Descent with Adaptive Data",
+      "authors": [
+        "Ethan Che",
+        "Jing Dong",
+        "Xin T. Tong"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-03-04",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2024.1014",
+      "url": "https://doi.org/10.1287/opre.2024.1014",
+      "abstract": "<jats:p>Stochastic Gradient Descent with Adaptive Data</jats:p>\n                  <jats:p>Stochastic gradient descent (SGD) is a central tool in modern optimization, but its classical theory relies on the assumption that data are independent of the decisions being optimized. In many operations research settings, this assumption fails: policies influence system dynamics, and the resulting data feed back into subsequent updates. In “Stochastic Gradient Descent with Adaptive Data,” Che, Dong, and Tong address this challenge by developing a general framework for analyzing SGD when data are generated adaptively by policy-dependent Markov processes. Their analysis shows that fully adaptive SGD can still attain convergence rates comparable to the classical i.i.d. setting, provided the underlying system satisfies mild ergodicity and continuity conditions. The theory is illustrated through canonical applications in operations research and reinforcement learning. Overall, the paper provides rigorous and reassuring theoretical foundations for deploying learning algorithms in dynamic environments where decisions and data are fundamentally intertwined.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "Credit Rating Purchases and S&amp;P 500 Index Membership Decisions",
+      "authors": [
+        "Kun Li",
+        "Xin Liu",
+        "Shang-Jin Wei"
+      ],
+      "journal": "Management Science",
+      "published_at": "2026-03-03",
+      "date_source": "published-online",
+      "doi": "10.1287/mnsc.2024.08157",
+      "url": "https://doi.org/10.1287/mnsc.2024.08157",
+      "abstract": "<jats:p>S&amp;P 500 is commonly used in empirical finance and macroeconomics as a measure of overall capital market sentiment, and the associated VIX is taken as an indicator of economic uncertainty. While both assume that the S&amp;P 500 index is objectively constructed, we show that its membership decisions have a nontrivial amount of discretion unexplained by its published methodology. Importantly, we show that firms’ purchases of S&amp;P ratings appear to improve their chance of entering the index (but purchases of Moody’s ratings do not). Furthermore, openings in index membership tend to motivate firms to purchase more S&amp;P ratings. This is also confirmed by an event study of a 2002 membership rule change. These patterns raise concerns over potential governance issues.</jats:p>\n                  <jats:p>This paper was accepted by Will Cong, finance.</jats:p>\n                  <jats:p>Supplemental Material: The internet appendix and data files are available at https://doi.org/10.1287/mnsc.2024.08157 .</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Management Science"
+    },
+    {
+      "title": "Choosing Outcomes-Based Reimbursement Policies: Should We Worry About Collusion?",
+      "authors": [
+        "Saša Zorc",
+        "Stephen E. Chick",
+        "Sameer Hasija"
+      ],
+      "journal": "Management Science",
+      "published_at": "2026-03-03",
+      "date_source": "published-online",
+      "doi": "10.1287/mnsc.2021.02283",
+      "url": "https://doi.org/10.1287/mnsc.2021.02283",
+      "abstract": "<jats:p>Outcomes-based reimbursement rewards health providers with better health outcomes with higher payments. Such reimbursement policies require several design choices, including the type of contract (e.g., capitation or fee-for-service), measure (e.g., population- or provider-level outcomes), and whether to contract with individual providers or larger groups. We explore which outcomes-based reimbursement policies may be vulnerable to potentially illegal collusion, and whether collusion issues can be averted through incentive design. We present a game-theoretic model a chronic care pathway in a two-tier healthcare system. We identify differences in the impact of collusion on health, costs, and system efficiency under different reimbursement policies. Theoretical and numerical results (calibrated to data from two pathways for diabetes) show that whether an outcomes-adjusted reimbursement system is vulnerable to collusion depends critically on one trait: whether the income of physicians who receive referrals scales with volume. In systems where it does, as with fee-for-service models in the United States, there exist financial incentives to collude, underlining the importance of addressing collusion through laws. Systems that lack this trait (e.g., the UK NHS) are more resistant to collusion. Exploring theoretically optimal contracts, we find evidence of strong performance of outcomes-adjusted capitation contracts with individual providers using population-level data.</jats:p>\n                  <jats:p>This paper was accepted by Terry Taylor, operations management.</jats:p>\n                  <jats:p>Funding: S. E. Chick acknowledges research support through the Novartis Chair for Healthcare Management.</jats:p>\n                  <jats:p>Supplemental Material: The online appendix and data files are available at https://doi.org/10.1287/mnsc.2021.02283 .</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Management Science"
+    },
+    {
+      "title": "Firm Commitments",
+      "authors": [
+        "Patrick Bolton",
+        "Marcin Kacperczyk"
+      ],
+      "journal": "Management Science",
+      "published_at": "2026-03-01",
+      "date_source": "published-print",
+      "doi": "10.1287/mnsc.2024.07298",
+      "url": "https://doi.org/10.1287/mnsc.2024.07298",
+      "abstract": "<jats:p>A growing fraction of companies globally have made commitments to reduce their carbon emissions by a certain date. Whereas the companies that make commitments subsequently reduce their emissions, the effect on overall emissions of companies (including those that do not commit) has been small. The companies that commit and those that make the most ambitious commitments tend to have lower emissions; firm commitments are less prevalent in countries where governments have made national commitments. Overall, the commitment movements have been successful in drawing the willing but have found greater resistance from the companies that most need to reduce their emissions.</jats:p>\n                  <jats:p>This paper was accepted by Caroline Flammer, sustainability.</jats:p>\n                  <jats:p>Funding: This work was supported by Horizon Europe Climate, Energy and Mobility [Grant ERC-AG 885552] from the European Research Council (ERC) under the ERC Advanced Grant program “Investors and Climate Change.”</jats:p>\n                  <jats:p>Supplemental Material: The online appendix and data files are available at https://doi.org/10.1287/mnsc.2024.07298 .</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Management Science"
+    },
+    {
+      "title": "Does Privacy Regulation Harm Content Providers? A Longitudinal Analysis of the Impact of the GDPR",
+      "authors": [
+        "Vincent Lefrere",
+        "Logan Warberg",
+        "Cristobal Cheyre",
+        "Veronica Marotta",
+        "Alessandro Acquisti"
+      ],
+      "journal": "Management Science",
+      "published_at": "2026-03-01",
+      "date_source": "published-print",
+      "doi": "10.1287/mnsc.2022.03186",
+      "url": "https://doi.org/10.1287/mnsc.2022.03186",
+      "abstract": "<jats:p>Concerns that the European General Data Protection Regulation (GDPR) would adversely affect the ability of news and media websites to create new quality content have not been thoroughly investigated in the literature. We construct a longitudinal data set of European Union (EU) and U.S. news and media websites to study how online content providers responded to the GDPR over time and whether potential restrictions on online tracking enforced by the regulation affected their downstream outcomes. We find robust evidence that both EU and U.S. news and media websites responded to the regulation by altering their data collection practices, but did so differently, with EU websites reducing tracking and implementing consent mechanisms at higher rates than their U.S. counterparts. Although we detect a reduction in average page views per user on EU relative to U.S. websites, we do not find evidence of negative impacts, in both the short and long term, on EU websites’ provision of new content or on several proxies for quality of that content, such as social media engagement metrics, various traffic measures, and articles’ text analytics. We also find no evidence of differences in survival rates across EU and U.S. news and media websites, and no evidence that monetization strategies changed at higher rates on EU relative to U.S. websites. The analysis suggests that EU online content providers did implement changes to their data collection practices in response to the GDPR but were able to use data minimization and consent mechanism strategies that allowed them to keep producing content and engage audiences at degrees on par with their U.S. counterparts.</jats:p>\n                  <jats:p>This paper was accepted by D. J. Wu, information systems.</jats:p>\n                  <jats:p>Funding: The authors gratefully acknowledge support from the Alfred P. Sloan Foundation, CARNOT Télécom &amp; Société numérique, DATAIA Convergence Institute (as part of the Programme d’Investissement d’Avenir [Grant ANR-17-CONV-0003] operated by Institut Mines Telecom, Business School Project YPOOG), the French National Research Agency [Grant ANR-21-CE23-0031-02], and the National Science Foundation [Awards 2237327, 2237328, and 2237329].</jats:p>\n                  <jats:p>Supplemental Material: The online appendices and data files are available at https://doi.org/10.1287/mnsc.2022.03186 .</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Management Science"
+    },
+    {
+      "title": "Dynamic Control of a Make-to-Order System Under Model Uncertainty",
+      "authors": [
+        "Xu Sun",
+        "Xiaohan Zhu"
+      ],
+      "journal": "Management Science",
+      "published_at": "2026-03-01",
+      "date_source": "published-print",
+      "doi": "10.1287/mnsc.2023.01820",
+      "url": "https://doi.org/10.1287/mnsc.2023.01820",
+      "abstract": "<jats:p>Deriving control policies for a make-to-order manufacturing system is often predicated on a well-specified probabilistic model that governs demand realization. In practice, however, such a model may be a simplification of the actual scenario because of tractability considerations. Consequently, policies obtained under such simplifications may perform poorly if the assumed model does not accurately capture reality. In this paper, we propose a modeling paradigm that can generate control policies based on a simplified model, accounting for possible model errors that may result. The make-to-order system offers multiple products and has an outsourcing mechanism. Our focus is on addressing deliberate model simplification for the demand realization process. We formulate a robust control problem that takes the form of a two-player, zero-sum game. Because the original formulation is not tractable enough, we further develop an approximating problem under the heavy-traffic assumption that effectively results in a stochastic differential game. The solution to this game then translates into an implementable control policy for the original make-to-order system. We supplement the proposed modeling paradigm with a simulation-based method for selecting an appropriate uncertainty set. Numerical experiments expose, among other things, the value of building robustness into decision making.</jats:p>\n                  <jats:p>This paper was accepted by Barış Ata, stochastic models and simulation.</jats:p>\n                  <jats:p>Funding: X. Zhu’s work is supported by the National Natural Science Foundation of China (NSFC) [Grants 72401124 and 72394363/72394360].</jats:p>\n                  <jats:p>Supplemental Material: The online appendix and data files are available at https://doi.org/10.1287/mnsc.2023.01820 .</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Management Science"
+    },
+    {
+      "title": "Effects of the 2021 Expanded Child Tax Credit",
+      "authors": [
+        "Ben Lourie",
+        "Devin M. Shanthikumar",
+        "Terry Shevlin",
+        "Chenqi Zhu"
+      ],
+      "journal": "Management Science",
+      "published_at": "2026-03-01",
+      "date_source": "published-print",
+      "doi": "10.1287/mnsc.2023.02254",
+      "url": "https://doi.org/10.1287/mnsc.2023.02254",
+      "abstract": "<jats:p>We analyze the impact of the 2021 Child Tax Credit (CTC) expansion using detailed transaction data from nearly two million individuals and difference-in-difference analyses around monthly CTC payments. We find that recipients significantly increase their consumption in the week following the payment versus the prior week, with more pronounced effects for lower-income recipients and those with more children. We also find a significant reduction in liquidity constraints for lower-income recipients, with reductions in overdrafts, use of high-interest payday loans, and use of gig work for supplemental income. Building on these initial findings, our analysis further delves into more nuanced, policy-targeted aspects: We observe a greater alleviation of liquidity constraints from monthly CTC payments compared with annual tax refunds. In addition, monthly payments decrease consumption volatility and increase stability in consumption levels. These results inform considerations for payment frequency. Furthermore, we provide insights into the income thresholds for the policy’s phase-in and phase-out ranges by identifying the most pronounced consumption effects among the lowest-income recipients—who benefit from full refundability under the plan—and noting an absence of significant consumption changes among higher-income recipients. Our results present the first large-scale, transaction-based, empirical archival evidence of the effects stemming from the 2021 CTC amendments and provide insights for policy-related discussions.</jats:p>\n                  <jats:p>This paper was accepted by Eric So, accounting.</jats:p>\n                  <jats:p>Funding: We acknowledge funding from the Think Forward Initiative and the University of California, Irvine, and the U See I Write initiative at the University of California, Irvine, for focused writing retreats which facilitated the writing of this manuscript.</jats:p>\n                  <jats:p>Supplemental Material: The data files are available at https://doi.org/10.1287/mnsc.2023.02254 .</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Management Science"
+    },
+    {
+      "title": "Market Design Choices, Racial Discrimination, and Equitable Microentrepreneurship in Digital Marketplaces",
+      "authors": [
+        "Mohammed Alyakoob",
+        "Mohammad Rahman"
+      ],
+      "journal": "Management Science",
+      "published_at": "2026-03-01",
+      "date_source": "published-print",
+      "doi": "10.1287/mnsc.2023.01717",
+      "url": "https://doi.org/10.1287/mnsc.2023.01717",
+      "abstract": "<jats:p>This study investigates the potential of market design choices, specifically quality certification, to mitigate racial discrimination in digital marketplaces. Using a regression discontinuity design (RDD) that exploits the discontinuity in Airbnb’s Superhost assignment, we find that Black hosts benefit 1.5 times more from the quality certification than other hosts. Moreover, we find compelling evidence that this disproportionate increase does not come at the expense of non-Superhost Black hosts. This suggests that quality certification can effectively reduce discrimination and promote equitable outcomes. Further, our analysis utilizing a doubly robust machine learning approach reveals that the effectiveness of quality certification persists even in the prominent presence of consumer reviews, a widely used market feature and a credible user-generated quality signal. Our research underscores the judicious use of market design in fostering equity for minority entrepreneurs in digital marketplaces.</jats:p>\n                  <jats:p>This paper was accepted by Hemant Bhargava, information systems.</jats:p>\n                  <jats:p>Supplemental Material: The online appendix and data files are available at https://doi.org/10.1287/mnsc.2023.01717 .</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Management Science"
+    },
+    {
+      "title": "Not Good Enough, but Try Again! The Impact of Improved Rejection Communications on Contributor Retention and Performance in Open Knowledge Collaboration",
+      "authors": [
+        "Aleksi Aaltonen",
+        "Sunil Wattal"
+      ],
+      "journal": "Management Science",
+      "published_at": "2026-03-01",
+      "date_source": "published-print",
+      "doi": "10.1287/mnsc.2021.02720",
+      "url": "https://doi.org/10.1287/mnsc.2021.02720",
+      "abstract": "<jats:p>Producing high-quality content through open knowledge collaboration presents a dilemma. Successful quality control requires rejecting contributions that do not align with the aims of an open knowledge collaboration system, yet rejections demotivate new contributors from attempting further contributions. Building on research on the regulation of behavior in online communities and on organizational selection, we theorize how the way rejections are communicated affect new contributors. We leverage a change to the rejection notices used by the Stack Overflow community question-answering service to study the issue empirically. First, we use a regression discontinuity in time design to construct a natural experiment to estimate the average treatment effect of more informative rejection notices on the retention of initially rejected contributors. The results show that notices that better explain the reason for rejecting a contributor’s initial question—and therefore reduce uncertainty about the outcome if the contributor tries again—increase retention by approximately 21.7 percentage points. Second, we use a mediation model to study mechanisms by which more informative rejection notices affect contributor performance. We find that more informative notices affect contributor performance through selection rather than performance improvement. Additional contributors, who are retained because of the more informative rejection notices, ask more questions, on average, whereas we find no evidence of individual contributors improving their performance in terms of the quality or quantity of their contributions. Overall, the results suggest that rejection communications offer low-cost interventions to mitigate the trade-off between new contributor retention and the quality of contributions in open knowledge collaboration.</jats:p>\n                  <jats:p>This paper was accepted by Hemant Bhargava, information systems.</jats:p>\n                  <jats:p>Funding: Financial support from the Fox School of Business, Temple University (Young Scholar Interdisciplinary Forum) is gratefully acknowledged.</jats:p>\n                  <jats:p>Supplemental Material: The online appendix and data files are available at https://doi.org/10.1287/mnsc.2021.02720 .</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Management Science"
+    },
+    {
+      "title": "A Method for Asynchronous Time Series Analysis with Marketing Applications",
+      "authors": [
+        "Edlira Shehu",
+        "Daniel Zantedeschi",
+        "Prasad A. Naik"
+      ],
+      "journal": "Management Science",
+      "published_at": "2026-03-01",
+      "date_source": "published-print",
+      "doi": "10.1287/mnsc.2024.04336",
+      "url": "https://doi.org/10.1287/mnsc.2024.04336",
+      "abstract": "<jats:p>Many time series data evolve asynchronously. In marketing, for example, we observe ad liking every second, hourly clickstreams, daily sales, weekly brand awareness, or monthly ad expenditures. Thus, the question arises: how to estimate dynamic models when metrics evolve at different frequencies? To this end, we develop a new method for estimation and inference of state space models for asynchronous data. In contrast to existing approaches, the proposed method does not require any data preprocessing to align frequencies. We derive the optimal gain factor from first principles and demonstrate in three simulation studies that the new method recovers model parameters as accurately as the full-information Kalman filter as if all data were available. This finding holds across various degrees of noise levels and data sparsity. More importantly, we show that ignoring data asynchronicity results in substantially biased parameter estimates. Empirically, we illustrate the efficacy of the new method via two applications: copy testing of an advertisement and a marketing mix model, both with asynchronous data. It yields meaningful results compared with those obtained by aligning asynchronous data to the slowest frequency (i.e., data aggregation). In the marketing mix application, for example, data aggregation produces erroneously insignificant estimates of sales carryover and TV effectiveness, and these become significant when we apply the new method. These biased estimates can have serious managerial consequences. Thus, the proposed method paves the way to analyze asynchronous time series data: slow- or fast-moving dependent variables, slow- or fast-moving independent variables, and all of them at equal or unequal frequencies.</jats:p>\n                  <jats:p>This paper was accepted by Eric Anderson, marketing.</jats:p>\n                  <jats:p>Funding: This work was supported by the Marketing Science Institute [Grant 4-1959]. P. A. Naik acknowledges the financial support received from the University of California Davis travel and small research grants program across 2015–2024.</jats:p>\n                  <jats:p>Supplemental Material: The online appendix and data files are available at https://doi.org/10.1287/mnsc.2024.04336 .</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Management Science"
+    },
+    {
+      "title": "Regime-Dependent Approximations for the Single-Item Dynamic Pricing Problem",
+      "authors": [
+        "Tarek Abdallah",
+        "Josh Reed"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-02-26",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2025.1656",
+      "url": "https://doi.org/10.1287/opre.2025.1656",
+      "abstract": "<jats:p>Optimizing Prices for Viral Demand and Scarcity</jats:p>\n                  <jats:p>Dynamic pricing models often assume that inventory and demand scale proportionally, but this “fluid” view breaks down when products go viral. In “Regime-Dependent Approximations for the Single-Item Dynamic Pricing Problem,” Tarek Abdallah and Josh Reed investigate market extremes, specifically the “large market regime,” where inventory is scarce relative to surging demand. Their analysis reveals critical pitfalls in common heuristic approaches. The authors demonstrate that intuitive “price high and wait” policies are ineffective and, remarkably, that fluid static policies are not even first-order optimal in this context. Instead, they establish that a dynamic run-out-rate policy is essential to achieve both first- and second-order asymptotic optimality. Leveraging Extreme Value Theory, this research provides a robust framework for managing severe supply-demand imbalances, ensuring that firms can effectively capture value in inventory-constrained environments.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "On the Complexity of Finding Locally Optimal Solutions in Bilevel Linear Optimization",
+      "authors": [
+        "Oleg A. Prokopyev",
+        "Ted K. Ralphs"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-02-25",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2024.1411",
+      "url": "https://doi.org/10.1287/opre.2024.1411",
+      "abstract": "<jats:p>On the Complexity of Finding Locally Optimal Solutions in Bilevel Linear Optimization</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "Two-Stage Learning to Branch in Branch-Price-and-Cut Algorithms for Solving Vehicle Routing Problems Exactly",
+      "authors": [
+        "Zhengzhong You",
+        "Yu Yang",
+        "Xinshang Wang",
+        "Wotao Yin"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-02-24",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2023.0615",
+      "url": "https://doi.org/10.1287/opre.2023.0615",
+      "abstract": "<jats:p>Smarter Branching Speeds Up Leading Exact Vehicle Routing Solvers</jats:p>\n                  <jats:p>Researchers have introduced a learning-based branching strategy that substantially accelerates exact algorithms for vehicle routing problems, a core challenge in logistics and transportation systems. The study proposes the first learning-to-branch framework tailored for branch-price-and-cut methods, where dynamic variables and dense constraints make traditional branching decisions computationally expensive. The novel two-stage learning-based branching (2LBB) approach effectively filters promising candidates using inexpensive features and then applies selective, partial testing to reduce costly evaluations. A theoretical model further guides dynamic adjustment of branching effort, balancing decision time with solution quality. Extensive experiments show runtime reductions of 45%–50% on standard CVRP and VRPTW benchmarks and a 47% speedup over the state-of-the-art VRPSolver when integrated into the open-source RouteOpt. These results highlight the growing potential of disciplined machine learning to enhance exact optimization algorithms.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "A Note on Piecewise Affine Decision Rules for Robust, Stochastic, and Data-Driven Optimization",
+      "authors": [
+        "Simon Thomä",
+        "Maximilian Schiffer",
+        "Wolfram Wiesemann"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-02-23",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2024.1344",
+      "url": "https://doi.org/10.1287/opre.2024.1344",
+      "abstract": "<jats:p>Sharper Approximation for Multistage Decisions Under Uncertainty</jats:p>\n                  <jats:p>In “A Note on Piecewise Affine Decision Rules for Robust, Stochastic, and Data-Driven Optimization,” Thomä, Schiffer, and Wiesemann revisit piecewise affine decision rules, a widely used approximation for multistage stochastic programs. Building on the framework of Georghiou et al. (2015), the authors propose an algorithmic refinement that yields strictly better policies in stochastic settings while retaining tractability. Beyond stochastic programming, the framework naturally extends to multistage robust optimization and to modern data-driven models based on Wasserstein ambiguity sets. The paper shows how the resulting policies can be computed efficiently and provides numerical evidence demonstrating consistent performance improvements.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "Fair Fares for Vehicle Sharing Systems",
+      "authors": [
+        "Adam N. Elmachtoub",
+        "Hyemi Kim"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-02-20",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2024.1043",
+      "url": "https://doi.org/10.1287/opre.2024.1043",
+      "abstract": "<jats:p>Vehicle sharing systems—such as bike, scooter, and car sharing—play a key role in urban transportation, yet algorithmic pricing can lead to inequalities across locations. This paper studies how platforms can incorporate fairness into pricing decisions and the resulting outcomes. We propose two notions of fairness: price fairness, which limits price differences across locations, and access fairness, which equalizes the proportion of demand at each location that has access to the system, determined by affordability and availability. Using a stylized two-location model, the paper analyzes how fairness constraints affect platform revenue, consumer surplus, and social welfare. Although price fairness can sometimes increase consumer surplus at both locations, access fairness always reduces consumer surplus at both locations. A convex relaxation approach is developed for larger networks, and a case study using New York City data illustrates the tradeoffs between fairness and efficiency in practice.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    },
+    {
+      "title": "Online Learning and Optimization for Queues with Unknown Arrival Rate and Service Distribution",
+      "authors": [
+        "Xinyun Chen",
+        "Guiyu Hong",
+        "Yunan Liu"
+      ],
+      "journal": "Operations Research",
+      "published_at": "2026-02-18",
+      "date_source": "published-online",
+      "doi": "10.1287/opre.2023.0304",
+      "url": "https://doi.org/10.1287/opre.2023.0304",
+      "abstract": "<jats:p>End-to-End Optimization for Queues Beyond PTO</jats:p>\n                  <jats:p>Most queueing optimization methods rely on a predict-then-optimize (PTO) paradigm, which first estimates key model primitives (e.g., demand rates and service-time distributions) and then optimizes system decisions using these estimates as if they were exact. In practice, however, queueing performance formulas are often highly sensitive to estimation errors, especially under congestion, making such approaches fragile and potentially misleading. In “Online Learning and Optimization for Queues with Unknown Arrival Rate and Service Distribution,” X. Chen, G. Hong, and Y. Liu develop a new end-to-end online learning framework for jointly optimizing pricing and capacity decisions in service systems, called LiQUAR (learning in queue with unknown arrival rate). LiQUAR is specialized to queueing systems by explicitly leveraging workload dynamics and transient behavior, allowing it to learn directly from arrival and service data without requiring prior knowledge of the demand function or the service-time distribution. Designing online learning algorithms for queues poses unique challenges: Data are temporally correlated, system dynamics are disrupted by policy updates, and performance is highly sensitive to congestion. LiQUAR addresses these challenges through queue-aware algorithm design and analysis, establishing regret bounds that capture the effect of traffic intensity and demonstrating superior performance to PTO and gradient-based reinforcement learning methods, particularly in heavily loaded systems.</jats:p>",
+      "crossref_type": "journal-article",
+      "source": "crossref",
+      "retrieval_strategy": "journal",
+      "matched_on": "Operations Research"
+    }
+  ],
+  "excluded": []
+}

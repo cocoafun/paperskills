@@ -1,0 +1,17 @@
+{
+  "window": {
+    "days": 365
+  },
+  "filters": {
+    "journals": [
+      "Management Science",
+      "Operations Research"
+    ],
+    "authors": [],
+    "topics": [],
+    "domain": ""
+  },
+  "limit": 5,
+  "include_preprints": false,
+  "registry_path": "skills/paper-tracker/examples/om-or-journal-registry.md"
+}

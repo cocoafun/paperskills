@@ -1,0 +1,15 @@
+{
+  "window": {
+    "days": 365
+  },
+  "filters": {
+    "journals": [],
+    "authors": [],
+    "topics": [
+      "supply chain resilience"
+    ],
+    "domain": "operations management"
+  },
+  "limit": 5,
+  "include_preprints": false
+}
