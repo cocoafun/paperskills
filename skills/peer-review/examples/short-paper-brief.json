@@ -1,0 +1,28 @@
+{
+  "title": "LLM-Based Review Agents for Rapid Research Summarization",
+  "domain": "computer science",
+  "venue_target": "unknown",
+  "paper_type": "method",
+  "language": "zh-CN",
+  "review_style": "balanced",
+  "review_depth": "quick",
+  "input_completeness": "abstract-only",
+  "focus_areas": [
+    "novelty",
+    "empirical quality",
+    "clarity"
+  ],
+  "content": {
+    "abstract": "We propose an LLM-based multi-agent system for rapid research summarization. The system combines retrieval, ranking, and generation modules to produce related-work drafts. Experiments on a small benchmark show higher user preference than direct prompting baselines."
+  },
+  "claims": [
+    "The paper proposes a multi-agent system for rapid research summarization.",
+    "The system improves output quality relative to direct prompting baselines."
+  ],
+  "known_constraints": [
+    "No method section provided",
+    "No related-work section provided",
+    "No detailed benchmark setup or statistical analysis available"
+  ],
+  "target_output": "short reviewer memo with simulated recommendation"
+}

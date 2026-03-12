@@ -1,0 +1,33 @@
+{
+  "title": "Retrieval-Grounded Agent Systems for Automated Related-Work Drafting",
+  "domain": "computer science",
+  "venue_target": "conference",
+  "paper_type": "empirical",
+  "language": "en",
+  "review_style": "strict",
+  "review_depth": "standard",
+  "input_completeness": "full-paper",
+  "focus_areas": [
+    "novelty",
+    "technical soundness",
+    "empirical quality",
+    "significance"
+  ],
+  "content": {
+    "abstract": "This paper studies retrieval-grounded agent systems for automated related-work drafting and claims improvements in citation faithfulness and topical coverage.",
+    "introduction": "The paper motivates the need for grounded related-work generation in academic writing workflows.",
+    "method": "The proposed system decomposes the task into retrieval, clustering, evidence selection, draft planning, and citation-constrained generation.",
+    "experiments": "The paper evaluates on a benchmark of writing tasks and compares against direct prompting, RAG, and a planner-generator baseline. It reports citation precision, expert preference, and topic coverage.",
+    "conclusion": "The authors conclude that agentic decomposition improves reliability and usefulness."
+  },
+  "claims": [
+    "The proposed retrieval-grounded agent system improves citation faithfulness.",
+    "Task decomposition improves topical coverage and expert preference.",
+    "The approach is practical for academic writing assistance."
+  ],
+  "known_constraints": [
+    "Appendix not provided",
+    "No rebuttal or supplementary implementation details available"
+  ],
+  "target_output": "full reviewer report with weak accept or weak reject recommendation"
+}
