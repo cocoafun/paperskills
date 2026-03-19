@@ -1,30 +1,125 @@
+# PaperSkills
 
-# 🎓 PaperSkills
+PaperSkills is a workflow system for AI-native research. It helps agents turn vague research intent into scoped questions, recent-paper tracking, structured synthesis, study design, paper drafting, reviewer-style critique, and revision planning.
 
-> **专为 AI Agent 打造的学术技能套件**
-> 一个开源的学术工作流框架，用于持续论文追踪、文献综述、研究设计与证据驱动写作。
+It is not just a folder of academic prompts. The goal is to provide a reusable research workflow with explicit skill routing, structured briefs, evidence boundaries, and portable documentation that works across agent environments.
 
-PaperSkills 提供了一套开箱即用的 Agent Skills，旨在帮助 AI 代理更好地完成科研、科学、工程、分析、金融以及学术写作任务。
+## How It Works
 
-### ✨ 核心优势
+PaperSkills is organized as a staged workflow:
 
-* 🚀 **开箱即用**：零学习门槛，小白也能快速上手，专注于学术本身而非工具配置。
-* 🌐 **通用生态**：天然兼容当前主流的 AI 辅助工具和生态，包括 **Claude Code**、**Codex**、**VS Code** 以及 **OpenClaw**。
-* 🪶 **极致轻量**：采用 Web 内置设计，供 Agent 直接调用。无需繁琐的本地安装步骤，开户即用，直接生成所需内容。
+1. `using-paperskills` identifies the current research stage.
+2. `research-scoping` narrows broad ideas into executable research briefs.
+3. `paper-tracker` gathers recent papers and builds a candidate pool.
+4. `literature-review` synthesizes the evidence into themes and gaps.
+5. `research-design` converts gaps into questions, methods, and data plans.
+6. `paper-drafting` turns evidence and design into outlines and draft text.
+7. `peer-review` critiques a paper draft as a reviewer would.
+8. `revision-planning` converts feedback into an actionable revision roadmap.
 
-### 🧰 当前支持的 Skills
+The intended flow is:
 
-目前，PaperSkills 已支持以下核心学术技能：
+`idea -> scope -> track -> synthesize -> design -> draft -> review -> revise`
 
-* `skills/literature-review`：文献综述生成与结构化梳理。
-* `skills/paper-tracker`：持续追踪前沿论文与学术动态。
-* `skills/peer-review`：提供基于证据的同行评审意见与修改建议。
+## Current Skills
 
-### 🚀 快速开始
+### Entry Layer
 
-*（您可以在这里补充 1-2 句具体的使用方法，例如：“只需让您的 Agent 读取对应 Skill 的 Web 链接即可开始工作...”）*
+- `skills/using-paperskills`
 
-### 🤝 参与贡献
+### Orchestration Layer
 
-欢迎任何形式的贡献！无论是提交新的 Skill 提案、修复问题，还是完善文档，我们都期待您的加入，共同打造更强大的开源学术工具。
+- `skills/research-scoping`
+- `skills/research-design`
+- `skills/paper-drafting`
+- `skills/revision-planning`
+- `skills/writing-paperskills`
 
+### Execution Layer
+
+- `skills/paper-tracker`
+- `skills/literature-review`
+- `skills/peer-review`
+
+## Shared Brief Schemas
+
+PaperSkills now defines shared schema contracts in `schemas/`:
+
+- `scoping-brief.schema.json`
+- `tracking-brief.schema.json`
+- `review-brief.schema.json`
+- `design-brief.schema.json`
+- `draft-brief.schema.json`
+- `reviewer-brief.schema.json`
+- `revision-brief.schema.json`
+
+These schemas are intended to make upstream skill outputs reusable by downstream skills and scripts.
+
+## Repository Structure
+
+```text
+paperskills/
+  docs/
+  schemas/
+  skills/
+  related/
+```
+
+`skills/` contains the skill library.
+
+`schemas/` contains shared machine-readable brief contracts.
+
+`docs/` contains product and contributor documentation in Chinese and English.
+
+`related/` contains upstream references, experiments, and adjacent tools that are not part of the core PaperSkills runtime surface.
+
+## Getting Started
+
+Start with the docs:
+
+- Chinese: `docs/zh/`
+- English: `docs/en/`
+
+If you are extending the skill system, read:
+
+- `docs/zh/architecture-v2.mdx`
+- `skills/writing-paperskills/SKILL.md`
+
+## Design Principles
+
+- Stage-first, not tool-first
+- Evidence-backed outputs
+- Structured briefs over loose context
+- Portable across agent environments
+- Explicit limits when evidence is incomplete
+
+## Roadmap
+
+### Phase 1
+
+- Product-facing workflow docs
+- Entry and orchestration skill scaffolding
+- Shared schemas
+
+### Phase 2
+
+- More references, examples, and templates for new workflow skills
+- Cross-skill examples and sample end-to-end briefs
+- Better installation and platform-specific setup docs
+
+### Phase 3
+
+- Triggering and workflow smoke tests
+- Release notes and versioned changelog
+- More domain-specific extensions
+
+## Contributing
+
+Contributions should extend the workflow cleanly rather than add isolated prompts. New skills should define:
+
+- when the skill triggers
+- what structured input it expects
+- what output contract it guarantees
+- what evidence limits it must preserve
+
+Use `skills/writing-paperskills/SKILL.md` as the internal authoring guide.

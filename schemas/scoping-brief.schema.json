@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperskills.dev/schemas/scoping-brief.schema.json",
+  "title": "Scoping Brief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["topic", "objective", "language", "questions", "keywords", "next_skill"],
+  "properties": {
+    "topic": { "type": "string" },
+    "objective": { "type": "string" },
+    "target_artifact": { "type": "string" },
+    "language": { "type": "string" },
+    "domain": { "type": "string" },
+    "time_window": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "from_year": { "type": "integer" },
+        "to_year": { "type": "integer" }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "keywords": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "in_scope": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "out_of_scope": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_skill": { "type": "string" }
+  }
+}

@@ -1,16 +1,32 @@
 ---
 title: Getting Started
-description: How to think about the first version of the PaperSkills site.
+description: How to use the first workflow-oriented version of PaperSkills.
 ---
 
 # Getting Started
 
-The first release keeps the product surface intentionally small.
+The current implementation focuses on the first workflow slice rather than a large skill catalog.
 
-1. Read the docs.
-2. Pick a skill.
-3. Use the repository content as the durable source of truth.
+## Think in stages
 
-## Content source
+Do not start from "which folder should I open?"
 
-This documentation is loaded from `external/paperskills/docs`.
+Start from "which research stage am I in?"
+
+1. Scope the problem.
+2. Track recent papers if needed.
+3. Synthesize the literature.
+4. Turn gaps into a design.
+5. Draft the paper.
+6. Review and revise.
+
+## Entry point
+
+The default entry skill is `using-paperskills`, which routes requests to the right downstream skill.
+
+## Included in this first implementation slice
+
+- workflow entry skill scaffold
+- orchestration skill scaffolds
+- shared brief schemas
+- updated product-facing documentation

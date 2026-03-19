@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperskills.dev/schemas/review-brief.schema.json",
+  "title": "Literature Review Brief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["topic", "objective", "review_type", "language", "depth"],
+  "properties": {
+    "topic": { "type": "string" },
+    "objective": { "type": "string" },
+    "review_type": { "type": "string" },
+    "language": { "type": "string" },
+    "citation_style": { "type": "string" },
+    "depth": { "type": "string", "enum": ["quick", "standard", "deep"] },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "from_year": { "type": "integer" },
+        "to_year": { "type": "integer" }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source_preferences": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "inclusion_criteria": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "exclusion_criteria": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "target_length": { "type": "string" }
+  }
+}

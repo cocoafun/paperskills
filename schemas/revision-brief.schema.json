@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paperskills.dev/schemas/revision-brief.schema.json",
+  "title": "Revision Brief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["comments", "manuscript_status"],
+  "properties": {
+    "comments": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "text", "severity"],
+        "properties": {
+          "id": { "type": "string" },
+          "text": { "type": "string" },
+          "severity": { "type": "string", "enum": ["major", "minor", "editorial"] },
+          "source": { "type": "string" }
+        }
+      }
+    },
+    "manuscript_status": { "type": "string" },
+    "target_venue": { "type": "string" },
+    "deadline": { "type": "string" },
+    "constraints": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "topic": "Retrieval-grounded agent systems for literature review drafting",
+  "target_contribution": "Clarify whether explicit grounding improves citation faithfulness and user trust in academic writing support systems.",
+  "theoretical_lens": "human-AI collaboration",
+  "research_questions": [
+    "How does retrieval grounding affect citation faithfulness in literature review drafting systems?",
+    "How does grounding affect perceived controllability and trust for researchers?"
+  ],
+  "hypotheses": [
+    "Retrieval-grounded systems will produce fewer unsupported claims than non-grounded systems.",
+    "Retrieval-grounded systems will improve user trust when evidence provenance is exposed."
+  ],
+  "method_candidates": [
+    "artifact benchmark evaluation",
+    "lab user study"
+  ],
+  "data_sources": [
+    "review-writing benchmark tasks",
+    "annotated citation support labels",
+    "user trust questionnaires"
+  ],
+  "constraints": [
+    "small budget for user recruitment",
+    "need a reproducible evaluation rubric"
+  ]
+}

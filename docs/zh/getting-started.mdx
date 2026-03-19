@@ -1,16 +1,43 @@
 ---
 title: 快速开始
-description: 了解 PaperSkills 站点第一期的使用方式。
+description: 了解 PaperSkills 的第一期工作流与使用入口。
 ---
 
 # 快速开始
 
-第一期站点保持简洁，但已经具备完整骨架。
+PaperSkills 的第一期实现重点不是“多几个技能”，而是先建立一条清晰的科研工作流入口。
 
-1. 浏览文档。
-2. 选择技能。
-3. 以仓库内容作为长期维护的唯一事实来源。
+## 先按阶段理解，而不是按目录理解
 
-## 内容来源
+推荐你把使用过程理解为以下顺序：
 
-当前文档直接读取 `external/paperskills/docs`。
+1. 先判断当前任务处于哪个科研阶段。
+2. 再进入对应 skill，而不是直接生成内容。
+3. 尽量在阶段之间传递结构化 brief。
+4. 当证据不足时，明确保留边界与风险说明。
+
+## 默认入口
+
+系统默认从 `using-paperskills` 开始，它的职责是把请求路由到合适阶段，例如：
+
+- 选题不清晰：进入 `research-scoping`
+- 想看最近论文：进入 `paper-tracker`
+- 需要综述或 related work：进入 `literature-review`
+- 需要形成研究方案：进入 `research-design`
+- 需要写草稿：进入 `paper-drafting`
+- 需要审稿意见：进入 `peer-review`
+- 需要修订计划：进入 `revision-planning`
+
+## 第一批已落地内容
+
+- 工作流入口 skill 骨架
+- 四个流程型 skill 骨架
+- 三个执行型 skill
+- 共享 `schemas/` 目录
+- 新版架构文档
+
+## 建议阅读
+
+1. 阅读 `architecture-v2`
+2. 浏览 `README.md`
+3. 查看 `skills/` 与 `schemas/` 的对应关系

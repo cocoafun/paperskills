@@ -1,0 +1,32 @@
+{
+  "paper_goal": "Workshop paper draft on retrieval-grounded support for literature review writing",
+  "audience": "researchers in AI-assisted scientific writing",
+  "venue_target": "workshop",
+  "language": "en",
+  "citation_style": "APA",
+  "sections": [
+    {
+      "name": "Introduction",
+      "goal": "Establish the writing-grounding problem and motivate the study.",
+      "claims": [
+        "Academic literature review writing depends on faithful evidence synthesis.",
+        "Current generative systems often produce unsupported or weakly grounded review text."
+      ],
+      "evidence": [
+        "Recent work on grounded scientific writing systems",
+        "Studies on citation faithfulness in LLM writing"
+      ]
+    },
+    {
+      "name": "Related Work",
+      "goal": "Position the paper against existing scientific writing and review-synthesis systems.",
+      "claims": [
+        "Prior work covers retrieval, summarization, and writing support, but often separately.",
+        "Few systems integrate end-to-end evidence tracing for review drafting."
+      ],
+      "evidence": [
+        "literature-review brief and corpus notes"
+      ]
+    }
+  ]
+}
