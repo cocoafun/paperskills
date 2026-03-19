@@ -38,6 +38,7 @@ python3 skills/research-design/scripts/render_design.py \
 Prefer a `design-brief` built from:
 
 - scoped topic
+- manuscript type
 - literature gaps
 - theoretical lens
 - target contribution
@@ -46,14 +47,16 @@ Prefer a `design-brief` built from:
 ## Core workflow
 
 1. Identify the target contribution.
-2. Translate gaps into research questions or propositions.
-3. Match each question to a method family.
-4. Specify variables, constructs, data, or evaluation criteria.
-5. Surface assumptions, feasibility risks, and identification limits.
+2. Confirm whether the target manuscript is conceptual, review-led, proposal-style, or empirical.
+3. Translate gaps into research questions or propositions.
+4. Match each question to a method family.
+5. Specify variables, constructs, data, or evaluation criteria.
+6. Surface assumptions, feasibility risks, and identification limits.
 
 ## Required outputs
 
 - research questions or hypotheses
+- manuscript-type statement and study-completion status
 - candidate method path
 - data or evidence requirements
 - contribution statement
@@ -64,3 +67,4 @@ Prefer a `design-brief` built from:
 - Do not claim causal strength without a plausible design.
 - Do not propose measurements that cannot realistically be obtained.
 - Distinguish theory-building, empirical testing, systems evaluation, and review-style contributions.
+- If no completed data or results exist, output a defendable design or proposal path instead of implying that the study has already been executed.

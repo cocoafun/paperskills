@@ -8,7 +8,7 @@ It is not just a folder of academic prompts. The goal is to provide a reusable r
 
 PaperSkills is organized as a staged workflow:
 
-1. `using-paperskills` identifies the current research stage.
+1. `using-paperskills` identifies the current research stage and, when needed, the downstream workflow chain.
 2. `research-scoping` narrows broad ideas into executable research briefs.
 3. `paper-tracker` gathers recent papers and builds a candidate pool.
 4. `literature-review` synthesizes the evidence into themes and gaps.

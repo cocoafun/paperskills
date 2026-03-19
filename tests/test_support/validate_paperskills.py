@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[2]
 SKILLS = {
     "using-paperskills": {"needs_assets": False, "needs_examples": True, "needs_references": True},
     "research-scoping": {"needs_assets": True, "needs_examples": True, "needs_references": True},
+    "paper-tracker": {"needs_assets": True, "needs_examples": True, "needs_references": True},
+    "literature-review": {"needs_assets": True, "needs_examples": True, "needs_references": True},
     "research-design": {"needs_assets": True, "needs_examples": True, "needs_references": True},
     "paper-drafting": {"needs_assets": True, "needs_examples": True, "needs_references": True},
     "revision-planning": {"needs_assets": True, "needs_examples": True, "needs_references": True},
@@ -105,6 +107,14 @@ def validate_workflow_suite():
             "peer-review",
             "revision-planning",
         ],
+        "full-paper-from-topic.md": [
+            "using-paperskills",
+            "research-scoping",
+            "paper-tracker",
+            "literature-review",
+            "research-design",
+            "paper-drafting",
+        ],
     }
 
     for name, expected in expected_mentions.items():
@@ -115,6 +125,8 @@ def validate_workflow_suite():
 
     required_examples = [
         ROOT / "skills" / "research-scoping" / "examples" / "topic-brief.json",
+        ROOT / "skills" / "paper-tracker" / "examples" / "domain-brief.json",
+        ROOT / "skills" / "literature-review" / "examples" / "topic-brief.json",
         ROOT / "skills" / "research-design" / "examples" / "proposal-brief.json",
         ROOT / "skills" / "paper-drafting" / "examples" / "section-brief.json",
         ROOT / "skills" / "revision-planning" / "examples" / "reviewer-comments-brief.json",

@@ -1,5 +1,7 @@
 {
   "paper_goal": "Workshop paper draft on retrieval-grounded support for literature review writing",
+  "manuscript_type": "proposal-style-manuscript",
+  "study_completion_status": "design-only",
   "audience": "researchers in AI-assisted scientific writing",
   "venue_target": "workshop",
   "language": "en",
@@ -26,6 +28,18 @@
       ],
       "evidence": [
         "literature-review brief and corpus notes"
+      ]
+    },
+    {
+      "name": "Research Design",
+      "goal": "Explain how the planned study will test the paper's central claims.",
+      "claims": [
+        "A comparative design can evaluate citation faithfulness and user trust.",
+        "The manuscript is proposal-style and therefore does not yet claim completed results."
+      ],
+      "evidence": [
+        "research-design brief",
+        "planned benchmark tasks and evaluation rubric"
       ]
     }
   ]

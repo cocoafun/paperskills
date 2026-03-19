@@ -7,6 +7,8 @@ Use this schema when converting a scoped problem and literature gaps into a stud
 ```json
 {
   "topic": "Retrieval-grounded agent support for literature review writing",
+  "manuscript_type": "proposal-style-manuscript",
+  "study_completion_status": "design-only",
   "target_contribution": "Explain how grounding mechanisms affect review quality and citation reliability.",
   "theoretical_lens": "sociotechnical systems",
   "research_questions": [
@@ -37,6 +39,8 @@ Use this schema when converting a scoped problem and literature gaps into a stud
 ## Field rules
 
 - `topic`: scoped study topic.
+- `manuscript_type`: one of `conceptual-paper`, `literature-review-paper`, `proposal-style-manuscript`, or `empirical-paper`.
+- `study_completion_status`: one of `design-only`, `partial-results`, or `completed-study`.
 - `target_contribution`: what the study should add beyond existing literature.
 - `theoretical_lens`: optional, but useful in social science or management contexts.
 - `research_questions`: the central questions the study must answer.
@@ -44,3 +48,9 @@ Use this schema when converting a scoped problem and literature gaps into a stud
 - `method_candidates`: shortlist of plausible methods, not a wish list.
 - `data_sources`: real candidate data or evidence sources.
 - `constraints`: practical limits that affect feasibility.
+
+## Design semantics
+
+- If `manuscript_type` is `proposal-style-manuscript`, the output should emphasize study plan, feasibility, and open dependencies rather than finished findings.
+- If `manuscript_type` is `conceptual-paper`, propositions may be appropriate, but they should still map to a defendable mechanism and literature gap.
+- Use `empirical-paper` only when `study_completion_status` is `completed-study` or the user provides finished results.

@@ -12,6 +12,7 @@ echo ""
 
 TESTS=(
   "idea-to-draft|using-paperskills,research-scoping,paper-drafting|$PROMPTS_DIR/idea-to-draft.txt"
+  "full-paper-from-topic|using-paperskills,research-scoping,paper-tracker,literature-review,research-design,paper-drafting|$PROMPTS_DIR/full-paper-from-topic.txt"
   "review-to-revision|using-paperskills,revision-planning|$PROMPTS_DIR/review-to-revision.txt"
 )
 

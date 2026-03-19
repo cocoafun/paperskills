@@ -1,5 +1,7 @@
 {
   "topic": "Retrieval-grounded agent systems for literature review drafting",
+  "manuscript_type": "proposal-style-manuscript",
+  "study_completion_status": "design-only",
   "target_contribution": "Clarify whether explicit grounding improves citation faithfulness and user trust in academic writing support systems.",
   "theoretical_lens": "human-AI collaboration",
   "research_questions": [

@@ -38,7 +38,7 @@ Codex scans `~/.agents/skills/` at startup, reads `SKILL.md` frontmatter, and lo
 ~/.agents/skills/paperskills/ -> /path/to/paperskills/skills/
 ```
 
-The `using-paperskills` skill acts as the entry point. It detects the current research stage and routes the task to the right downstream skill before drafting content.
+The `using-paperskills` skill acts as the entry point. It diagnoses the current research stage, decides whether the task needs a multi-stage workflow, and routes the task before drafting content.
 
 ## Usage
 

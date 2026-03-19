@@ -38,6 +38,8 @@ python3 skills/paper-drafting/scripts/render_draft.py \
 Prefer a `draft-brief` containing:
 
 - paper goal
+- manuscript type
+- study completion status
 - target venue or audience
 - section list
 - evidence ledger or source list
@@ -46,14 +48,17 @@ Prefer a `draft-brief` containing:
 
 ## Core workflow
 
-1. Confirm the target artifact: outline, section draft, full draft, or proposal.
-2. Map claims to sections and evidence.
-3. Draft section-by-section, keeping evidence traceable.
-4. Mark unsupported assertions as placeholders or evidence gaps.
-5. Close with unresolved writing dependencies.
+1. Confirm the target artifact: outline, section draft, full draft, or proposal-style manuscript.
+2. Confirm manuscript type before choosing section structure.
+3. Map claims to sections and evidence.
+4. Draft section-by-section, keeping evidence traceable and genre-consistent.
+5. Mark unsupported assertions as placeholders or evidence gaps.
+6. Close with unresolved writing dependencies.
 
 ## Guardrails
 
 - Do not write polished prose that exceeds the evidence base.
 - Do not merge literature summary, design claims, and future work into one undifferentiated narrative.
 - If the evidence ledger is weak, produce a scaffolded draft with explicit gaps rather than fake certainty.
+- Do not let management, strategy, or policy recommendations replace the core scholarly sections of the manuscript.
+- If the manuscript type is not `empirical-paper`, do not imply completed data collection, statistical findings, or validated results.

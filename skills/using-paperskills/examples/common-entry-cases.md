@@ -69,3 +69,17 @@ Recommended stage:
 Reason:
 
 The request is critique of a single paper artifact.
+
+## Case 6
+
+User request:
+
+`请使用 using-paperskills。题目为“人工智能搜索引擎广告模式策略研究”，用中文。完整写一篇论文。`
+
+Recommended workflow:
+
+`research-scoping -> paper-tracker -> literature-review -> research-design -> paper-drafting`
+
+Reason:
+
+The user wants a complete paper from only a topic. The workflow still needs topic scoping, candidate-paper retrieval, literature synthesis, study design, and then drafting in Chinese.
