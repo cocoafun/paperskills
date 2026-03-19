@@ -51,3 +51,9 @@ Before handing off to a downstream skill, normalize:
 - time sensitivity
 
 Prefer a structured brief over free-form context whenever possible.
+
+## Language handling
+
+- If the user specifies a language such as `用中文`, `英文`, `zh-CN`, or `in English`, preserve it as the normalized `language` field.
+- Pass the same `language` field to downstream PaperSkills stages unless the user explicitly changes it mid-workflow.
+- If the user does not specify a language, follow the language of the current conversation.

@@ -21,6 +21,27 @@ The intended flow is:
 
 `idea -> scope -> track -> synthesize -> design -> draft -> review -> revise`
 
+## Language Control
+
+PaperSkills supports explicit output language control across the workflow.
+
+- Set `language` in the structured brief when a stage uses JSON input.
+- Common values are `zh-CN`, `en`, and `en-US`.
+- If the user says "用中文", "in English", or similar, the active stage should normalize that into the brief and pass it downstream.
+- If no language is specified, skills should follow the user's current language by default.
+
+Recommended pattern:
+
+```json
+{
+  "language": "zh-CN"
+}
+```
+
+This field is intended to persist across stage handoffs, for example:
+
+`using-paperskills -> research-scoping -> literature-review -> research-design -> paper-drafting`
+
 ## Current Skills
 
 ### Entry Layer

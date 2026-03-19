@@ -41,6 +41,7 @@ Prefer a `revision-brief` containing:
 - manuscript status
 - target deadline
 - target venue or decision stage
+- output language
 - known author constraints
 
 ## Core workflow
@@ -58,6 +59,7 @@ Prefer a `revision-brief` containing:
 - evidence or experiment requirements
 - rebuttal notes where relevant
 - remaining risks before resubmission
+- response language consistent with the brief
 
 ## Guardrails
 

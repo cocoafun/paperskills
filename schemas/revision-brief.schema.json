@@ -6,6 +6,7 @@
   "additionalProperties": false,
   "required": ["comments", "manuscript_status"],
   "properties": {
+    "language": { "type": "string" },
     "comments": {
       "type": "array",
       "minItems": 1,

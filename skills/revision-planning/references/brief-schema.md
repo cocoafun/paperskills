@@ -6,6 +6,7 @@ Use this schema when converting review comments into a revision plan.
 
 ```json
 {
+  "language": "en",
   "comments": [
     {
       "id": "R1-C1",
@@ -26,6 +27,7 @@ Use this schema when converting review comments into a revision plan.
 
 ## Field rules
 
+- `language`: output language for the revision plan, for example `zh-CN` or `en`.
 - `comments`: normalized review items, one issue per item.
 - `manuscript_status`: for example `draft`, `under review`, `revision requested`, or `camera ready`.
 - `target_venue`: optional, but useful for tone and expectations.
