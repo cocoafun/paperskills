@@ -101,6 +101,20 @@ Start with the docs:
 - Chinese: `docs/zh/`
 - English: `docs/en/`
 
+## Installation
+
+PaperSkills is currently used with Codex through native skill discovery.
+
+### Codex
+
+Tell Codex:
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/paperskills/refs/heads/main/.codex/INSTALL.md
+```
+
+Manual installation is also available in `.codex/INSTALL.md`.
+
 If you are extending the skill system, read:
 
 - `docs/zh/architecture-v2.mdx`
