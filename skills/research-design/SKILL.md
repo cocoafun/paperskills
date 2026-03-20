@@ -68,3 +68,18 @@ Prefer a `design-brief` built from:
 - Do not propose measurements that cannot realistically be obtained.
 - Distinguish theory-building, empirical testing, systems evaluation, and review-style contributions.
 - If no completed data or results exist, output a defendable design or proposal path instead of implying that the study has already been executed.
+
+## Before claiming completion
+
+- Check that the `design-brief` includes the required contribution, manuscript type, and feasible evidence context.
+- Distinguish literature-backed design choices from agent inference or heuristic recommendations.
+- If the design depends on unverified assumptions, label it as provisional rather than complete.
+- Do not say the design is fully supported if the upstream synthesis is partial.
+- Use `paperskills:evidence-before-completion` before claiming the design is ready.
+
+## Downstream handoff
+
+- Recommended next skill: `paper-drafting`
+- Pass forward a `design-brief`
+- Preserve `language`, `manuscript_type`, `evidence_status`, `target_artifact`, method path, and open dependencies
+- If data, results, or identification logic are still unresolved, say the handoff supports proposal-style drafting only

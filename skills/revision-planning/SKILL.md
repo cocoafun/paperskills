@@ -66,3 +66,18 @@ Prefer a `revision-brief` containing:
 - Do not collapse all comments into generic prose.
 - Do not promise fixes without identifying the required evidence or edits.
 - Preserve the distinction between paper changes and response-letter changes.
+
+## Before claiming completion
+
+- Check that the `revision-brief` covers the comments, manuscript status, constraints, and response target.
+- Separate confirmed paper edits from proposed but still unverified fixes.
+- Do not say an issue is resolved if the evidence or experiment required for the fix is still missing.
+- If upstream review was partial, preserve that limitation in the revision plan.
+- Use `paperskills:evidence-before-completion` before claiming the plan is complete or submission-ready.
+
+## Downstream handoff
+
+- Recommended next skill: return to `paper-drafting` for manuscript edits, or produce a response-letter workflow outside the current stage
+- Pass forward a `revision-brief` plus prioritized issue units
+- Preserve `language`, `manuscript_type`, `evidence_status`, target deadline, affected sections, and unresolved experiment needs
+- Do not claim the manuscript can proceed directly to resubmission unless the required evidence and edits are explicitly accounted for

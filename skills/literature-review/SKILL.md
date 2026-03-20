@@ -144,6 +144,21 @@ Avoid these:
 - Stating "the literature shows" when only 1-2 papers support the claim
 - Writing a polished conclusion while the evidence base is still thin
 
+## Before claiming completion
+
+- Check that the normalized review brief is complete enough for the requested review mode.
+- Check whether sources were reviewed in full text, abstract only, or metadata only.
+- Distinguish source-grounded findings from synthesis and inference.
+- If the corpus is thin or partial, mark the output as `partial`, `low confidence`, or equivalent.
+- Use `paperskills:evidence-before-completion` before saying the review is complete or strongly evidence-backed.
+
+## Downstream handoff
+
+- Recommended next skills: `research-design` or `paper-drafting`
+- Pass forward a `review-brief` plus the evidence ledger or source shortlist
+- Preserve `language`, `manuscript_type`, `evidence_status`, `time_window`, `target_artifact`, and major gaps
+- Do not say the workflow is ready for downstream drafting if the synthesis is abstract-based or key evidence is still missing
+
 ## Example request shapes
 
 - `帮我围绕“基于大语言模型的文献综述自动生成”写一个文献综述初稿。`

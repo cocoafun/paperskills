@@ -141,6 +141,21 @@ Avoid these:
 - Calling experiments insufficient without saying what evidence is missing
 - Simulating a confident decision when the paper text is incomplete
 
+## Before claiming completion
+
+- Check that the review brief reflects whether the material is `full-paper`, `partial-paper`, or `abstract-only`.
+- Tie each major judgment to provided paper evidence, not to invented missing sections.
+- If the paper materials are incomplete, lower confidence and mark the review as partial.
+- Do not present recommendation language as high confidence when the evidence base is incomplete.
+- Use `paperskills:evidence-before-completion` before saying the review is complete or decision-ready.
+
+## Downstream handoff
+
+- Recommended next skill: `revision-planning`
+- Pass forward a `reviewer-brief` or structured review output with issue units
+- Preserve `language`, `manuscript_type`, `evidence_status`, recommendation confidence, and section-specific concerns
+- If the review is based on partial materials, say downstream revision planning is also constrained by that evidence boundary
+
 ## Example request shapes
 
 - `帮我审稿这篇论文，给出 major concerns 和 weak reject / weak accept 建议。`

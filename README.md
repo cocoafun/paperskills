@@ -55,12 +55,17 @@ This field is intended to persist across stage handoffs, for example:
 - `skills/paper-drafting`
 - `skills/revision-planning`
 - `skills/writing-paperskills`
+- `skills/brief-compliance-review`
 
 ### Execution Layer
 
 - `skills/paper-tracker`
 - `skills/literature-review`
 - `skills/peer-review`
+
+### Cross-Cutting Layer
+
+- `skills/evidence-before-completion`
 
 ## Shared Brief Schemas
 
@@ -124,6 +129,7 @@ If you are extending the skill system, read:
 
 - Stage-first, not tool-first
 - Evidence-backed outputs
+- Evidence before completion claims
 - Structured briefs over loose context
 - Portable across agent environments
 - Explicit limits when evidence is incomplete

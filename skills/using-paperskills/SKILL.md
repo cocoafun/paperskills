@@ -25,6 +25,8 @@ Read [examples/common-entry-cases.md](examples/common-entry-cases.md) for repres
 
 Do not jump directly into writing, reviewing, or paper search if a more specific PaperSkills skill should be activated first.
 
+If the request may span multiple research stages, you must do stage diagnosis first. Do not draft content first and route later.
+
 ## Workflow routing
 
 First determine the immediate next stage. Then decide whether the user also needs a downstream workflow chain in the same turn.
@@ -64,9 +66,35 @@ Common multi-stage chains:
 - If the request is ambiguous, first produce a concise stage diagnosis.
 - If the request spans multiple stages, identify the earliest missing stage and also name the planned downstream chain.
 - If the user asks for content that requires evidence not yet collected, route upstream instead of fabricating downstream certainty.
+- If the user asks for a full paper, draft, proposal, or review from thin evidence, diagnose evidence status before selecting a later-stage skill.
 - If the user asks for a full paper, proposal, thesis chapter, or "完整撰写" from only a topic, do not stop at scoping. Produce a compact scoping brief, then continue through the missing evidence and design stages as needed.
 - Treat `paper-tracker` as a retrieval accelerator, not a mandatory stage. Use it when recency matters, when the user explicitly wants recent papers or a reading shortlist, or when a live field needs a fast candidate pool before `literature-review`.
 - If evidence coverage is partial, require an explicit confidence or limitation note in the final output.
+
+Short routing defaults:
+
+- broad or fuzzy topic -> `research-scoping`
+- recent papers, trends, or shortlist -> `paper-tracker`
+- synthesis, gaps, or related work -> `literature-review`
+- questions, hypotheses, methods, or study plan -> `research-design`
+- manuscript drafting -> first verify manuscript type and evidence status; if they are insufficient, route upstream
+
+## Red flags
+
+Stop and re-route if you are about to do any of these:
+
+- "先写一版再说"
+- "先搜几篇再判断阶段"
+- "用户要完整论文，所以直接进入 drafting"
+- "证据不够也先按完成态写"
+- writing an empirical-paper style result section without completed study evidence
+
+## Certainty discipline
+
+- Do not skip straight to downstream drafting when upstream evidence gathering is still missing.
+- Do not present incomplete evidence gathering as if the workflow already supports a finished empirical manuscript.
+- If the user has not provided data, completed results, or a verified corpus, do not let later stages speak in a completed-study voice.
+- When later-stage work is requested on partial evidence, require explicit limits such as `partial`, `provisional`, or `low confidence`.
 
 ## Expected handoff
 
@@ -79,6 +107,8 @@ Before handing off to a downstream skill, normalize:
 - evidence availability
 - study completion status
 - time sensitivity
+- downstream brief type
+- evidence status
 
 Prefer a structured brief over free-form context whenever possible.
 
@@ -92,6 +122,7 @@ At minimum, emit:
 - a normalized handoff brief containing the core fields above
 - an explicit manuscript-type label such as `literature-review-paper`, `conceptual-paper`, `proposal-style-manuscript`, or `empirical-paper`
 - explicit evidence limitations when later-stage writing is requested before evidence is ready
+- an explicit downstream brief or a statement that handoff is not yet ready
 
 ## Manuscript-type discipline
 

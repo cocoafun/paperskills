@@ -62,3 +62,18 @@ Prefer a `draft-brief` containing:
 - If the evidence ledger is weak, produce a scaffolded draft with explicit gaps rather than fake certainty.
 - Do not let management, strategy, or policy recommendations replace the core scholarly sections of the manuscript.
 - If the manuscript type is not `empirical-paper`, do not imply completed data collection, statistical findings, or validated results.
+
+## Before claiming completion
+
+- Check that the `draft-brief` contains the required section plan, manuscript type, evidence ledger, and claim mapping.
+- Separate paper text, cited evidence, and agent-authored inference.
+- If parts of the draft rely only on partial sources or upstream placeholders, mark them explicitly.
+- Do not say the manuscript is ready if key sections still exceed the evidence base.
+- Use `paperskills:evidence-before-completion` before claiming the draft is evidence-backed or downstream-ready.
+
+## Downstream handoff
+
+- Recommended next skills: `peer-review` or `revision-planning` after review feedback exists
+- Pass forward a `draft-brief` or draft package with section claims and evidence ledger
+- Preserve `language`, `manuscript_type`, `evidence_status`, `target_artifact`, citation style, and unresolved writing dependencies
+- If the current draft is proposal-style or evidence-limited, state that downstream review should evaluate it under those limits

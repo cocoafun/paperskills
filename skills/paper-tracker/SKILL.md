@@ -176,3 +176,18 @@ Do not say a journal has "no new papers" unless the evidence is strong. Distingu
 - `no verified new papers found`
 - `publisher page blocked or inaccessible`
 - `metadata found but only nonresearch items`
+
+## Before claiming completion
+
+- Check that the search brief includes the requested time window, scope, output count, and language.
+- Distinguish verified paper records from weak metadata matches, blocked sources, or unresolved venue mappings.
+- Do not say "no new papers" unless the retrieval evidence supports that claim.
+- If contribution summaries rely only on titles or abstracts, mark them as partial or low confidence.
+- Use `paperskills:evidence-before-completion` before claiming the tracking report is complete or handoff-ready.
+
+## Downstream handoff
+
+- Recommended next skill: `literature-review`
+- Pass forward a tracking brief plus the candidate list or shortlist
+- Preserve `language`, `time_window`, `evidence_status`, `target_artifact`, search filters, and source coverage notes
+- If the corpus is still weakly verified or heavily metadata-based, say downstream synthesis remains partial

@@ -63,3 +63,17 @@ Produce a `scoping-brief` with:
 - Do not skip boundary-setting for convenience.
 - When the user wants a draft immediately, still produce a compact scoping summary first if the request is under-specified.
 - State what was inferred versus what the user explicitly gave.
+
+## Before claiming completion
+
+- Check that the `scoping-brief` contains all required fields for this stage.
+- State which boundaries and questions came from the user versus agent inference.
+- If the topic is still under-specified, do not call the scoping phase complete.
+- If handoff fields are incomplete, use `paperskills:brief-compliance-review` or `paperskills:evidence-before-completion` discipline before finalizing.
+
+## Downstream handoff
+
+- Recommended next skills: `paper-tracker`, `literature-review`, or `research-design`
+- Pass forward a `scoping-brief`
+- Preserve `language`, `manuscript_type`, `target_artifact`, `time_window`, and the scoped questions and boundaries
+- If the next stage still depends on unresolved scope choices, say handoff is partial rather than fully ready
