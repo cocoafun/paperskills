@@ -43,9 +43,11 @@ Immediate stage options:
    Use when the user wants to turn literature gaps into questions, hypotheses, methods, or identification logic.
 5. `paper-drafting`
    Use when the user wants outlines, section drafts, or evidence-backed manuscript writing.
-6. `peer-review`
+6. `manuscript-finalization`
+   Use when the user already has a working draft and wants a thesis-ready or submission-ready manuscript.
+7. `peer-review`
    Use when the user wants reviewer-style critique on one paper.
-7. `revision-planning`
+8. `revision-planning`
    Use when the user wants to turn comments or review feedback into revision tasks.
 
 Common multi-stage chains:
@@ -58,7 +60,9 @@ Common multi-stage chains:
   Use when the user wants gaps translated into research questions, hypotheses, or methods.
 - `research-scoping -> literature-review -> research-design -> paper-drafting`
   Use when the user wants a proposal or defendable study plan from a rough topic.
-- `research-scoping -> paper-tracker -> literature-review -> research-design -> paper-drafting`
+- `research-scoping -> literature-review -> paper-drafting -> manuscript-finalization`
+  Use when the user wants a non-empirical full paper or undergraduate thesis from a rough topic and the defensible artifact is conceptual or review-led.
+- `research-scoping -> paper-tracker -> literature-review -> research-design -> paper-drafting -> manuscript-finalization`
   Default full-paper workflow when the user asks for a complete paper from only a topic title or theme and no evidence ledger is provided.
 
 ## Routing discipline
@@ -68,6 +72,7 @@ Common multi-stage chains:
 - If the user asks for content that requires evidence not yet collected, route upstream instead of fabricating downstream certainty.
 - If the user asks for a full paper, draft, proposal, or review from thin evidence, diagnose evidence status before selecting a later-stage skill.
 - If the user asks for a full paper, proposal, thesis chapter, or "完整撰写" from only a topic, do not stop at scoping. Produce a compact scoping brief, then continue through the missing evidence and design stages as needed.
+- If the user asks for a complete paper or thesis, do not stop the workflow at `paper-drafting`. Add `manuscript-finalization` when the requested deliverable is meant to read as a finished manuscript rather than a working draft.
 - Treat `paper-tracker` as a retrieval accelerator, not a mandatory stage. Use it when recency matters, when the user explicitly wants recent papers or a reading shortlist, or when a live field needs a fast candidate pool before `literature-review`.
 - If evidence coverage is partial, require an explicit confidence or limitation note in the final output.
 
@@ -78,6 +83,7 @@ Short routing defaults:
 - synthesis, gaps, or related work -> `literature-review`
 - questions, hypotheses, methods, or study plan -> `research-design`
 - manuscript drafting -> first verify manuscript type and evidence status; if they are insufficient, route upstream
+- final manuscript or thesis-ready delivery -> `manuscript-finalization`
 
 ## Red flags
 
@@ -95,6 +101,7 @@ Stop and re-route if you are about to do any of these:
 - Do not present incomplete evidence gathering as if the workflow already supports a finished empirical manuscript.
 - If the user has not provided data, completed results, or a verified corpus, do not let later stages speak in a completed-study voice.
 - When later-stage work is requested on partial evidence, require explicit limits such as `partial`, `provisional`, or `low confidence`.
+- When the user asks for a finished manuscript, remember that `paper-drafting` still produces a draft package. Use `manuscript-finalization` before claiming the workflow has produced a thesis-ready or submission-ready artifact.
 
 ## Expected handoff
 
@@ -109,6 +116,33 @@ Before handing off to a downstream skill, normalize:
 - time sensitivity
 - downstream brief type
 - evidence status
+
+## Local artifact persistence
+
+When the task produces reusable stage state, create or reuse a task-local run directory such as:
+
+```text
+artifacts/paperskills/<run-id>/
+```
+
+Before producing any stage diagnosis or downstream handoff, initialize local storage with:
+
+```bash
+python3 skills/using-paperskills/scripts/paperskills_artifacts.py init \
+  --task "<task-title>" \
+  --entry-stage using-paperskills \
+  --planned-chain research-scoping,paper-tracker,literature-review,paper-drafting,manuscript-finalization
+```
+
+Storage rules:
+
+- `using-paperskills` should initialize the run when it is the entry stage.
+- Do not treat local persistence as optional when the task is producing reusable workflow state.
+- Write a machine-readable stage brief before routing downstream.
+- Record the diagnosed immediate stage and planned chain in a run-level manifest or stage status file.
+- If the user is doing only one stage later, that downstream stage must still be able to create its own standalone run.
+- Do not assume every task will continue through the full workflow.
+- Reuse a user-specified run path when the user explicitly asks to continue a prior task.
 
 Prefer a structured brief over free-form context whenever possible.
 

@@ -52,6 +52,14 @@ Important:
 - `paper-drafting` is not the starting point when the user asks for a full paper from only a topic and no evidence corpus.
 - In that case, route to the earliest missing upstream stage and continue the workflow instead of stopping after diagnosis.
 
+### `manuscript-finalization`
+
+Use when:
+
+- the user already has a working draft and wants a finished manuscript
+- the target artifact is `undergraduate thesis`, `submission-ready manuscript`, or `完整终稿`
+- the workflow must not stop at a draft package
+
 ### `peer-review`
 
 Use when:
@@ -73,8 +81,9 @@ Use when:
 - If the user asks for a literature review and also a proposal, start with `literature-review` unless the topic itself is still vague.
 - If the user asks for recent papers and a gap analysis in one request, use `paper-tracker` first, then `literature-review`.
 - If the user asks for a complete paper, thesis chapter, or proposal from only a title or topic, use a staged chain rather than a single stage.
-- If the user asks for a complete paper from a topic in a fast-moving area and gives no source list, prefer `research-scoping -> paper-tracker -> literature-review -> research-design -> paper-drafting`.
-- If the user asks for a complete paper from a topic in a slower-moving area and gives no source list, prefer `research-scoping -> literature-review -> research-design -> paper-drafting`.
+- If the user asks for a complete paper from a topic in a fast-moving area and gives no source list, prefer `research-scoping -> paper-tracker -> literature-review -> research-design -> paper-drafting -> manuscript-finalization`.
+- If the user asks for a complete paper from a topic in a slower-moving area and gives no source list, prefer `research-scoping -> literature-review -> research-design -> paper-drafting -> manuscript-finalization`.
+- If the user asks for a non-empirical undergraduate thesis or conceptual full paper from a topic and no completed study exists, prefer `research-scoping -> literature-review -> paper-drafting -> manuscript-finalization`.
 
 ## Multi-stage routing patterns
 
@@ -94,13 +103,26 @@ When:
 
 Use:
 
-- `research-scoping -> paper-tracker -> literature-review -> research-design -> paper-drafting`
+- `research-scoping -> paper-tracker -> literature-review -> research-design -> paper-drafting -> manuscript-finalization`
 
 When:
 
 - the user asks for "完整写一篇论文", "完整撰写", "full paper", or similar
 - the input is only a topic, title, or short brief
 - recency or candidate-paper discovery is still missing
+- the final requested artifact is a completed manuscript rather than only a working draft
+
+### Topic to full non-empirical thesis
+
+Use:
+
+- `research-scoping -> literature-review -> paper-drafting -> manuscript-finalization`
+
+When:
+
+- the user asks for an undergraduate thesis, thesis-style full paper, or complete conceptual manuscript
+- no completed empirical study is available
+- the defensible end state is a finished non-empirical manuscript rather than a draft outline
 
 Manuscript-type rule:
 

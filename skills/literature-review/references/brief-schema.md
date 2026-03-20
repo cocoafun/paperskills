@@ -38,6 +38,8 @@ Use this schema when the skill wants a structured handoff from a user's topic de
     }
   ],
   "source_preferences": [
+    "CNKI",
+    "Wanfang Data",
     "Semantic Scholar",
     "OpenAlex",
     "arXiv"
@@ -69,6 +71,7 @@ Use this schema when the skill wants a structured handoff from a user's topic de
 - `keywords`: Plain retrieval phrases.
 - `concept_groups`: Optional but preferred for generating boolean queries.
 - `source_preferences`: Ordered list of preferred databases or discovery layers.
+- If Chinese literature matters, put Chinese academic databases such as `CNKI`, `Wanfang Data`, or `VIP/CQVIP` ahead of generic global indexes.
 - `inclusion_criteria` and `exclusion_criteria`: Keep these practical, not ceremonial.
 - `target_length`: Word range or a short output label such as `section`, `full review`, or `thesis chapter`.
 
@@ -76,6 +79,7 @@ Use this schema when the skill wants a structured handoff from a user's topic de
 
 - If `concept_groups` is present, use it to build boolean search strings.
 - If `source_preferences` is empty, choose sources from the domain in the topic.
+- If `language` is `zh-CN` or the topic clearly targets Chinese scholarship, include at least one Chinese academic database in `source_preferences` unless the user explicitly says otherwise.
 - If `window` is missing, default to the last 5 years plus older seminal work when needed.
 - If the user names seed papers, add a `seed_papers` array and use citation chaining.
 

@@ -191,3 +191,23 @@ Do not say a journal has "no new papers" unless the evidence is strong. Distingu
 - Pass forward a tracking brief plus the candidate list or shortlist
 - Preserve `language`, `time_window`, `evidence_status`, `target_artifact`, search filters, and source coverage notes
 - If the corpus is still weakly verified or heavily metadata-based, say downstream synthesis remains partial
+
+## Local artifact persistence
+
+When persisting local work, store retrieval state separately from the final report.
+
+Before writing stage content, ensure the stage package exists:
+
+```bash
+python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
+  --run-dir artifacts/paperskills/<run-id> \
+  --stage paper-tracker \
+  --index 3 \
+  --status in_progress
+```
+
+- Write `brief.json` for the normalized tracking brief.
+- Save raw retrieval notes, screening decisions, or ranking rationale in `notes.md`.
+- Save the shortlist or report in `output.md` or an equivalent report file.
+- Preserve source coverage and cutoff details in `status.json`.
+- If this was a one-shot tracking request, keep it as a standalone run rather than forcing a workflow chain.

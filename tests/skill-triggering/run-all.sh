@@ -10,6 +10,7 @@ SKILLS=(
   "research-scoping"
   "research-design"
   "paper-drafting"
+  "manuscript-finalization"
   "revision-planning"
 )
 

@@ -77,3 +77,23 @@ Produce a `scoping-brief` with:
 - Pass forward a `scoping-brief`
 - Preserve `language`, `manuscript_type`, `target_artifact`, `time_window`, and the scoped questions and boundaries
 - If the next stage still depends on unresolved scope choices, say handoff is partial rather than fully ready
+
+## Local artifact persistence
+
+When persisting local work, store this stage as a self-contained stage package under the active run directory.
+
+Before writing stage content, ensure the stage package exists:
+
+```bash
+python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
+  --run-dir artifacts/paperskills/<run-id> \
+  --stage research-scoping \
+  --index 2 \
+  --status in_progress
+```
+
+- Write `brief.json` for the normalized `scoping-brief`.
+- Save intermediate narrowing notes or question alternatives in `notes.md`.
+- Save the rendered scoped result in `output.md`.
+- If a next step is identified, write `handoff.json`; otherwise omit it.
+- If this stage is executed standalone, create a new run instead of assuming an upstream entry stage exists.

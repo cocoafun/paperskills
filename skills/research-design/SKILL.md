@@ -83,3 +83,23 @@ Prefer a `design-brief` built from:
 - Pass forward a `design-brief`
 - Preserve `language`, `manuscript_type`, `evidence_status`, `target_artifact`, method path, and open dependencies
 - If data, results, or identification logic are still unresolved, say the handoff supports proposal-style drafting only
+
+## Local artifact persistence
+
+When persisting local work, keep the normalized design brief distinct from the rendered plan.
+
+Before writing stage content, ensure the stage package exists:
+
+```bash
+python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
+  --run-dir artifacts/paperskills/<run-id> \
+  --stage research-design \
+  --index 5 \
+  --status in_progress
+```
+
+- Write `brief.json` for the `design-brief`.
+- Save design alternatives, assumptions, and feasibility notes in `notes.md`.
+- Save the rendered design output in `output.md`.
+- Write `handoff.json` only when preparing a downstream drafting step.
+- If the user enters directly at this stage, do not require prior workflow artifacts before storing the design package.

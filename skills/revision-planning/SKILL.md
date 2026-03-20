@@ -81,3 +81,23 @@ Prefer a `revision-brief` containing:
 - Pass forward a `revision-brief` plus prioritized issue units
 - Preserve `language`, `manuscript_type`, `evidence_status`, target deadline, affected sections, and unresolved experiment needs
 - Do not claim the manuscript can proceed directly to resubmission unless the required evidence and edits are explicitly accounted for
+
+## Local artifact persistence
+
+This stage must also work cleanly as a standalone task because users may arrive with comments only.
+
+Before writing stage content, ensure the stage package exists:
+
+```bash
+python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
+  --run-dir artifacts/paperskills/<run-id> \
+  --stage revision-planning \
+  --index 1 \
+  --status in_progress
+```
+
+- Write `brief.json` for the normalized `revision-brief`.
+- Save issue normalization and dependency notes in `notes.md`.
+- Save the prioritized revision plan in `output.md`.
+- Preserve unresolved evidence needs and upstream-review limitations in `status.json`.
+- Write `handoff.json` only when the plan is being passed back into a drafting or response-writing step.

@@ -14,6 +14,7 @@ SKILLS = {
     "literature-review": {"needs_assets": True, "needs_examples": True, "needs_references": True},
     "research-design": {"needs_assets": True, "needs_examples": True, "needs_references": True},
     "paper-drafting": {"needs_assets": True, "needs_examples": True, "needs_references": True},
+    "manuscript-finalization": {"needs_assets": True, "needs_examples": True, "needs_references": True},
     "revision-planning": {"needs_assets": True, "needs_examples": True, "needs_references": True},
 }
 
@@ -112,8 +113,8 @@ def validate_workflow_suite():
             "research-scoping",
             "paper-tracker",
             "literature-review",
-            "research-design",
             "paper-drafting",
+            "manuscript-finalization",
         ],
     }
 
@@ -129,6 +130,7 @@ def validate_workflow_suite():
         ROOT / "skills" / "literature-review" / "examples" / "topic-brief.json",
         ROOT / "skills" / "research-design" / "examples" / "proposal-brief.json",
         ROOT / "skills" / "paper-drafting" / "examples" / "section-brief.json",
+        ROOT / "skills" / "manuscript-finalization" / "examples" / "finalization-brief.json",
         ROOT / "skills" / "revision-planning" / "examples" / "reviewer-comments-brief.json",
     ]
     for path in required_examples:

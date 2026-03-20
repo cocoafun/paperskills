@@ -5,7 +5,7 @@ description: Use when the user wants to turn a structured research brief, litera
 
 # Paper Drafting
 
-Generate manuscript structure and draft text from explicit evidence and research design inputs.
+Generate manuscript structure and working-draft text from explicit evidence and research design inputs.
 
 Read [references/brief-schema.md](references/brief-schema.md) for the normalized draft brief shape.
 Read [references/drafting-playbook.md](references/drafting-playbook.md) for section planning and evidence-binding rules.
@@ -26,12 +26,14 @@ python3 skills/paper-drafting/scripts/render_draft.py \
 ```
 
 3. Expand the generated scaffold with evidence-backed prose.
+4. If the requested deliverable is a finished manuscript rather than a working draft, hand off to `manuscript-finalization` instead of stopping here.
 
 ## Use this skill when
 
 - The user wants an outline or section draft.
 - The user wants to turn a literature review and design brief into a paper structure.
 - The user wants evidence-backed writing instead of free-form generation.
+- The user needs a working draft as the input to a later finalization stage.
 
 ## Required inputs
 
@@ -54,6 +56,7 @@ Prefer a `draft-brief` containing:
 4. Draft section-by-section, keeping evidence traceable and genre-consistent.
 5. Mark unsupported assertions as placeholders or evidence gaps.
 6. Close with unresolved writing dependencies.
+7. If the user asked for a complete manuscript, emit an explicit handoff to `manuscript-finalization`.
 
 ## Guardrails
 
@@ -62,6 +65,7 @@ Prefer a `draft-brief` containing:
 - If the evidence ledger is weak, produce a scaffolded draft with explicit gaps rather than fake certainty.
 - Do not let management, strategy, or policy recommendations replace the core scholarly sections of the manuscript.
 - If the manuscript type is not `empirical-paper`, do not imply completed data collection, statistical findings, or validated results.
+- Do not describe the output as final, thesis-ready, or submission-ready. That is `manuscript-finalization` work.
 
 ## Before claiming completion
 
@@ -69,11 +73,32 @@ Prefer a `draft-brief` containing:
 - Separate paper text, cited evidence, and agent-authored inference.
 - If parts of the draft rely only on partial sources or upstream placeholders, mark them explicitly.
 - Do not say the manuscript is ready if key sections still exceed the evidence base.
+- If the user asked for a finished paper, mark this stage as a working draft and route to `manuscript-finalization`.
 - Use `paperskills:evidence-before-completion` before claiming the draft is evidence-backed or downstream-ready.
 
 ## Downstream handoff
 
-- Recommended next skills: `peer-review` or `revision-planning` after review feedback exists
+- Recommended next skills: `manuscript-finalization`, `peer-review`, or `revision-planning` after review feedback exists
 - Pass forward a `draft-brief` or draft package with section claims and evidence ledger
 - Preserve `language`, `manuscript_type`, `evidence_status`, `target_artifact`, citation style, and unresolved writing dependencies
-- If the current draft is proposal-style or evidence-limited, state that downstream review should evaluate it under those limits
+- If the current draft is proposal-style or evidence-limited, state that downstream finalization or review should evaluate it under those limits
+
+## Local artifact persistence
+
+When persisting local work, keep the draft package traceable to its supporting brief and evidence state.
+
+Before writing stage content, ensure the stage package exists:
+
+```bash
+python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
+  --run-dir artifacts/paperskills/<run-id> \
+  --stage paper-drafting \
+  --index 6 \
+  --status in_progress
+```
+
+- Write `brief.json` for the normalized `draft-brief`.
+- Save claim-to-evidence mapping notes or unresolved section dependencies in `notes.md`.
+- Save the drafted manuscript artifact in `output.md` or a manuscript file.
+- Preserve evidence limitations and manuscript type in `status.json`.
+- If drafting is run on its own, the stage must still create a self-contained stored brief before writing prose.

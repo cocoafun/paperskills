@@ -30,19 +30,24 @@ This example shows how PaperSkills should handle a "write the whole paper" reque
 - Produce an evidence ledger and a related-work synthesis in Chinese.
 - Hand the strongest gaps and supported claims to `research-design`.
 
-## Stage 5: `research-design`
+## Stage 5a: `research-design` when needed
 
-- Convert the literature gaps into research questions, hypotheses, and a feasible method path.
-- Produce a `design-brief` that distinguishes supported claims from open assumptions.
-- If no study has been completed, label the manuscript as `conceptual-paper` or `proposal-style-manuscript` rather than a finished empirical article.
+- Use this stage only if the intended manuscript genuinely needs research questions, hypotheses, or a future-tense study plan.
+- If no study has been completed and the target is a non-empirical undergraduate thesis, the workflow may skip this stage and keep the manuscript type as `conceptual-paper` or `literature-review-paper`.
 
 ## Stage 6: `paper-drafting`
 
-- Draft the manuscript in Chinese from the scoped topic, evidence ledger, and design brief.
+- Draft the manuscript in Chinese from the scoped topic, evidence ledger, and optional design brief.
 - Keep claims tied to collected evidence.
 - Preserve the inferred manuscript type so the output stays in academic-paper form instead of drifting into a consultancy report.
 - Mark unsupported sections as limitations or placeholders instead of presenting fabricated certainty.
 
+## Stage 7: `manuscript-finalization`
+
+- Convert the working draft into a thesis-ready full manuscript rather than stopping at a draft.
+- Ensure abstract, keywords, chapter completeness, references, and conclusion are all present and mutually consistent.
+- Preserve explicit evidence limits instead of polishing them away.
+
 ## Expected workflow property
 
-The workflow must not stop after stage diagnosis or a scoping note. A complete-paper request from only a topic should continue through evidence collection, synthesis, design, and drafting.
+The workflow must not stop after stage diagnosis, scoping, or working-draft output. A complete-paper request from only a topic should continue through evidence collection, synthesis, drafting, and finalization, using `research-design` only when the manuscript type actually requires it.

@@ -95,6 +95,14 @@ Domain defaults:
 - Social science and management: Crossref, OpenAlex, SSRN, publisher journal pages
 - General science: Semantic Scholar, OpenAlex, Crossref, publisher pages
 
+Language-specific defaults:
+
+- If the user asks for Chinese output, Chinese papers, a Chinese thesis chapter, or the topic is clearly centered on Chinese scholarship, add Chinese academic indexes to the front of the search plan.
+- For Chinese-language literature retrieval, prefer CNKI, Wanfang Data, VIP/CQVIP, Airiti Library when relevant, and institutional journal portals.
+- Do bilingual retrieval when the topic spans both Chinese and international scholarship. Use paired Chinese and English query variants instead of searching only one language.
+- If Chinese databases return only metadata or partial previews, say so explicitly and avoid overclaiming full-text coverage.
+- Record which claims are mainly grounded in Chinese-language literature versus international literature when that distinction matters for the argument.
+
 If Zotero or Semantic Scholar MCP tools are available, use them for seed-paper expansion, citation chaining, and note capture. Otherwise continue with web and public APIs.
 
 ## Evidence rules
@@ -165,3 +173,23 @@ Avoid these:
 - `根据“供应链韧性中的数字孪生优化”生成 related work。`
 - `Write a literature review on agentic scientific discovery systems and identify open gaps.`
 - `Turn this thesis topic into a review brief, source list, and 3000-word review draft.`
+
+## Local artifact persistence
+
+When persisting local work, keep the evidence ledger and the narrative draft as separate artifacts.
+
+Before writing stage content, ensure the stage package exists:
+
+```bash
+python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
+  --run-dir artifacts/paperskills/<run-id> \
+  --stage literature-review \
+  --index 4 \
+  --status in_progress
+```
+
+- Write `brief.json` for the normalized review brief.
+- Save screening notes, theme clustering, and evidence ledger details in `notes.md` or companion files.
+- Save the synthesis draft in `output.md`.
+- Write `handoff.json` only if the review is explicitly preparing `research-design` or `paper-drafting`.
+- If the user asked only for one review pass, store it as a standalone run with its own evidence boundary markers.

@@ -1,6 +1,6 @@
 # PaperSkills
 
-PaperSkills is a workflow system for AI-native research. It helps agents turn vague research intent into scoped questions, recent-paper tracking, structured synthesis, study design, paper drafting, reviewer-style critique, and revision planning.
+PaperSkills is a workflow system for AI-native research. It helps agents turn vague research intent into scoped questions, recent-paper tracking, structured synthesis, study design, paper drafting, manuscript finalization, reviewer-style critique, and revision planning.
 
 It is not just a folder of academic prompts. The goal is to provide a reusable research workflow with explicit skill routing, structured briefs, evidence boundaries, and portable documentation that works across agent environments.
 
@@ -13,13 +13,18 @@ PaperSkills is organized as a staged workflow:
 3. `paper-tracker` gathers recent papers and builds a candidate pool.
 4. `literature-review` synthesizes the evidence into themes and gaps.
 5. `research-design` converts gaps into questions, methods, and data plans.
-6. `paper-drafting` turns evidence and design into outlines and draft text.
-7. `peer-review` critiques a paper draft as a reviewer would.
-8. `revision-planning` converts feedback into an actionable revision roadmap.
+6. `paper-drafting` turns evidence and design into outlines and working-draft text.
+7. `manuscript-finalization` turns a working draft into a submission-ready manuscript or thesis-ready full text.
+8. `peer-review` critiques a paper draft as a reviewer would.
+9. `revision-planning` converts feedback into an actionable revision roadmap.
 
 The intended flow is:
 
-`idea -> scope -> track -> synthesize -> design -> draft -> review -> revise`
+`idea -> scope -> track -> synthesize -> design -> draft -> finalize`
+
+Optional external-critique loop:
+
+`draft -> review -> revise -> finalize`
 
 ## Language Control
 
@@ -40,7 +45,7 @@ Recommended pattern:
 
 This field is intended to persist across stage handoffs, for example:
 
-`using-paperskills -> research-scoping -> literature-review -> research-design -> paper-drafting`
+`using-paperskills -> research-scoping -> literature-review -> research-design -> paper-drafting -> manuscript-finalization`
 
 ## Current Skills
 
@@ -53,6 +58,7 @@ This field is intended to persist across stage handoffs, for example:
 - `skills/research-scoping`
 - `skills/research-design`
 - `skills/paper-drafting`
+- `skills/manuscript-finalization`
 - `skills/revision-planning`
 - `skills/writing-paperskills`
 - `skills/brief-compliance-review`
@@ -76,6 +82,7 @@ PaperSkills now defines shared schema contracts in `schemas/`:
 - `review-brief.schema.json`
 - `design-brief.schema.json`
 - `draft-brief.schema.json`
+- `finalization-brief.schema.json`
 - `reviewer-brief.schema.json`
 - `revision-brief.schema.json`
 
@@ -98,6 +105,84 @@ paperskills/
 `docs/` contains product and contributor documentation in Chinese and English.
 
 `related/` contains upstream references, experiments, and adjacent tools that are not part of the core PaperSkills runtime surface.
+
+## Local Artifact Storage
+
+PaperSkills should persist intermediate execution content locally whenever a stage produces a reusable brief, evidence ledger, review memo, or handoff package.
+
+This storage model must work for both:
+
+- full workflows such as `using-paperskills -> research-scoping -> literature-review -> research-design -> paper-drafting -> manuscript-finalization`
+- single-stage runs such as a one-off `peer-review` or `revision-planning` request
+
+Recommended storage root:
+
+```text
+artifacts/paperskills/<run-id>/
+```
+
+Recommended `run-id` shape:
+
+```text
+YYYYMMDD-HHMMSS-<task-slug>
+```
+
+Recommended layout:
+
+```text
+artifacts/paperskills/<run-id>/
+  manifest.json
+  stages/
+    01-using-paperskills/
+      brief.json
+      notes.md
+      handoff.json
+      status.json
+    02-research-scoping/
+      brief.json
+      output.md
+      handoff.json
+      status.json
+```
+
+Bootstrap commands:
+
+```bash
+python3 skills/using-paperskills/scripts/paperskills_artifacts.py init \
+  --task "人工智能搜索引擎广告模式策略研究" \
+  --entry-stage using-paperskills \
+  --planned-chain research-scoping,paper-tracker,literature-review,paper-drafting,manuscript-finalization \
+  --language zh-CN \
+  --manuscript-type conceptual-paper \
+  --target-artifact "undergraduate thesis"
+```
+
+```bash
+python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
+  --run-dir artifacts/paperskills/<run-id> \
+  --stage research-scoping \
+  --index 2 \
+  --status in_progress \
+  --next-skill paper-tracker
+```
+
+Storage rules:
+
+- Each invocation creates or joins one `run-id`. Do not assume the task is a full workflow.
+- If the user is only doing one stage, still create a run and persist that stage as a self-contained unit.
+- Each stage should write its own normalized `brief.json` even when there is no upstream stage.
+- Use `handoff.json` only when there is an actual downstream next step.
+- Preserve machine-readable state and human-readable output separately.
+- Never silently overwrite an earlier stage result. Create a new run or a new stage attempt instead.
+- If the user explicitly provides a run directory or asks to continue a previous run, reuse that path and append the new stage artifacts there.
+- Use `skills/using-paperskills/scripts/paperskills_artifacts.py` to initialize the run and stage folders before writing content.
+
+Intent:
+
+- make downstream reference and audit easier
+- allow partial workflows to resume cleanly
+- keep evidence boundaries visible at each stage
+- avoid losing intermediate reasoning products that later drafting, finalization, review, or revision work depends on
 
 ## Getting Started
 

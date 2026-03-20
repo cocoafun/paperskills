@@ -23,6 +23,39 @@ The target flow is:
 
 The repository now includes shared brief schemas in `schemas/` so upstream outputs can be reused downstream instead of passing only free-form text.
 
+## Local Intermediate Storage
+
+The workflow also needs a local persistence layer for intermediate artifacts, not just final outputs.
+
+This is required because:
+
+- multi-stage runs need durable handoff packages between stages
+- users may execute only one stage such as `peer-review`
+- later drafting, review, or revision work may need to reference prior analysis without depending on chat context
+
+Recommended run layout:
+
+```text
+artifacts/paperskills/<run-id>/
+  manifest.json
+  stages/
+    01-<stage-name>/
+      brief.json
+      notes.md
+      output.md
+      handoff.json
+      status.json
+```
+
+Key rules:
+
+- Every invocation belongs to a `run-id`, even for a standalone single-stage task.
+- Every stage writes its own normalized `brief.json`, even when no upstream brief exists.
+- `handoff.json` is written only when there is a real downstream step.
+- Store machine-readable state separately from human-readable outputs.
+- Do not silently overwrite earlier artifacts. Create a new run or a new stage attempt.
+- Skill-local `output/` folders are examples and should not replace task-local run storage.
+
 ## Next use
 
 Use this page together with `getting-started` and the top-level `README.md` to understand the current implementation direction.

@@ -78,8 +78,8 @@ User request:
 
 Recommended workflow:
 
-`research-scoping -> paper-tracker -> literature-review -> research-design -> paper-drafting`
+`research-scoping -> literature-review -> paper-drafting -> manuscript-finalization`
 
 Reason:
 
-The user wants a complete paper from only a topic. The workflow still needs topic scoping, candidate-paper retrieval, literature synthesis, study design, and then drafting in Chinese.
+The user wants a complete Chinese undergraduate thesis from only a topic and does not provide completed empirical evidence. The workflow still needs topic scoping, literature synthesis, working-draft generation, and a finalization stage so the output is a thesis-ready manuscript rather than only a draft.

@@ -1,1 +1,1 @@
-请使用 using-paperskills。题目为“人工智能搜索引擎广告模式策略研究”，用中文。完整写一篇论文。开始前请先判断完整 workflow，并继续依次调用合适的 paperskills 技能；不要停在选题澄清，要继续完成文献检索/跟踪、文献综述、研究设计和论文起草。
+请使用 using-paperskills。题目为“人工智能搜索引擎广告模式策略研究”，用中文，目标是输出完整的中文本科毕业论文终稿，不是完成态实证论文。开始前请先判断完整 workflow，并继续依次调用合适的 paperskills 技能；本次按 using-paperskills -> research-scoping -> literature-review -> paper-drafting 执行，并在 drafting 之后补上必要的终稿阶段，不要停在草稿。

@@ -162,3 +162,23 @@ Avoid these:
 - `Review this paper like a conference reviewer and tell me whether it is borderline or weak accept.`
 - `根据这篇论文的摘要和方法部分，生成一份中文审稿意见。`
 - `Act as a reviewer for this draft and give actionable revision requests before submission.`
+
+## Local artifact persistence
+
+This stage must support standalone persistence because `peer-review` is often executed without any upstream workflow.
+
+Before writing stage content, ensure the stage package exists:
+
+```bash
+python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
+  --run-dir artifacts/paperskills/<run-id> \
+  --stage peer-review \
+  --index 1 \
+  --status in_progress
+```
+
+- Write `brief.json` for the normalized review request, including whether the material is `full-paper`, `partial-paper`, or `abstract-only`.
+- Save extracted claims, issue notes, and review heuristics in `notes.md`.
+- Save the reviewer report in `output.md`.
+- Preserve confidence and evidence-boundary markers in `status.json`.
+- Write `handoff.json` only if the review is explicitly feeding `revision-planning`.
