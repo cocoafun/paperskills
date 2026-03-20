@@ -113,12 +113,13 @@ Before writing stage content, ensure the stage package exists:
 python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
   --run-dir artifacts/paperskills/<run-id> \
   --stage manuscript-finalization \
-  --index 7 \
+  --index <stage-index> \
   --status in_progress
 ```
 
-- Write `brief.json` for the normalized `finalization-brief`.
+- Write `brief.json` for the normalized `finalization-brief` as soon as the completion checklist is fixed.
 - Save chapter-completeness checks, citation cleanup notes, and unresolved risks in `notes.md`.
 - Save the finalized manuscript in `output.md` or a manuscript file.
 - Preserve completion status and evidence-boundary markers in `status.json`.
 - Write `handoff.json` only when sending the finalized manuscript into review or revision work.
+- When finalization is complete, call `update-stage` so the run records the real completion time instead of leaving the stage to be backfilled later.

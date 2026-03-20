@@ -52,6 +52,7 @@ If the user does not specify enough scope, infer a reasonable search query from 
    - A trend summary for the window
    - A complete paper list if the user asked for it
 9. If HTML is requested, render the same content into the template in `assets/report_template.html`.
+10. If the topic also depends on live product or platform behavior, keep official documentation in a separate section instead of blending it into the paper shortlist.
 
 ## Brief-first execution
 
@@ -75,6 +76,8 @@ Prefer primary or near-primary sources. Use the first available option that give
 4. Crossref free-text search only as fallback, never as the main journal matcher.
 5. Semantic Scholar or other academic search APIs for abstract enrichment.
 6. arXiv/SSRN/RePEc only if the user's scope includes working papers or preprints.
+
+When this stage is feeding `literature-review`, prefer academic discovery lanes such as `OpenAlex`, `Crossref`, and `Semantic Scholar` for candidate-paper retrieval. Use `Google Scholar` or `Baidu Scholar` as discovery or expansion layers only when needed, and keep official platform pages in a separate live-documentation block rather than mixing them into the ranked paper list.
 
 Read `references/source-playbook.md` when you need query patterns, ranking heuristics, or date-handling rules.
 Read `references/brief-schema.md` when you want a structured handoff into local scripts.
@@ -101,6 +104,7 @@ For each shortlisted paper include:
 - Confidence note if metadata is incomplete or only weakly verified
 
 If some papers are "online first" and not yet assigned to an issue, say so explicitly.
+If the request mixes academic literature and live platform materials, split the output into `Candidate papers` and `Live platform documents` so downstream review writing can keep the evidence classes separate.
 
 ## Ranking heuristics
 
@@ -202,12 +206,13 @@ Before writing stage content, ensure the stage package exists:
 python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
   --run-dir artifacts/paperskills/<run-id> \
   --stage paper-tracker \
-  --index 3 \
+  --index <stage-index> \
   --status in_progress
 ```
 
-- Write `brief.json` for the normalized tracking brief.
+- Write `brief.json` for the normalized tracking brief as soon as the search scope is fixed.
 - Save raw retrieval notes, screening decisions, or ranking rationale in `notes.md`.
 - Save the shortlist or report in `output.md` or an equivalent report file.
 - Preserve source coverage and cutoff details in `status.json`.
+- Before moving into `literature-review`, call `update-stage` so the tracker stage is committed with its real cutoff date and evidence status.
 - If this was a one-shot tracking request, keep it as a standalone run rather than forcing a workflow chain.

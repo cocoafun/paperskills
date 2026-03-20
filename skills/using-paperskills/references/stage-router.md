@@ -129,6 +129,8 @@ Additional routing discipline:
 
 - Do not preset the run as evidence-backed before retrieval. If there is no verified corpus yet, set the handoff evidence state to `needs-retrieval` or equivalent.
 - If the topic includes live products, policies, or platform features, preserve at least one retrieval step before synthesis so the later review is not forced to invent a corpus.
+- If multiple stages are executed in one turn, finish and persist the current stage package before creating the next one. Do not precreate the full chain and backfill artifacts at the end.
+- Use the actual stage position in the chosen chain for `--index`; example numbers in individual skills are not a universal numbering scheme.
 
 Manuscript-type rule:
 
@@ -170,3 +172,4 @@ Before handing off, state:
 - what evidence or inputs are already available
 - what still needs to be inferred
 - whether retrieval is still required before a review can be considered complete
+- whether the current stage artifact has already been committed locally before downstream work begins

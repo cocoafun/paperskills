@@ -48,6 +48,7 @@ Produce a `scoping-brief` with:
 - time window
 - core questions
 - keyword clusters
+- recommended retrieval lanes
 - inclusion boundaries
 - exclusion boundaries
 - recommended chapter spine when the target artifact is a thesis
@@ -59,8 +60,9 @@ Produce a `scoping-brief` with:
 2. Narrow it to 2-4 concrete research questions.
 3. Define boundary conditions: domain, population, method, period, or artifact.
 4. Build keyword clusters for later retrieval.
-5. If the target is an undergraduate thesis, lock a thesis-appropriate chapter spine before handing off.
-6. Identify the most appropriate downstream skill.
+5. Recommend concrete retrieval lanes for the next stage, especially when the topic needs both academic literature and live platform documentation.
+6. If the target is an undergraduate thesis, lock a thesis-appropriate chapter spine before handing off.
+7. Identify the most appropriate downstream skill.
 
 ## Guardrails
 
@@ -84,7 +86,7 @@ Produce a `scoping-brief` with:
 - Pass forward a `scoping-brief`
 - Preserve `language`, `manuscript_type`, `target_artifact`, `time_window`, and the scoped questions and boundaries
 - Preserve `study_completion_status`, `evidence_status`, and the explicit non-empirical exclusions when present
-- If the target artifact is a Chinese undergraduate thesis, recommend bilingual retrieval with Chinese academic databases as a preferred source lane for the later literature-review stage
+- If the target artifact is a Chinese undergraduate thesis, recommend bilingual retrieval with at least one Chinese academic lane such as `CNKI` / `Wanfang` / `VIP` / `Baidu Scholar` and one international academic lane such as `OpenAlex` / `Crossref` / `Semantic Scholar` / `Google Scholar` when feasible
 - If the next stage still depends on unresolved scope choices, say handoff is partial rather than fully ready
 
 ## Local artifact persistence
@@ -97,12 +99,13 @@ Before writing stage content, ensure the stage package exists:
 python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
   --run-dir artifacts/paperskills/<run-id> \
   --stage research-scoping \
-  --index 2 \
+  --index <stage-index> \
   --status in_progress
 ```
 
-- Write `brief.json` for the normalized `scoping-brief`.
+- Write `brief.json` for the normalized `scoping-brief` as soon as the scope is stable.
 - Save intermediate narrowing notes or question alternatives in `notes.md`.
 - Save the rendered scoped result in `output.md`.
 - If a next step is identified, write `handoff.json`; otherwise omit it.
+- Before starting the next stage, call `update-stage` with the final `evidence_status` and handoff readiness instead of leaving this stage at `in_progress`.
 - If this stage is executed standalone, create a new run instead of assuming an upstream entry stage exists.

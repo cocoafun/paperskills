@@ -79,6 +79,7 @@ Common multi-stage chains:
 - Treat `paper-tracker` as a retrieval accelerator, not a mandatory stage. Use it when recency matters, when the user explicitly wants recent papers or a reading shortlist, or when a live field needs a fast candidate pool before `literature-review`.
 - If evidence coverage is partial, require an explicit confidence or limitation note in the final output.
 - Do not mark `evidence_status` as `mixed-full-text-and-abstract`, `full-text`, or similar before retrieval has actually happened in the current run. Use `no-corpus-yet`, `needs-retrieval`, or `planned-retrieval` until sources are collected.
+- If you continue through multiple PaperSkills stages in the same turn, persist each completed stage before creating the next one. Do not precreate the full chain and backfill artifacts at the end.
 
 Short routing defaults:
 
@@ -154,6 +155,27 @@ Storage rules:
 - Do not assume every task will continue through the full workflow.
 - Reuse a user-specified run path when the user explicitly asks to continue a prior task.
 
+Stage progression rules:
+
+- Only create the current stage package. Do not call `ensure-stage` for later stages until you are actually starting them.
+- Use the real stage position in the active chain for `--index`. Example indices in downstream skills are illustrative, not universal.
+- As soon as a stage brief is stable, write `brief.json` instead of waiting until the end of the run.
+- Before routing to the next stage, persist `notes.md`, `output.md`, `status.json`, and `handoff.json` as needed, then call `update-stage` so the timestamps reflect real stage boundaries.
+- Do not backfill multiple completed stages in one batch after the full workflow is already done.
+
+Completion example:
+
+```bash
+python3 skills/using-paperskills/scripts/paperskills_artifacts.py update-stage \
+  --run-dir artifacts/paperskills/<run-id> \
+  --stage <stage-name> \
+  --index <stage-index> \
+  --status completed \
+  --evidence-status <evidence-status> \
+  --next-skill <next-skill> \
+  --handoff-ready true
+```
+
 Prefer a structured brief over free-form context whenever possible.
 
 ## Required outputs
@@ -169,6 +191,7 @@ At minimum, emit:
 - an explicit downstream brief or a statement that handoff is not yet ready
 - if the requested deliverable is a complete thesis, an explicit note that downstream stages must preserve `target_artifact=undergraduate thesis` instead of silently downgrading to a generic paper brief
 - if no verified corpus exists yet, an explicit `retrieval_required` marker and a non-final evidence status
+- if the workflow continues in the same turn, a persisted stage package for the completed stage before the next stage begins
 
 ## Manuscript-type discipline
 

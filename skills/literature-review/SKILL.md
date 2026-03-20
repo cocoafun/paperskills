@@ -52,7 +52,7 @@ Read [references/brief-schema.md](references/brief-schema.md) when you want the 
 2. Choose the source strategy by domain and review depth.
 3. Run actual retrieval against primary or near-primary sources. Do not skip this step by writing from memory or from a pre-assumed corpus.
 4. Record retrieval batches with query string, source, language, and search date.
-5. Collect candidate papers from primary or near-primary academic sources.
+5. Collect candidate papers from academic indexes first. If the topic also needs live product or policy evidence, keep those official pages in a separate documentation lane.
 6. Build an evidence ledger with title, year, venue, link, relevance note, and confidence note.
 7. Check the corpus size against the selected review mode.
 8. Dedupe and screen the corpus. Label preprints clearly.
@@ -83,26 +83,33 @@ Use [assets/review_template.md](assets/review_template.md) when you want a manua
 
 ## Source strategy
 
-Prefer primary or near-primary sources with stable metadata:
+Prefer primary or near-primary sources with stable metadata. For academic retrieval, generic web search is not a primary evidence lane.
 
-1. Domain databases or official indexes
-2. OpenAlex, Crossref, Semantic Scholar
-3. Official venue or journal pages
-4. arXiv, bioRxiv, medRxiv when preprints are relevant
-5. Google Scholar only as a fallback discovery layer
+1. Domain databases or official academic indexes
+2. Structured academic discovery sources such as OpenAlex, Crossref, and Semantic Scholar
+3. Official venue, journal, or publisher pages
+4. Google Scholar and Baidu Scholar as discovery or citation-chaining layers, then resolve kept items to stable metadata or publisher pages when possible
+5. arXiv, bioRxiv, medRxiv when preprints are relevant
+6. General web search only for official product, policy, or help-center pages, or for resolving links discovered elsewhere
+
+Academic versus live-documentation lanes:
+
+- When the topic mixes scholarly literature with live product behavior, maintain two explicit lanes: an academic literature lane and a live-documentation lane.
+- Official platform pages can support current-state analysis, but they do not replace academic literature retrieval.
+- For management, advertising, platform, search, and related social-science topics, start the academic lane with `Crossref`, `OpenAlex`, or `Semantic Scholar`, then use `Google Scholar` or `Baidu Scholar` for expansion and citation chasing when helpful.
 
 Domain defaults:
 
 - Biomedicine: PubMed, PubMed Central, Cochrane, bioRxiv, medRxiv
 - Computer science and AI: arXiv, ACL Anthology, Semantic Scholar, OpenAlex
-- Social science and management: Crossref, OpenAlex, SSRN, publisher journal pages
+- Social science and management: Crossref, OpenAlex, Semantic Scholar, SSRN, publisher journal pages
 - General science: Semantic Scholar, OpenAlex, Crossref, publisher pages
 
 Language-specific defaults:
 
 - If the user asks for Chinese output, Chinese papers, a Chinese thesis chapter, or the topic is clearly centered on Chinese scholarship, add Chinese academic indexes to the front of the search plan.
-- If the target artifact is a `中文本科毕业论文`, treat Chinese-language academic retrieval as a preferred lane by default, even when the topic also has strong international literature. This is a recommendation, not a hard requirement; if Chinese databases are not used, state why.
-- For Chinese-language literature retrieval, prefer CNKI, Wanfang Data, VIP/CQVIP, Airiti Library when relevant, and institutional journal portals.
+- If the target artifact is a `中文本科毕业论文`, use at least one Chinese academic lane and one international academic lane when feasible. If either lane is skipped, explain why.
+- For Chinese-language literature retrieval, prefer CNKI, Wanfang Data, VIP/CQVIP, Baidu Scholar, Airiti Library when relevant, and institutional journal portals.
 - Do bilingual retrieval when the topic spans both Chinese and international scholarship. Use paired Chinese and English query variants instead of searching only one language.
 - If Chinese databases return only metadata or partial previews, say so explicitly and avoid overclaiming full-text coverage.
 - Record which claims are mainly grounded in Chinese-language literature versus international literature when that distinction matters for the argument.
@@ -120,6 +127,7 @@ For topics involving live products, platform behavior, policy pages, or recent p
 - Include the search cutoff date whenever currency matters.
 - If no actual retrieval was performed in the current turn or run, do not mark the stage as `completed`.
 - If the corpus does not meet the target mode's minimum evidence bar, state that the review is partial and why.
+- If the topic required live platform documentation, do not count official product pages as a substitute for the academic evidence bar.
 
 ## Output contract
 
@@ -139,12 +147,15 @@ Do not collapse the output to a synthesis-only essay. The review stage must leav
 The retrieval log must be concrete enough that another agent can rerun or audit the search. At minimum include:
 
 - source name
+- source type such as `academic-index`, `publisher`, `official-platform`, or `industry`
 - query string or query description
 - search date or cutoff date
 - language
 - batch result count or a note that counts were not available
+- whether high-value hits were resolved to stable metadata, a publisher page, or only a discovery page
 
 When the target artifact is a Chinese undergraduate thesis, the source coverage section should normally state whether Chinese academic databases were searched and what they contributed. If they were not searched, explain the reason briefly instead of leaving the omission implicit.
+When both academic literature and official platform documentation are used, report separate kept-source counts for each lane instead of blending them into one undifferentiated total.
 
 For each theme include:
 
@@ -175,6 +186,7 @@ Mode minimums:
 - `deep`: aim for at least 20 kept sources
 
 If the kept corpus is smaller, say the mode target was not met and mark the review as partial or low confidence.
+For mixed live-product topics, the academic corpus must still meet the evidence bar on its own; official product pages are auxiliary evidence, not a substitute for review-mode coverage.
 
 ## Common failure modes
 
@@ -185,6 +197,7 @@ Avoid these:
 - Treating preprints and peer-reviewed papers as equivalent without labels
 - Stating "the literature shows" when only 1-2 papers support the claim
 - Writing a polished conclusion while the evidence base is still thin
+- Using generic web search results or product blogs as the main academic literature corpus
 
 ## Before claiming completion
 
@@ -194,7 +207,8 @@ Avoid these:
 - Distinguish source-grounded findings from synthesis and inference.
 - If the corpus is thin or partial, mark the output as `partial`, `low confidence`, or equivalent.
 - Check that `output.md` includes the search strategy, corpus snapshot, and working bibliography rather than only polished prose.
-- Do not say the stage is handoff-ready if the only "sources" are uncited memory, vague mentions of Google Scholar, or a bibliography with no retrieval record.
+- Check that at least two scholarly retrieval lanes were actually used when the topic is not scoped to a single specialized index.
+- Do not say the stage is handoff-ready if the only "sources" are uncited memory, vague mentions of Google Scholar or Baidu Scholar, a bibliography with no retrieval record, or official platform pages with no academic retrieval lane.
 - Use `paperskills:evidence-before-completion` before saying the review is complete or strongly evidence-backed.
 
 ## Downstream handoff
@@ -222,12 +236,13 @@ Before writing stage content, ensure the stage package exists:
 python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
   --run-dir artifacts/paperskills/<run-id> \
   --stage literature-review \
-  --index 4 \
+  --index <stage-index> \
   --status in_progress
 ```
 
-- Write `brief.json` for the normalized review brief.
+- Write `brief.json` for the normalized review brief as soon as the review scope and source plan are stable.
 - Save screening notes, theme clustering, and evidence ledger details in `notes.md` or companion files.
 - Save the synthesis draft in `output.md`.
 - Write `handoff.json` only if the review is explicitly preparing `research-design` or `paper-drafting`.
+- Before leaving the stage, call `update-stage` with the final `evidence_status` and handoff readiness. Do not defer all review-stage writes until manuscript drafting or finalization is already underway.
 - If the user asked only for one review pass, store it as a standalone run with its own evidence boundary markers.

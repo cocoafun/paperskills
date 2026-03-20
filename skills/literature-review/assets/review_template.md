@@ -18,7 +18,8 @@
 
 ## 2. Search Strategy and Coverage
 
-- Sources searched: [Semantic Scholar, OpenAlex, PubMed, arXiv, ...]
+- Academic indexes searched: [OpenAlex, Crossref, Semantic Scholar, CNKI, Google Scholar, ...]
+- Live or official sources searched: [Google Ads Help, Microsoft Advertising, policy page, ...]
 - Search cutoff: [YYYY-MM-DD]
 - Languages searched: [zh-CN, en, ...]
 - Inclusion criteria:
@@ -26,19 +27,20 @@
 - Exclusion criteria:
   - [Criterion]
 - Coverage note: [Full text / abstract only / mixed]
+- Lane balance note: [Academic kept count / Live-documentation kept count]
 - Target mode check: [e.g. standard mode requires 12+ kept sources; say if unmet]
 
 ## 3. Retrieval Log
 
-| Batch | Source | Query | Language | Search date | Result note |
-| --- | --- | --- | --- | --- | --- |
-| [B1] | [CNKI / OpenAlex / Google Scholar / official page] | [Exact query or query description] | [zh-CN / en] | [YYYY-MM-DD] | [hits / first-pass note] |
+| Batch | Source | Source type | Query | Language | Search date | Result note |
+| --- | --- | --- | --- | --- | --- | --- |
+| [B1] | [CNKI / OpenAlex / Google Scholar / official page] | [academic-index / publisher / official-platform] | [Exact query or query description] | [zh-CN / en] | [YYYY-MM-DD] | [hits / first-pass note] |
 
 ## 4. Corpus Snapshot
 
-| Source | Year | Venue / Type | Evidence level | Why it matters |
-| --- | --- | --- | --- |
-| [Representative paper or official page] | [Year] | [Venue / official documentation] | [full text / abstract / metadata] | [Relevance note] |
+| Source | Source class | Year | Venue / Type | Evidence level | Why it matters |
+| --- | --- | --- | --- | --- | --- |
+| [Representative paper or official page] | [academic literature / official documentation] | [Year] | [Venue / official documentation] | [full text / abstract / metadata] | [Relevance note] |
 
 ## 5. Thematic Synthesis
 

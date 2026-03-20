@@ -105,12 +105,13 @@ Before writing stage content, ensure the stage package exists:
 python3 skills/using-paperskills/scripts/paperskills_artifacts.py ensure-stage \
   --run-dir artifacts/paperskills/<run-id> \
   --stage paper-drafting \
-  --index 6 \
+  --index <stage-index> \
   --status in_progress
 ```
 
-- Write `brief.json` for the normalized `draft-brief`.
+- Write `brief.json` for the normalized `draft-brief` as soon as the section plan is stable.
 - Save claim-to-evidence mapping notes or unresolved section dependencies in `notes.md`.
 - Save the drafted manuscript artifact in `output.md` or a manuscript file.
 - Preserve evidence limitations and manuscript type in `status.json`.
+- Before handing off to `manuscript-finalization` or review, call `update-stage` so the actual draft artifact is committed before downstream work begins.
 - If drafting is run on its own, the stage must still create a self-contained stored brief before writing prose.

@@ -5,6 +5,7 @@ import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
+from typing import Optional
 
 
 def utc_now_iso() -> str:
@@ -44,10 +45,17 @@ def stage_dir_name(index: int, stage: str) -> str:
 
 def ensure_stage_entry(manifest: dict, stage_name: str, stage_path: Path, index: int, status: str) -> None:
     stages = manifest.setdefault("stages", [])
+    now = utc_now_iso()
     for stage in stages:
         if stage.get("name") == stage_name and stage.get("path") == str(stage_path):
+            stage["index"] = index
             stage["status"] = status
-            stage["updated_at"] = utc_now_iso()
+            stage.setdefault("started_at", now)
+            if status == "completed":
+                stage["completed_at"] = now
+            else:
+                stage.pop("completed_at", None)
+            stage["updated_at"] = now
             return
 
     stages.append(
@@ -56,13 +64,16 @@ def ensure_stage_entry(manifest: dict, stage_name: str, stage_path: Path, index:
             "name": stage_name,
             "path": str(stage_path),
             "status": status,
-            "created_at": utc_now_iso(),
-            "updated_at": utc_now_iso(),
+            "created_at": now,
+            "updated_at": now,
+            "started_at": now,
         }
     )
+    if status == "completed":
+        stages[-1]["completed_at"] = now
 
 
-def str_to_bool(value: str | None) -> bool | None:
+def str_to_bool(value: Optional[str]) -> Optional[bool]:
     if value is None:
         return None
     normalized = value.strip().lower()
@@ -143,6 +154,7 @@ def cmd_ensure_stage(args: argparse.Namespace) -> int:
     stages_dir.mkdir(parents=True, exist_ok=True)
     stage_path = stages_dir / stage_dir_name(args.index, args.stage)
     stage_path.mkdir(parents=True, exist_ok=True)
+    now = utc_now_iso()
 
     write_json_if_missing(
         stage_path / "brief.json",
@@ -154,27 +166,29 @@ def cmd_ensure_stage(args: argparse.Namespace) -> int:
     )
     write_text_if_missing(stage_path / "notes.md", f"# {args.stage} Notes\n\n")
     write_text_if_missing(stage_path / "output.md", f"# {args.stage} Output\n\n")
-    write_json_if_missing(
-        stage_path / "status.json",
-        {
-            "stage": args.stage,
-            "status": args.status,
-            "evidence_status": "unknown",
-            "created_at": utc_now_iso(),
-            "updated_at": utc_now_iso(),
-        },
-    )
+    status_path = stage_path / "status.json"
+    status_payload = load_json(status_path) if status_path.exists() else {}
+    status_payload.setdefault("created_at", now)
+    status_payload.setdefault("started_at", now)
+    status_payload["stage"] = args.stage
+    status_payload["status"] = args.status
+    status_payload.setdefault("evidence_status", "unknown")
+    if args.status == "completed":
+        status_payload["completed_at"] = now
+    else:
+        status_payload.pop("completed_at", None)
+    status_payload["updated_at"] = now
+    dump_json(status_path, status_payload)
 
     if args.next_skill:
-        write_json_if_missing(
-            stage_path / "handoff.json",
-            {
-                "from_stage": args.stage,
-                "to_stage": args.next_skill,
-                "created_at": utc_now_iso(),
-                "ready": False,
-            },
-        )
+        handoff_path = stage_path / "handoff.json"
+        handoff_payload = load_json(handoff_path) if handoff_path.exists() else {}
+        handoff_payload.setdefault("created_at", now)
+        handoff_payload.setdefault("ready", False)
+        handoff_payload["from_stage"] = args.stage
+        handoff_payload["to_stage"] = args.next_skill
+        handoff_payload["updated_at"] = now
+        dump_json(handoff_path, handoff_payload)
 
     manifest_path = run_dir / "manifest.json"
     if manifest_path.exists():
@@ -193,13 +207,19 @@ def cmd_update_stage(args: argparse.Namespace) -> int:
     if not stage_path.exists():
         raise FileNotFoundError(f"Stage path does not exist: {stage_path}")
 
+    now = utc_now_iso()
     status_path = stage_path / "status.json"
-    status_payload = load_json(status_path) if status_path.exists() else {"stage": args.stage, "created_at": utc_now_iso()}
+    status_payload = load_json(status_path) if status_path.exists() else {"stage": args.stage, "created_at": now}
     status_payload["stage"] = args.stage
+    status_payload.setdefault("started_at", now)
     status_payload["status"] = args.status
     if args.evidence_status:
         status_payload["evidence_status"] = args.evidence_status
-    status_payload["updated_at"] = utc_now_iso()
+    if args.status == "completed":
+        status_payload["completed_at"] = now
+    else:
+        status_payload.pop("completed_at", None)
+    status_payload["updated_at"] = now
     dump_json(status_path, status_payload)
 
     if args.next_skill or args.handoff_ready is not None:
@@ -207,7 +227,7 @@ def cmd_update_stage(args: argparse.Namespace) -> int:
         handoff_payload = load_json(handoff_path) if handoff_path.exists() else {
             "from_stage": args.stage,
             "to_stage": args.next_skill or "",
-            "created_at": utc_now_iso(),
+            "created_at": now,
             "ready": False,
         }
         if args.next_skill:
@@ -215,7 +235,7 @@ def cmd_update_stage(args: argparse.Namespace) -> int:
         handoff_ready = str_to_bool(args.handoff_ready)
         if handoff_ready is not None:
             handoff_payload["ready"] = handoff_ready
-        handoff_payload["updated_at"] = utc_now_iso()
+        handoff_payload["updated_at"] = now
         dump_json(handoff_path, handoff_payload)
 
     manifest_path = run_dir / "manifest.json"
