@@ -27,6 +27,7 @@ Use this reference when converting structured research inputs into paper prose.
 - Discussion: implications, limits, and future directions.
 
 If the manuscript type is `conceptual-paper` or `proposal-style-manuscript`, a framework or research-design section can replace `Results`, but not the entire scholarly middle of the paper.
+If the target artifact is an undergraduate thesis, the working draft should usually include a chapter-complete middle, not only a three-heading article outline.
 
 ## Writing rules
 
@@ -43,3 +44,4 @@ If the manuscript type is `conceptual-paper` or `proposal-style-manuscript`, a f
 - repeating the same evidence across sections without a clear role
 - overstating contribution before method and evidence are established
 - turning the manuscript into an industry report, consulting memo, or policy brief with academic citations attached
+- saving only workflow narration such as “hand off to finalization” instead of a real inspectable draft

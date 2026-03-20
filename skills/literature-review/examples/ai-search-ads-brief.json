@@ -55,6 +55,10 @@
     }
   ],
   "source_preferences": [
+    "CNKI",
+    "Wanfang Data",
+    "OpenAlex",
+    "Crossref",
     "ACL Anthology",
     "arXiv",
     "ScienceDirect",
@@ -64,6 +68,12 @@
     "Google Ads Blog",
     "Microsoft Advertising"
   ],
+  "retrieval_requirements": {
+    "minimum_sources": 12,
+    "minimum_distinct_databases": 2,
+    "require_query_log": true,
+    "require_live_source_check": true
+  },
   "inclusion_criteria": [
     "直接讨论 sponsored search、search advertising、conversational search advertising 或 AI 搜索商业化的论文与官方资料",
     "能够支持广告机制、用户行为、平台治理或 AI 优化策略的核心论点",

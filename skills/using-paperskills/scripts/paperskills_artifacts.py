@@ -62,6 +62,17 @@ def ensure_stage_entry(manifest: dict, stage_name: str, stage_path: Path, index:
     )
 
 
+def str_to_bool(value: str | None) -> bool | None:
+    if value is None:
+        return None
+    normalized = value.strip().lower()
+    if normalized in {"1", "true", "yes", "y"}:
+        return True
+    if normalized in {"0", "false", "no", "n"}:
+        return False
+    raise ValueError(f"Unsupported boolean value: {value}")
+
+
 def cmd_init(args: argparse.Namespace) -> int:
     root = Path(args.root)
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
@@ -77,6 +88,7 @@ def cmd_init(args: argparse.Namespace) -> int:
         "schema_version": "paperskills-run/v1",
         "run_id": run_id,
         "task": args.task,
+        "user_query": args.user_query or args.task,
         "task_slug": task_slug,
         "root_dir": str(run_dir),
         "created_at": utc_now_iso(),
@@ -93,6 +105,8 @@ def cmd_init(args: argparse.Namespace) -> int:
     manifest["updated_at"] = utc_now_iso()
     if args.entry_stage:
         manifest["entry_stage"] = args.entry_stage
+    if args.user_query:
+        manifest["user_query"] = args.user_query
     if planned_chain:
         manifest["planned_chain"] = planned_chain
     if args.language:
@@ -103,6 +117,11 @@ def cmd_init(args: argparse.Namespace) -> int:
         manifest["target_artifact"] = args.target_artifact
 
     dump_json(manifest_path, manifest)
+    write_text_if_missing(
+        run_dir / "user-query.md",
+        "# User Query\n\n"
+        f"{args.user_query or args.task}\n",
+    )
 
     if args.entry_stage:
         stage_args = argparse.Namespace(
@@ -168,6 +187,50 @@ def cmd_ensure_stage(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_update_stage(args: argparse.Namespace) -> int:
+    run_dir = Path(args.run_dir)
+    stage_path = run_dir / "stages" / stage_dir_name(args.index, args.stage)
+    if not stage_path.exists():
+        raise FileNotFoundError(f"Stage path does not exist: {stage_path}")
+
+    status_path = stage_path / "status.json"
+    status_payload = load_json(status_path) if status_path.exists() else {"stage": args.stage, "created_at": utc_now_iso()}
+    status_payload["stage"] = args.stage
+    status_payload["status"] = args.status
+    if args.evidence_status:
+        status_payload["evidence_status"] = args.evidence_status
+    status_payload["updated_at"] = utc_now_iso()
+    dump_json(status_path, status_payload)
+
+    if args.next_skill or args.handoff_ready is not None:
+        handoff_path = stage_path / "handoff.json"
+        handoff_payload = load_json(handoff_path) if handoff_path.exists() else {
+            "from_stage": args.stage,
+            "to_stage": args.next_skill or "",
+            "created_at": utc_now_iso(),
+            "ready": False,
+        }
+        if args.next_skill:
+            handoff_payload["to_stage"] = args.next_skill
+        handoff_ready = str_to_bool(args.handoff_ready)
+        if handoff_ready is not None:
+            handoff_payload["ready"] = handoff_ready
+        handoff_payload["updated_at"] = utc_now_iso()
+        dump_json(handoff_path, handoff_payload)
+
+    manifest_path = run_dir / "manifest.json"
+    if manifest_path.exists():
+        manifest = load_json(manifest_path)
+        ensure_stage_entry(manifest, args.stage, stage_path, args.index, args.status)
+        if args.run_status:
+            manifest["status"] = args.run_status
+        manifest["updated_at"] = utc_now_iso()
+        dump_json(manifest_path, manifest)
+
+    print(stage_path)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Initialize and maintain PaperSkills local artifact runs.")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -182,6 +245,10 @@ def build_parser() -> argparse.ArgumentParser:
     init_parser.add_argument("--language", help="Normalized workflow language.")
     init_parser.add_argument("--manuscript-type", help="Normalized manuscript type.")
     init_parser.add_argument("--target-artifact", help="Target artifact for the run.")
+    init_parser.add_argument(
+        "--user-query",
+        help="Original user request text for traceability. Defaults to --task when omitted.",
+    )
     init_parser.set_defaults(func=cmd_init)
 
     stage_parser = subparsers.add_parser("ensure-stage", help="Create or reuse a stage package inside an existing run.")
@@ -191,6 +258,17 @@ def build_parser() -> argparse.ArgumentParser:
     stage_parser.add_argument("--status", default="in_progress", help="Initial stage status.")
     stage_parser.add_argument("--next-skill", help="Optional downstream skill name for handoff.json.")
     stage_parser.set_defaults(func=cmd_ensure_stage)
+
+    update_parser = subparsers.add_parser("update-stage", help="Update a stage package after content has been written.")
+    update_parser.add_argument("--run-dir", required=True, help="Existing run directory path.")
+    update_parser.add_argument("--stage", required=True, help="Stage name.")
+    update_parser.add_argument("--index", type=int, required=True, help="Stage sequence index.")
+    update_parser.add_argument("--status", required=True, help="Updated stage status.")
+    update_parser.add_argument("--evidence-status", help="Updated evidence status.")
+    update_parser.add_argument("--next-skill", help="Optional downstream skill name for handoff.json.")
+    update_parser.add_argument("--handoff-ready", help="Optional boolean value for handoff readiness.")
+    update_parser.add_argument("--run-status", help="Optional run-level status override.")
+    update_parser.set_defaults(func=cmd_update_stage)
 
     return parser
 

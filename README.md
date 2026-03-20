@@ -132,6 +132,7 @@ Recommended layout:
 ```text
 artifacts/paperskills/<run-id>/
   manifest.json
+  user-query.md
   stages/
     01-using-paperskills/
       brief.json
@@ -150,6 +151,7 @@ Bootstrap commands:
 ```bash
 python3 skills/using-paperskills/scripts/paperskills_artifacts.py init \
   --task "人工智能搜索引擎广告模式策略研究" \
+  --user-query "使用 paperskills 的 using-paperskills。目标是完成并输出一篇中文本科毕业论文，不是完成态实证论文。题目为“人工智能搜索引擎广告模式策略研究”。" \
   --entry-stage using-paperskills \
   --planned-chain research-scoping,paper-tracker,literature-review,paper-drafting,manuscript-finalization \
   --language zh-CN \
@@ -170,6 +172,7 @@ Storage rules:
 
 - Each invocation creates or joins one `run-id`. Do not assume the task is a full workflow.
 - If the user is only doing one stage, still create a run and persist that stage as a self-contained unit.
+- Archive the original user prompt at run level for traceability and optimization. Store it in both `manifest.json` as `user_query` and a readable `user-query.md`.
 - Each stage should write its own normalized `brief.json` even when there is no upstream stage.
 - Use `handoff.json` only when there is an actual downstream next step.
 - Preserve machine-readable state and human-readable output separately.

@@ -40,6 +40,9 @@ Produce a `scoping-brief` with:
 - topic
 - objective
 - target artifact
+- manuscript type
+- study completion status
+- evidence status
 - language
 - domain
 - time window
@@ -47,6 +50,7 @@ Produce a `scoping-brief` with:
 - keyword clusters
 - inclusion boundaries
 - exclusion boundaries
+- recommended chapter spine when the target artifact is a thesis
 - recommended next skill
 
 ## Core workflow
@@ -55,7 +59,8 @@ Produce a `scoping-brief` with:
 2. Narrow it to 2-4 concrete research questions.
 3. Define boundary conditions: domain, population, method, period, or artifact.
 4. Build keyword clusters for later retrieval.
-5. Identify the most appropriate downstream skill.
+5. If the target is an undergraduate thesis, lock a thesis-appropriate chapter spine before handing off.
+6. Identify the most appropriate downstream skill.
 
 ## Guardrails
 
@@ -63,6 +68,8 @@ Produce a `scoping-brief` with:
 - Do not skip boundary-setting for convenience.
 - When the user wants a draft immediately, still produce a compact scoping summary first if the request is under-specified.
 - State what was inferred versus what the user explicitly gave.
+- Do not overwrite the user's final artifact with a stage-local artifact. A scoping brief can support a thesis, but it must still preserve `target_artifact=undergraduate thesis` when that is the true downstream goal.
+- If the thesis is non-empirical, explicitly exclude fake empirical sections such as data source, hypothesis testing, regression results, or questionnaire findings.
 
 ## Before claiming completion
 
@@ -76,6 +83,8 @@ Produce a `scoping-brief` with:
 - Recommended next skills: `paper-tracker`, `literature-review`, or `research-design`
 - Pass forward a `scoping-brief`
 - Preserve `language`, `manuscript_type`, `target_artifact`, `time_window`, and the scoped questions and boundaries
+- Preserve `study_completion_status`, `evidence_status`, and the explicit non-empirical exclusions when present
+- If the target artifact is a Chinese undergraduate thesis, recommend bilingual retrieval with Chinese academic databases as a preferred source lane for the later literature-review stage
 - If the next stage still depends on unresolved scope choices, say handoff is partial rather than fully ready
 
 ## Local artifact persistence

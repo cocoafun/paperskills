@@ -25,20 +25,28 @@ TEXT = {
         "sources": "Preferred Sources",
         "keywords": "Keywords",
         "queries": "Suggested Search Strings",
+        "languages": "Languages Searched",
         "criteria_in": "Inclusion Criteria",
         "criteria_ex": "Exclusion Criteria",
-        "abstract": "3. Draft Abstract",
-        "intro": "4. Introduction",
-        "themes": "5. Thematic Synthesis",
-        "gaps": "6. Research Gaps",
-        "limits": "7. Limitations",
-        "future": "8. Future Directions",
+        "mode_check": "Mode Check",
+        "retrieval_log": "3. Retrieval Log",
+        "corpus": "4. Corpus Snapshot",
+        "abstract": "5. Draft Abstract",
+        "intro": "6. Introduction",
+        "themes": "7. Thematic Synthesis",
+        "gaps": "8. Research Gaps",
+        "limits": "9. Limitations",
+        "future": "10. Future Directions",
         "refs": "References",
         "theme_prefix": "Theme",
         "placeholder_theme": "Synthesize representative papers, methods, and disagreements here.",
         "placeholder_gap": "Gap: specify what remains unresolved and why it matters.",
         "placeholder_limit": "State any source-coverage or evidence-quality limitations here.",
         "placeholder_future": "Direction: propose a concrete next step for research or practice.",
+        "placeholder_mode_check": "State the review mode target and whether the kept corpus meets it.",
+        "placeholder_retrieval_note": "Record exact source, query, language, date, and first-pass result notes here.",
+        "placeholder_corpus_note": "Add kept source with year, venue/type, evidence level, and why it matters.",
+        "target_kept_sources": "Target kept sources",
     },
     "zh": {
         "title_fallback": "文献综述初稿",
@@ -55,20 +63,28 @@ TEXT = {
         "sources": "优先来源",
         "keywords": "关键词",
         "queries": "建议检索式",
+        "languages": "检索语言",
         "criteria_in": "纳入标准",
         "criteria_ex": "排除标准",
-        "abstract": "3. 摘要草稿",
-        "intro": "4. 引言",
-        "themes": "5. 主题综合",
-        "gaps": "6. 研究空白",
-        "limits": "7. 局限性",
-        "future": "8. 未来方向",
+        "mode_check": "模式达标检查",
+        "retrieval_log": "3. 检索日志",
+        "corpus": "4. 语料快照",
+        "abstract": "5. 摘要草稿",
+        "intro": "6. 引言",
+        "themes": "7. 主题综合",
+        "gaps": "8. 研究空白",
+        "limits": "9. 局限性",
+        "future": "10. 未来方向",
         "refs": "参考文献",
         "theme_prefix": "主题",
         "placeholder_theme": "在这里综合代表性论文、方法路线以及分歧点。",
         "placeholder_gap": "空白点：说明尚未解决的问题及其重要性。",
         "placeholder_limit": "说明检索覆盖、证据质量或全文可得性的限制。",
         "placeholder_future": "未来方向：提出具体、可操作的研究或应用方向。",
+        "placeholder_mode_check": "说明当前综述模式的目标证据量，以及现有保留来源是否达标。",
+        "placeholder_retrieval_note": "记录准确来源、检索式、语言、日期和首轮结果说明。",
+        "placeholder_corpus_note": "补入保留来源的年份、刊物或类型、证据层级及用途。",
+        "target_kept_sources": "目标保留来源数",
     },
 }
 
@@ -129,6 +145,15 @@ def build_queries(brief: dict) -> list[str]:
 
     query = " OR ".join(f'"{term}"' for term in keywords[:6])
     return [query]
+
+
+def mode_target(brief: dict) -> str:
+    requirements = brief.get("retrieval_requirements") or {}
+    minimum_sources = requirements.get("minimum_sources")
+    if minimum_sources:
+        return str(minimum_sources)
+    defaults = {"quick": 6, "standard": 12, "deep": 20}
+    return str(defaults.get(brief.get("depth", "standard"), 12))
 
 
 def build_abstract(brief: dict, t: dict[str, str]) -> str:
@@ -195,6 +220,9 @@ def render_markdown(brief: dict) -> str:
     inclusion = list_or_placeholder(brief.get("inclusion_criteria"))
     exclusion = list_or_placeholder(brief.get("exclusion_criteria"))
     queries = list_or_placeholder(build_queries(brief), placeholder="Build a boolean query from concept groups.")
+    languages = [language]
+    if is_zh(language):
+        languages.append("en")
 
     lines: list[str] = [
         f"# {title}",
@@ -256,6 +284,17 @@ def render_markdown(brief: dict) -> str:
         [
             "```",
             "",
+            f"### {t['languages']}",
+            "",
+        ]
+    )
+
+    for item in languages:
+        lines.append(f"- {item}")
+
+    lines.extend(
+        [
+            "",
             f"### {t['criteria_in']}",
             "",
         ]
@@ -277,6 +316,22 @@ def render_markdown(brief: dict) -> str:
 
     lines.extend(
         [
+            "",
+            f"### {t['mode_check']}",
+            "",
+            f"- {t['placeholder_mode_check']} {t['target_kept_sources']}: {mode_target(brief)}.",
+            "",
+            f"## {t['retrieval_log']}",
+            "",
+            "| Batch | Source | Query | Language | Search date | Result note |",
+            "| --- | --- | --- | --- | --- | --- |",
+            f"| B1 | TBD | TBD | {language} | TBD | {t['placeholder_retrieval_note']} |",
+            "",
+            f"## {t['corpus']}",
+            "",
+            "| Source | Year | Venue / Type | Evidence level | Why it matters |",
+            "| --- | --- | --- | --- | --- |",
+            f"| TBD | TBD | TBD | TBD | {t['placeholder_corpus_note']} |",
             "",
             f"## {t['abstract']}",
             "",

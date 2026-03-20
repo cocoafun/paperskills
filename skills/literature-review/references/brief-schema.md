@@ -44,6 +44,12 @@ Use this schema when the skill wants a structured handoff from a user's topic de
     "OpenAlex",
     "arXiv"
   ],
+  "retrieval_requirements": {
+    "minimum_sources": 12,
+    "minimum_distinct_databases": 2,
+    "require_query_log": true,
+    "require_live_source_check": false
+  },
   "inclusion_criteria": [
     "Peer-reviewed papers or clearly labeled preprints",
     "Methods or studies directly addressing the topic",
@@ -72,6 +78,7 @@ Use this schema when the skill wants a structured handoff from a user's topic de
 - `concept_groups`: Optional but preferred for generating boolean queries.
 - `source_preferences`: Ordered list of preferred databases or discovery layers.
 - If Chinese literature matters, put Chinese academic databases such as `CNKI`, `Wanfang Data`, or `VIP/CQVIP` ahead of generic global indexes.
+- `retrieval_requirements`: Optional but recommended. Use it to encode minimum source count, minimum distinct sources, whether a query log is required, and whether a live official-source check is required.
 - `inclusion_criteria` and `exclusion_criteria`: Keep these practical, not ceremonial.
 - `target_length`: Word range or a short output label such as `section`, `full review`, or `thesis chapter`.
 
@@ -82,6 +89,7 @@ Use this schema when the skill wants a structured handoff from a user's topic de
 - If `language` is `zh-CN` or the topic clearly targets Chinese scholarship, include at least one Chinese academic database in `source_preferences` unless the user explicitly says otherwise.
 - If `window` is missing, default to the last 5 years plus older seminal work when needed.
 - If the user names seed papers, add a `seed_papers` array and use citation chaining.
+- If the topic includes live products or platform features, set `retrieval_requirements.require_live_source_check` to `true`.
 
 ## Writing semantics
 

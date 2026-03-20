@@ -66,6 +66,7 @@ Prefer a `finalization-brief` containing:
 6. Remove placeholder language, duplicated claims, and draft-only notes.
 7. Preserve explicit evidence limitations instead of polishing them away.
 8. Produce a final manuscript package plus a readiness memo.
+9. If the run uses a canonical root file such as `final-thesis.md`, write the actual finalized manuscript there or clearly mirror the finalized text there. Do not leave the root final artifact as only a redirect stub.
 
 ## Required outputs
 
@@ -74,6 +75,7 @@ Prefer a `finalization-brief` containing:
 - remaining risk list
 - explicit evidence-boundary statement
 - final handoff status such as `submission-ready`, `thesis-ready`, or `not yet final`
+- a canonical final artifact that contains the manuscript text itself, not only a pointer to another file
 
 ## Guardrails
 
@@ -82,6 +84,8 @@ Prefer a `finalization-brief` containing:
 - If the manuscript type is non-empirical, keep method and findings language aligned with that type.
 - If target artifact is `undergraduate thesis`, ensure chapter completeness and academic-paper tone without drifting into consultancy recommendations.
 - Do not say the manuscript is final if placeholder sections, unsupported claims, or unresolved references remain.
+- If unresolved items are only school-template extras such as cover, declaration, or table of contents formatting, `thesis-ready` may still be acceptable, but those blockers must be named explicitly.
+- If the root final artifact is only a stub, the stage is not actually finalized.
 
 ## Before claiming completion
 
@@ -89,6 +93,7 @@ Prefer a `finalization-brief` containing:
 - Check that every major section exists and is aligned with the manuscript type.
 - Distinguish what was directly supported by evidence from what remains interpretive or provisional.
 - Use `paperskills:brief-compliance-review` and `paperskills:evidence-before-completion` discipline before saying the manuscript is final.
+- Check that the canonical final manuscript file contains the final text rather than only a redirection note.
 - If the draft still lacks core sections or supported references, mark the output as `not yet final` or `partial finalization`.
 
 ## Downstream handoff

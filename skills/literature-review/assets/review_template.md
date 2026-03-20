@@ -20,44 +20,52 @@
 
 - Sources searched: [Semantic Scholar, OpenAlex, PubMed, arXiv, ...]
 - Search cutoff: [YYYY-MM-DD]
+- Languages searched: [zh-CN, en, ...]
 - Inclusion criteria:
   - [Criterion]
 - Exclusion criteria:
   - [Criterion]
 - Coverage note: [Full text / abstract only / mixed]
+- Target mode check: [e.g. standard mode requires 12+ kept sources; say if unmet]
 
-## 3. Corpus Snapshot
+## 3. Retrieval Log
 
-| Paper | Year | Venue | Why it matters |
+| Batch | Source | Query | Language | Search date | Result note |
+| --- | --- | --- | --- | --- | --- |
+| [B1] | [CNKI / OpenAlex / Google Scholar / official page] | [Exact query or query description] | [zh-CN / en] | [YYYY-MM-DD] | [hits / first-pass note] |
+
+## 4. Corpus Snapshot
+
+| Source | Year | Venue / Type | Evidence level | Why it matters |
 | --- | --- | --- | --- |
-| [Representative paper] | [Year] | [Venue] | [Relevance note] |
+| [Representative paper or official page] | [Year] | [Venue / official documentation] | [full text / abstract / metadata] | [Relevance note] |
 
-## 4. Thematic Synthesis
+## 5. Thematic Synthesis
 
-### 4.1 Theme 1: [Theme]
-
-[Synthesis paragraph backed by multiple papers.]
-
-### 4.2 Theme 2: [Theme]
+### 5.1 Theme 1: [Theme]
 
 [Synthesis paragraph backed by multiple papers.]
 
-### 4.3 Theme 3: [Theme]
+### 5.2 Theme 2: [Theme]
 
 [Synthesis paragraph backed by multiple papers.]
 
-## 5. Research Gaps
+### 5.3 Theme 3: [Theme]
+
+[Synthesis paragraph backed by multiple papers.]
+
+## 6. Research Gaps
 
 - [Concrete gap]
 - [Concrete gap]
 - [Concrete gap]
 
-## 6. Limitations
+## 7. Limitations
 
 - [Coverage limitation]
 - [Method limitation]
 
-## 7. Future Directions
+## 8. Future Directions
 
 - [Direction]
 - [Direction]

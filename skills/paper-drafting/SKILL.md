@@ -54,9 +54,17 @@ Prefer a `draft-brief` containing:
 2. Confirm manuscript type before choosing section structure.
 3. Map claims to sections and evidence.
 4. Draft section-by-section, keeping evidence traceable and genre-consistent.
-5. Mark unsupported assertions as placeholders or evidence gaps.
-6. Close with unresolved writing dependencies.
-7. If the user asked for a complete manuscript, emit an explicit handoff to `manuscript-finalization`.
+5. Persist substantive draft text for every promised major section; do not replace the draft artifact with a one-line handoff note.
+6. Mark unsupported assertions as placeholders or evidence gaps.
+7. Close with unresolved writing dependencies.
+8. If the user asked for a complete manuscript, emit an explicit handoff to `manuscript-finalization`.
+
+`paper-drafting` must produce a real working manuscript package. At minimum, `output.md` should contain:
+
+- a chapter or section outline
+- substantive prose for each promised major section
+- visible citation anchors or source bindings for nontrivial claims
+- a short unresolved-gaps block at the end
 
 ## Guardrails
 
@@ -66,12 +74,15 @@ Prefer a `draft-brief` containing:
 - Do not let management, strategy, or policy recommendations replace the core scholarly sections of the manuscript.
 - If the manuscript type is not `empirical-paper`, do not imply completed data collection, statistical findings, or validated results.
 - Do not describe the output as final, thesis-ready, or submission-ready. That is `manuscript-finalization` work.
+- Do not make `output.md` a pointer such as “see next stage”. The drafting stage is for inspectable draft content, not only workflow narration.
+- If `target_artifact` is `undergraduate thesis`, prefer chapter-complete drafting over a compressed article skeleton.
 
 ## Before claiming completion
 
 - Check that the `draft-brief` contains the required section plan, manuscript type, evidence ledger, and claim mapping.
 - Separate paper text, cited evidence, and agent-authored inference.
 - If parts of the draft rely only on partial sources or upstream placeholders, mark them explicitly.
+- Check that every section promised in the brief has at least scaffold-plus-prose coverage in the saved draft artifact.
 - Do not say the manuscript is ready if key sections still exceed the evidence base.
 - If the user asked for a finished paper, mark this stage as a working draft and route to `manuscript-finalization`.
 - Use `paperskills:evidence-before-completion` before claiming the draft is evidence-backed or downstream-ready.
@@ -81,6 +92,7 @@ Prefer a `draft-brief` containing:
 - Recommended next skills: `manuscript-finalization`, `peer-review`, or `revision-planning` after review feedback exists
 - Pass forward a `draft-brief` or draft package with section claims and evidence ledger
 - Preserve `language`, `manuscript_type`, `evidence_status`, `target_artifact`, citation style, and unresolved writing dependencies
+- Include the draft artifact path or an embedded section-completion summary so finalization does not need to guess what text actually exists
 - If the current draft is proposal-style or evidence-limited, state that downstream finalization or review should evaluate it under those limits
 
 ## Local artifact persistence

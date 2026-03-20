@@ -64,6 +64,8 @@ Common multi-stage chains:
   Use when the user wants a non-empirical full paper or undergraduate thesis from a rough topic and the defensible artifact is conceptual or review-led.
 - `research-scoping -> paper-tracker -> literature-review -> research-design -> paper-drafting -> manuscript-finalization`
   Default full-paper workflow when the user asks for a complete paper from only a topic title or theme and no evidence ledger is provided.
+- `research-scoping -> paper-tracker -> literature-review -> paper-drafting -> manuscript-finalization`
+  Prefer this chain when the user wants a non-empirical undergraduate thesis from only a title and the topic depends on live platform behavior, product features, policy pages, or recent field movement.
 
 ## Routing discipline
 
@@ -72,9 +74,11 @@ Common multi-stage chains:
 - If the user asks for content that requires evidence not yet collected, route upstream instead of fabricating downstream certainty.
 - If the user asks for a full paper, draft, proposal, or review from thin evidence, diagnose evidence status before selecting a later-stage skill.
 - If the user asks for a full paper, proposal, thesis chapter, or "完整撰写" from only a topic, do not stop at scoping. Produce a compact scoping brief, then continue through the missing evidence and design stages as needed.
+- If the user asks for a full paper or thesis from only a title and no source list or evidence ledger is provided, treat retrieval as still missing. Do not route directly from scoping into synthesis unless the retrieval plan and evidence status are both explicit.
 - If the user asks for a complete paper or thesis, do not stop the workflow at `paper-drafting`. Add `manuscript-finalization` when the requested deliverable is meant to read as a finished manuscript rather than a working draft.
 - Treat `paper-tracker` as a retrieval accelerator, not a mandatory stage. Use it when recency matters, when the user explicitly wants recent papers or a reading shortlist, or when a live field needs a fast candidate pool before `literature-review`.
 - If evidence coverage is partial, require an explicit confidence or limitation note in the final output.
+- Do not mark `evidence_status` as `mixed-full-text-and-abstract`, `full-text`, or similar before retrieval has actually happened in the current run. Use `no-corpus-yet`, `needs-retrieval`, or `planned-retrieval` until sources are collected.
 
 Short routing defaults:
 
@@ -111,11 +115,15 @@ Before handing off to a downstream skill, normalize:
 - output language
 - target artifact
 - manuscript type
+- thesis mode or article mode when the artifact is academic
 - evidence availability
 - study completion status
 - time sensitivity
 - downstream brief type
 - evidence status
+- evidence limitations
+- whether a verified corpus already exists in the run
+- whether live retrieval is still required before synthesis
 
 ## Local artifact persistence
 
@@ -130,6 +138,7 @@ Before producing any stage diagnosis or downstream handoff, initialize local sto
 ```bash
 python3 skills/using-paperskills/scripts/paperskills_artifacts.py init \
   --task "<task-title>" \
+  --user-query "<original-user-request>" \
   --entry-stage using-paperskills \
   --planned-chain research-scoping,paper-tracker,literature-review,paper-drafting,manuscript-finalization
 ```
@@ -138,6 +147,7 @@ Storage rules:
 
 - `using-paperskills` should initialize the run when it is the entry stage.
 - Do not treat local persistence as optional when the task is producing reusable workflow state.
+- Archive the user's original request at run level. Preserve it in machine-readable form in `manifest.json` and in a human-readable file such as `user-query.md`.
 - Write a machine-readable stage brief before routing downstream.
 - Record the diagnosed immediate stage and planned chain in a run-level manifest or stage status file.
 - If the user is doing only one stage later, that downstream stage must still be able to create its own standalone run.
@@ -157,6 +167,8 @@ At minimum, emit:
 - an explicit manuscript-type label such as `literature-review-paper`, `conceptual-paper`, `proposal-style-manuscript`, or `empirical-paper`
 - explicit evidence limitations when later-stage writing is requested before evidence is ready
 - an explicit downstream brief or a statement that handoff is not yet ready
+- if the requested deliverable is a complete thesis, an explicit note that downstream stages must preserve `target_artifact=undergraduate thesis` instead of silently downgrading to a generic paper brief
+- if no verified corpus exists yet, an explicit `retrieval_required` marker and a non-final evidence status
 
 ## Manuscript-type discipline
 
@@ -167,6 +179,8 @@ At minimum, emit:
   - `proposal-style-manuscript` for topic-to-study-plan requests with no completed study
   - `empirical-paper` only when the user provides completed study evidence, results, or reproducible findings
 - Pass the inferred manuscript type downstream so later skills do not drift into report-style writing or fake completed results.
+- If the user explicitly asks for `中文本科毕业论文`, preserve both the manuscript type and the thesis artifact through every downstream brief. Do not let a later stage rewrite the artifact as only `research brief`, `review note`, or `draft` without also carrying forward the final thesis target.
+- If the user explicitly excludes `完成态实证论文`, write that exclusion into the normalized brief and require downstream stages to avoid empirical sections such as sample description, model estimation, or validated findings.
 
 ## Language handling
 

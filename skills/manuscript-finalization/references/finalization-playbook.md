@@ -18,6 +18,7 @@ Use this reference when promoting a draft package to a final manuscript.
 - If evidence is partial, the final manuscript may still be polished, but it must explicitly retain the limitation language.
 - Keep title, abstract, chapter titles, and conclusion mutually consistent.
 - Ensure the conclusion answers the paper's actual research problem instead of drifting into generic recommendations.
+- Ensure the workflow's canonical final file is the finalized manuscript itself. A redirect note may exist as metadata, but not as the only final artifact.
 
 ## Undergraduate-thesis discipline
 

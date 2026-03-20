@@ -50,12 +50,15 @@ Read [references/brief-schema.md](references/brief-schema.md) when you want the 
 
 1. Normalize the request into a review brief.
 2. Choose the source strategy by domain and review depth.
-3. Collect candidate papers from primary or near-primary academic sources.
-4. Build an evidence ledger with title, year, venue, link, relevance note, and confidence note.
-5. Dedupe and screen the corpus. Label preprints clearly.
-6. Cluster the remaining evidence into 3-5 themes or research questions.
-7. Write a synthesis-first draft. Do not write an annotated bibliography.
-8. Close with research gaps, limitations, and future directions.
+3. Run actual retrieval against primary or near-primary sources. Do not skip this step by writing from memory or from a pre-assumed corpus.
+4. Record retrieval batches with query string, source, language, and search date.
+5. Collect candidate papers from primary or near-primary academic sources.
+6. Build an evidence ledger with title, year, venue, link, relevance note, and confidence note.
+7. Check the corpus size against the selected review mode.
+8. Dedupe and screen the corpus. Label preprints clearly.
+9. Cluster the remaining evidence into 3-5 themes or research questions.
+10. Write a synthesis-first draft. Do not write an annotated bibliography.
+11. Close with research gaps, limitations, and future directions.
 
 Read [references/source-playbook.md](references/source-playbook.md) for retrieval and screening rules.
 Read [references/writing-playbook.md](references/writing-playbook.md) for synthesis and drafting rules.
@@ -98,12 +101,15 @@ Domain defaults:
 Language-specific defaults:
 
 - If the user asks for Chinese output, Chinese papers, a Chinese thesis chapter, or the topic is clearly centered on Chinese scholarship, add Chinese academic indexes to the front of the search plan.
+- If the target artifact is a `中文本科毕业论文`, treat Chinese-language academic retrieval as a preferred lane by default, even when the topic also has strong international literature. This is a recommendation, not a hard requirement; if Chinese databases are not used, state why.
 - For Chinese-language literature retrieval, prefer CNKI, Wanfang Data, VIP/CQVIP, Airiti Library when relevant, and institutional journal portals.
 - Do bilingual retrieval when the topic spans both Chinese and international scholarship. Use paired Chinese and English query variants instead of searching only one language.
 - If Chinese databases return only metadata or partial previews, say so explicitly and avoid overclaiming full-text coverage.
 - Record which claims are mainly grounded in Chinese-language literature versus international literature when that distinction matters for the argument.
 
 If Zotero or Semantic Scholar MCP tools are available, use them for seed-paper expansion, citation chaining, and note capture. Otherwise continue with web and public APIs.
+
+For topics involving live products, platform behavior, policy pages, or recent product rollouts, verify at least one live source in the current turn. A cached memory of the product is not a sufficient retrieval record.
 
 ## Evidence rules
 
@@ -112,6 +118,8 @@ If Zotero or Semantic Scholar MCP tools are available, use them for seed-paper e
 - Distinguish explicit source statements from your own synthesis or inference.
 - If the draft is based only on abstracts or metadata, say so directly.
 - Include the search cutoff date whenever currency matters.
+- If no actual retrieval was performed in the current turn or run, do not mark the stage as `completed`.
+- If the corpus does not meet the target mode's minimum evidence bar, state that the review is partial and why.
 
 ## Output contract
 
@@ -119,11 +127,24 @@ Default output sections:
 
 1. Request normalization
 2. Search strategy and source coverage
-3. Corpus snapshot
-4. Thematic synthesis
-5. Research gaps and future directions
-6. Limitations
-7. Working bibliography or references
+3. Retrieval log or search batches
+4. Corpus snapshot
+5. Thematic synthesis
+6. Research gaps and future directions
+7. Limitations
+8. Working bibliography or references
+
+Do not collapse the output to a synthesis-only essay. The review stage must leave behind enough retrieval and source-coverage structure for `paper-drafting` to reuse without re-deriving the corpus from scratch.
+
+The retrieval log must be concrete enough that another agent can rerun or audit the search. At minimum include:
+
+- source name
+- query string or query description
+- search date or cutoff date
+- language
+- batch result count or a note that counts were not available
+
+When the target artifact is a Chinese undergraduate thesis, the source coverage section should normally state whether Chinese academic databases were searched and what they contributed. If they were not searched, explain the reason briefly instead of leaving the omission implicit.
 
 For each theme include:
 
@@ -131,6 +152,11 @@ For each theme include:
 - Which papers support it
 - Where the literature agrees or conflicts
 - What remains unresolved
+
+When the downstream target is an undergraduate thesis, also include:
+
+- which later thesis chapter or section the theme is meant to support
+- which sources are foundational theory versus platform documentation versus industry observation
 
 ## Review modes
 
@@ -141,6 +167,14 @@ Pick one mode based on the user's goal:
 - `deep`: 20-40 papers, broader coverage, stronger gap analysis
 
 If the user gives no mode, default to `standard`.
+
+Mode minimums:
+
+- `quick`: aim for at least 6 kept sources
+- `standard`: aim for at least 12 kept sources
+- `deep`: aim for at least 20 kept sources
+
+If the kept corpus is smaller, say the mode target was not met and mark the review as partial or low confidence.
 
 ## Common failure modes
 
@@ -155,9 +189,12 @@ Avoid these:
 ## Before claiming completion
 
 - Check that the normalized review brief is complete enough for the requested review mode.
+- Check that actual retrieval happened and that the run contains a query log or equivalent retrieval batches.
 - Check whether sources were reviewed in full text, abstract only, or metadata only.
 - Distinguish source-grounded findings from synthesis and inference.
 - If the corpus is thin or partial, mark the output as `partial`, `low confidence`, or equivalent.
+- Check that `output.md` includes the search strategy, corpus snapshot, and working bibliography rather than only polished prose.
+- Do not say the stage is handoff-ready if the only "sources" are uncited memory, vague mentions of Google Scholar, or a bibliography with no retrieval record.
 - Use `paperskills:evidence-before-completion` before saying the review is complete or strongly evidence-backed.
 
 ## Downstream handoff
@@ -165,7 +202,8 @@ Avoid these:
 - Recommended next skills: `research-design` or `paper-drafting`
 - Pass forward a `review-brief` plus the evidence ledger or source shortlist
 - Preserve `language`, `manuscript_type`, `evidence_status`, `time_window`, `target_artifact`, and major gaps
-- Do not say the workflow is ready for downstream drafting if the synthesis is abstract-based or key evidence is still missing
+- Include a reusable evidence ledger with claim-ready source notes, not just a paragraph summary
+- Do not say the workflow is ready for downstream drafting if the synthesis is abstract-based, key evidence is still missing, or the retrieval log is absent
 
 ## Example request shapes
 
