@@ -25,10 +25,27 @@ Academic book aesthetic — Crimson Pro serif for body, JetBrains Mono for label
 
 ## Fonts (Google Fonts import)
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@400&family=Noto+Serif+SC:wght@300;400;500;600;700&display=swap');
 ```
 - Body: `'Crimson Pro', Georgia, serif` — 17px, line-height 1.7
 - Mono labels: `'JetBrains Mono', monospace` — 10-12px, uppercase, letter-spacing 0.08-0.12em
+
+## Multilingual Support
+
+Default language is English (`<html lang="en">`). For Chinese reports, set `<html lang="zh">`.
+
+```css
+html[lang="zh"] body {
+  font-family: 'Noto Serif SC', 'Crimson Pro', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.8;
+}
+```
+
+- **Chinese font stack**: `'Noto Serif SC', 'Crimson Pro', Georgia, serif` — Noto Serif SC handles CJK glyphs, Crimson Pro handles embedded Latin characters (common in academic citations)
+- **JetBrains Mono** remains unchanged for labels/codes (ASCII-only labels work in both languages)
+- The `lang` attribute enables proper CJK line-breaking and text-spacing in browsers
+- Chinese reports use slightly smaller font-size (16px) and taller line-height (1.8) for CJK readability
 
 ## Page Layout
 ```css

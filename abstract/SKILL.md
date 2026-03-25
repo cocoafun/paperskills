@@ -1,3 +1,8 @@
+---
+name: abstract
+description: Generate abstracts in multiple formats (IMRaD, thematic, extended, short) for academic manuscripts. Supports bilingual output for non-English papers.
+---
+
 Generate an abstract for "$ARGUMENTS".
 
 Resolve file path:

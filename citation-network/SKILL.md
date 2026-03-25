@@ -1,3 +1,8 @@
+---
+name: citation-network
+description: Build and visualize citation networks from seed papers using Semantic Scholar and OpenCitations. Generates interactive HTML report with vis.js network graph.
+---
+
 Build a citation network from "$ARGUMENTS".
 
 Input can be:
@@ -144,6 +149,21 @@ Returns: [{citing, cited, creation, timespan}]
 - Total: ~35-55K
 - LIMIT depth to 2 levels from seed to keep manageable
 
+## LANGUAGE
+
+Determine report language:
+- If the user explicitly requests a language (e.g., "in Chinese", "用中文"): use that language
+- If the manuscript/input is primarily in Chinese: default to Chinese
+- Otherwise: default to English
+
+When generating in Chinese:
+- Set `<html lang="zh">` on the HTML document
+- Write all headings, labels, descriptions, and analysis text in Chinese
+- Keep technical terms in original form (DOI, journal names, API names)
+- Use Chinese punctuation (，。、；：)
+- stat-label text in the stats bar should be Chinese (e.g., "论文数量" not "Papers")
+- Badge text should be Chinese (e.g., "核心论文" not "KEY PAPER", "桥梁论文" not "BRIDGE")
+
 ## REPORT DESIGN
-When writing the HTML report, follow the design system in /report-template EXACTLY.
+When writing the HTML report, read and follow the design system in `shared/report-template.md` (in the paperskills root directory) EXACTLY.
 Do NOT use Tailwind CDN. Use the custom CSS variables, Crimson Pro font, and academic book aesthetic defined there.

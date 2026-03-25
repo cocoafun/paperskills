@@ -1,3 +1,8 @@
+---
+name: topic-framing
+description: Help converge from a fuzzy research idea to a concrete, researchable paper title through structured dialogue. Covers problem sharpening, landscape check, and title workshop.
+---
+
 Help the user converge from a fuzzy research idea to a concrete, researchable paper title. Input: "$ARGUMENTS".
 
 Do NOT use subagents — do this yourself directly.

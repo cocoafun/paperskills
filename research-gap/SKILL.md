@@ -1,3 +1,8 @@
+---
+name: research-gap
+description: Analyze and identify research gaps in a field using Semantic Scholar and OpenAlex trend data. Covers temporal, methodological, thematic, application, and population gaps. Generates HTML report with Chart.js visualizations.
+---
+
 Analyze research gaps for "$ARGUMENTS".
 
 ## MAIN FLOW
@@ -159,6 +164,21 @@ By type: /works?search={topic}&group_by=type
 - Total: ~55-85K (most intensive skill)
 - If landscape output too large: summarize before passing to gap analysis
 
+## LANGUAGE
+
+Determine report language:
+- If the user explicitly requests a language (e.g., "in Chinese", "用中文"): use that language
+- If the manuscript/input is primarily in Chinese: default to Chinese
+- Otherwise: default to English
+
+When generating in Chinese:
+- Set `<html lang="zh">` on the HTML document
+- Write all headings, labels, descriptions, and analysis text in Chinese
+- Keep technical terms in original form (DOI, journal names, API names)
+- Use Chinese punctuation (，。、；：)
+- stat-label text in the stats bar should be Chinese (e.g., "论文总数" not "Total Papers")
+- Badge text should be Chinese (e.g., "高优先级" not "HIGH PRIORITY", "方法缺口" not "METHODOLOGICAL GAP")
+
 ## REPORT DESIGN
-When writing the HTML report, follow the design system in /report-template EXACTLY.
+When writing the HTML report, read and follow the design system in `shared/report-template.md` (in the paperskills root directory) EXACTLY.
 Do NOT use Tailwind CDN. Use the custom CSS variables, Crimson Pro font, and academic book aesthetic defined there.

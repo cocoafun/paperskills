@@ -1,3 +1,8 @@
+---
+name: cite-verify
+description: Verify all citations in an academic manuscript against CrossRef, Semantic Scholar, and OpenAlex. Checks existence, metadata accuracy, open access status, and optionally verifies claims against source texts. Generates HTML report.
+---
+
 Verify all citations in "$ARGUMENTS".
 
 Resolve file path:
@@ -218,6 +223,21 @@ https://api.unpaywall.org/v2/{doi}?email=paperskills@example.com
 - Report: ~5K
 - Total: ~25-65K (depends on citation count + claim verification)
 
+## LANGUAGE
+
+Determine report language:
+- If the user explicitly requests a language (e.g., "in Chinese", "用中文"): use that language
+- If the manuscript/input is primarily in Chinese: default to Chinese
+- Otherwise: default to English
+
+When generating in Chinese:
+- Set `<html lang="zh">` on the HTML document
+- Write all headings, labels, descriptions, and analysis text in Chinese
+- Keep technical terms in original form (DOI, journal names, API names)
+- Use Chinese punctuation (，。、；：)
+- stat-label text in the stats bar should be Chinese (e.g., "引用数量" not "References")
+- Badge text should be Chinese (e.g., "已验证" not "VERIFIED", "未找到" not "NOT FOUND")
+
 ## REPORT DESIGN
-When writing the HTML report, follow the design system in /report-template EXACTLY.
+When writing the HTML report, read and follow the design system in `shared/report-template.md` (in the paperskills root directory) EXACTLY.
 Do NOT use Tailwind CDN. Use the custom CSS variables, Crimson Pro font, and academic book aesthetic defined there.

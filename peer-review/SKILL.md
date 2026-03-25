@@ -1,3 +1,8 @@
+---
+name: peer-review
+description: Perform academic peer review with 8-criteria scoring (originality, argument, literature, discussion, consistency, methodology, presentation, evidence). Generates HTML report with radar chart.
+---
+
 Perform an academic peer review of "$ARGUMENTS".
 
 Resolve file path:
@@ -137,6 +142,22 @@ Ask user:
 - Report subagent: ~5-10K
 - Total: ~35-60K
 
+## LANGUAGE
+
+Determine report language:
+- If the user explicitly requests a language (e.g., "in Chinese", "用中文"): use that language
+- If the manuscript/input is primarily in Chinese: default to Chinese
+- Otherwise: default to English
+
+When generating in Chinese:
+- Set `<html lang="zh">` on the HTML document
+- Write all headings, labels, descriptions, and analysis text in Chinese
+- Keep technical terms in original form (DOI, journal names, API names)
+- Use Chinese punctuation (，。、；：)
+- stat-label text in the stats bar should be Chinese (e.g., "综合评分" not "Overall Score")
+- Badge text should be Chinese (e.g., "小修通过" not "MINOR REVISIONS", "接受" not "ACCEPT")
+- Criteria names in Chinese (e.g., "K1 原创性", "K2 论证结构", "K3 文献覆盖", "K4 讨论深度", "K5 概念一致性", "K6 方法论", "K7 表达规范", "K8 论据支撑")
+
 ## REPORT DESIGN
-When writing the HTML report, follow the design system in /report-template EXACTLY.
+When writing the HTML report, read and follow the design system in `shared/report-template.md` (in the paperskills root directory) EXACTLY.
 Do NOT use Tailwind CDN. Use the custom CSS variables, Crimson Pro font, and academic book aesthetic defined there.

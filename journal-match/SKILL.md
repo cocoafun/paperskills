@@ -1,3 +1,8 @@
+---
+name: journal-match
+description: Recommend target journals for manuscript submission based on scope, methodology, and impact metrics from Semantic Scholar and OpenAlex. Generates HTML report.
+---
+
 Recommend target journals for "$ARGUMENTS".
 
 Input can be:
@@ -119,6 +124,21 @@ For each journal:
 - Journal enrichment: ~5-10K
 - Total: ~25-35K
 
+## LANGUAGE
+
+Determine report language:
+- If the user explicitly requests a language (e.g., "in Chinese", "用中文"): use that language
+- If the manuscript/input is primarily in Chinese: default to Chinese
+- Otherwise: default to English
+
+When generating in Chinese:
+- Set `<html lang="zh">` on the HTML document
+- Write all headings, labels, descriptions, and analysis text in Chinese
+- Keep technical terms in original form (DOI, journal names, API names)
+- Use Chinese punctuation (，。、；：)
+- stat-label text in the stats bar should be Chinese (e.g., "推荐期刊" not "Journals")
+- Badge text should be Chinese (e.g., "最佳匹配" not "BEST MATCH", "开放获取" not "OPEN ACCESS")
+
 ## REPORT DESIGN
-When writing the HTML report, follow the design system in /report-template EXACTLY.
+When writing the HTML report, read and follow the design system in `shared/report-template.md` (in the paperskills root directory) EXACTLY.
 Do NOT use Tailwind CDN. Use the custom CSS variables, Crimson Pro font, and academic book aesthetic defined there.

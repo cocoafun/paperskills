@@ -1,3 +1,8 @@
+---
+name: lit-search
+description: Search academic literature across Semantic Scholar, OpenAlex, PubMed, and arXiv. Returns deduplicated, ranked results with abstracts and open access status.
+---
+
 Search academic literature for "$ARGUMENTS".
 
 Do NOT use subagents — do this yourself directly.
