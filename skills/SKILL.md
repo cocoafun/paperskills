@@ -1,6 +1,6 @@
 ---
 name: paperskills
-description: Academic paper and literature workflow for Codex. Use when the user needs help with paper writing, literature search, research gaps, citation checking, peer review, journal matching, abstracts, or academic report generation. Triggers: paper, manuscript, literature review, abstract, peer review, citation, journal, research gap.
+description: Academic paper and literature workflow for Codex. Use when the user needs help with topic framing, research question sharpening, paper title convergence, paper writing, literature search, research gaps, citation checking, peer review, journal matching, abstracts, or academic report generation. Triggers: paper, manuscript, topic framing, research question, paper title, literature review, abstract, peer review, citation, journal, research gap.
 ---
 
 # PaperSkills
@@ -11,6 +11,7 @@ Use this skill as the entry point for academic research and paper-writing tasks.
 
 Use PaperSkills when the user asks to:
 
+- Frame a research topic or converge on a paper title
 - Search or map literature
 - Identify research gaps
 - Verify citations or supporting evidence
@@ -28,6 +29,7 @@ Use PaperSkills when the user asks to:
 
 ## Reference Routing
 
+- For topic framing, research question sharpening, or title convergence: read `topic-framing.md`
 - For abstract writing: read `abstract.md`
 - For literature search: read `lit-search.md`
 - For citation verification: read `cite-verify.md`
