@@ -1,6 +1,6 @@
 # PaperSkills for Codex
 
-Guide for using PaperSkills with OpenAI Codex via native skill discovery.
+Academic research skills library for OpenAI Codex. Each skill is a standalone `.md` file that handles one research task using public APIs (Semantic Scholar, OpenAlex, CrossRef, Unpaywall, etc.).
 
 ## Quick Install
 
@@ -32,50 +32,56 @@ Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/pa
 
 ## How It Works
 
-Codex scans `~/.agents/skills/` at startup, reads `SKILL.md` frontmatter, and loads matching skills on demand. PaperSkills becomes visible through a single symlink:
+Codex scans `~/.agents/skills/` at startup and loads matching skills on demand. PaperSkills becomes visible through a single symlink:
 
 ```text
 ~/.agents/skills/paperskills/ -> /path/to/paperskills/skills/
 ```
 
-The `using-paperskills` skill acts as the entry point. It diagnoses the current research stage, decides whether the task needs a multi-stage workflow, and routes the task before drafting content.
+## Available Skills
+
+| Skill | Description | Token Budget |
+|-------|-------------|--------------|
+| `lit-search` | Search academic literature across Semantic Scholar, OpenAlex, PubMed, arXiv | 15–25K |
+| `cite-verify` | Verify all citations in a manuscript against CrossRef / Semantic Scholar / OpenAlex | 25–65K |
+| `citation-network` | Build and visualize citation networks from seed papers with HTML report | 35–55K |
+| `research-gap` | Analyze research gaps (temporal, methodological, thematic, application) | 55–85K |
+| `peer-review` | Academic peer review with 8-criteria scoring and radar chart report | 35–60K |
+| `journal-match` | Recommend target journals for manuscript submission | 25–35K |
+| `abstract` | Generate abstracts in multiple formats (IMRaD, thematic, extended, short) | 10–20K |
+| `report-template` | Design system specification for all HTML reports (academic book aesthetic) | — |
 
 ## Usage
 
 Once installed, ask Codex for a research task in natural language, for example:
 
 ```text
-我想研究大模型如何支持文献综述写作，请使用 paperskills 从阶段判断开始，最终帮我形成一版 proposal。
+帮我检索关于大模型支持文献综述写作的文献，用 lit-search。
 ```
 
-Or name the entry skill explicitly:
+Or name the skill explicitly:
 
 ```text
-Use using-paperskills and continue with the appropriate PaperSkills workflow for my paper-writing task.
+Use cite-verify to check all citations in my manuscript draft.md
 ```
 
-Typical downstream routing includes:
+Skills can be composed for multi-step workflows, e.g.:
 
-- `research-scoping` for broad or fuzzy topics
-- `literature-review` for related work and gap analysis
-- `research-design` for questions, methods, and study plans
-- `paper-drafting` for outlines and manuscript drafting
-- `peer-review` for reviewer-style critique
-- `revision-planning` for revision roadmaps
+1. `lit-search` → find relevant papers
+2. `research-gap` → identify gaps in the field
+3. `peer-review` → critique a draft manuscript
+4. `cite-verify` → verify all references before submission
+
+All report-generating skills follow the `report-template` design system and output self-contained HTML files.
 
 ## Project-Local Installation
 
-If you only want PaperSkills in one project, create a local `AGENTS.md` and local skills link:
+If you only want PaperSkills in one project, create a local skills link:
 
 ```bash
 mkdir -p .agents/skills
 ln -s /path/to/paperskills/skills .agents/skills/paperskills
-python3 /path/to/paperskills/tests/test_support/render_agents_md.py \
-  --skills-root ./.agents/skills/paperskills \
-  --output ./AGENTS.md
 ```
-
-This mirrors the repository's own smoke-test setup and makes the PaperSkills library discoverable within that project.
 
 ## Updating
 
@@ -91,6 +97,5 @@ If `paperskills` is a git checkout, pull the latest changes in that repository. 
 
 ### Local project install not working
 
-1. Verify `AGENTS.md` exists in the project root
-2. Verify `.agents/skills/paperskills` points to the repository `skills/` directory
-3. Start Codex from that project directory
+1. Verify `.agents/skills/paperskills` points to the repository `skills/` directory
+2. Start Codex from that project directory
