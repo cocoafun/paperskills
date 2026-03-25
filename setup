@@ -11,18 +11,19 @@ SKILLS_BASENAME="$(basename "$INSTALL_SKILLS_DIR")"
 # Otherwise, print manual instructions
 
 SKILL_DIRS=(abstract cite-verify citation-network journal-match lit-search peer-review research-gap topic-framing)
+LINK_DIRS=(shared "${SKILL_DIRS[@]}")
 
 link_skill_dirs() {
   local paperskills_dir="$1"
   local skills_dir="$2"
   local linked=()
-  for skill_name in "${SKILL_DIRS[@]}"; do
-    local skill_dir="$paperskills_dir/$skill_name"
-    if [ -f "$skill_dir/SKILL.md" ]; then
-      local target="$skills_dir/$skill_name"
+  for entry_name in "${LINK_DIRS[@]}"; do
+    local entry_dir="$paperskills_dir/$entry_name"
+    if [ -d "$entry_dir" ] && { [ "$entry_name" = "shared" ] || [ -f "$entry_dir/SKILL.md" ]; }; then
+      local target="$skills_dir/$entry_name"
       if [ -L "$target" ] || [ ! -e "$target" ]; then
-        ln -snf "paperskills/$skill_name" "$target"
-        linked+=("$skill_name")
+        ln -snf "paperskills/$entry_name" "$target"
+        linked+=("$entry_name")
       fi
     fi
   done

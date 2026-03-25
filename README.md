@@ -19,6 +19,8 @@ ln -s /path/to/paperskills .claude/skills/paperskills
 cd .claude/skills/paperskills && ./setup
 ```
 
+`./setup` will create sibling links such as `.claude/skills/peer-review` and `.claude/skills/shared`, so report-generating skills can read the shared report template. Re-run `./setup` after updating PaperSkills.
+
 ### Codex
 
 Tell Codex:
@@ -33,6 +35,8 @@ Or manually:
 git clone https://github.com/cocoafun/paperskills.git ~/.agents/skills/paperskills
 cd ~/.agents/skills/paperskills && ./setup
 ```
+
+`./setup` also links the shared assets directory required by report-generating skills.
 
 ## Available Skills
 
