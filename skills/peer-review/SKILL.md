@@ -159,5 +159,5 @@ When generating in Chinese:
 - Criteria names in Chinese (e.g., "K1 原创性", "K2 论证结构", "K3 文献覆盖", "K4 讨论深度", "K5 概念一致性", "K6 方法论", "K7 表达规范", "K8 论据支撑")
 
 ## REPORT DESIGN
-When writing the HTML report, read and follow the design system in `shared/report-template.md` (in the paperskills root directory) EXACTLY.
+When writing the HTML report, read and follow the design system in `assets/report-template.md` (in the paperskills root directory) EXACTLY.
 Do NOT use Tailwind CDN. Use the custom CSS variables, Crimson Pro font, and academic book aesthetic defined there.

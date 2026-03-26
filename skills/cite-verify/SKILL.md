@@ -239,5 +239,5 @@ When generating in Chinese:
 - Badge text should be Chinese (e.g., "已验证" not "VERIFIED", "未找到" not "NOT FOUND")
 
 ## REPORT DESIGN
-When writing the HTML report, read and follow the design system in `shared/report-template.md` (in the paperskills root directory) EXACTLY.
+When writing the HTML report, read and follow the design system in `assets/report-template.md` (in the paperskills root directory) EXACTLY.
 Do NOT use Tailwind CDN. Use the custom CSS variables, Crimson Pro font, and academic book aesthetic defined there.

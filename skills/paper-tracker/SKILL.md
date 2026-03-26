@@ -141,7 +141,7 @@ Also compute:
 
 ## STEP 5: Output Report
 
-Default output is a single-file HTML report. Read `shared/report-template.md` first and follow that design system exactly.
+Default output is a single-file HTML report. Read `assets/report-template.md` first and follow that design system exactly.
 
 For HTML reports include:
 - header with scope and date range

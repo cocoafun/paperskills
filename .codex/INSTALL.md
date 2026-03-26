@@ -104,7 +104,7 @@ Skills can be composed for multi-step workflows:
 4. `/peer-review` → critique a draft manuscript
 5. `/cite-verify` → verify all references before submission
 
-All report-generating skills follow the shared design system (`shared/report-template.md`) and output self-contained HTML files. Reports support both English and Chinese output — language is auto-detected from manuscript or can be explicitly requested.
+All report-generating skills follow the shared design system (`assets/report-template.md`) and output self-contained HTML files. Reports support both English and Chinese output — language is auto-detected from manuscript or can be explicitly requested.
 
 ## Project-Local Installation
 

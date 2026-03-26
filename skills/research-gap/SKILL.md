@@ -180,5 +180,5 @@ When generating in Chinese:
 - Badge text should be Chinese (e.g., "高优先级" not "HIGH PRIORITY", "方法缺口" not "METHODOLOGICAL GAP")
 
 ## REPORT DESIGN
-When writing the HTML report, read and follow the design system in `shared/report-template.md` (in the paperskills root directory) EXACTLY.
+When writing the HTML report, read and follow the design system in `assets/report-template.md` (in the paperskills root directory) EXACTLY.
 Do NOT use Tailwind CDN. Use the custom CSS variables, Crimson Pro font, and academic book aesthetic defined there.
