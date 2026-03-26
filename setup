@@ -18,11 +18,19 @@ link_skill_dirs() {
   local skills_dir="$2"
   local linked=()
   for entry_name in "${LINK_DIRS[@]}"; do
-    local entry_dir="$paperskills_dir/$entry_name"
+    if [ "$entry_name" = "shared" ]; then
+      local entry_dir="$paperskills_dir/shared"
+    else
+      local entry_dir="$paperskills_dir/skills/$entry_name"
+    fi
     if [ -d "$entry_dir" ] && { [ "$entry_name" = "shared" ] || [ -f "$entry_dir/SKILL.md" ]; }; then
       local target="$skills_dir/$entry_name"
       if [ -L "$target" ] || [ ! -e "$target" ]; then
-        ln -snf "paperskills/$entry_name" "$target"
+        if [ "$entry_name" = "shared" ]; then
+          ln -snf "paperskills/shared" "$target"
+        else
+          ln -snf "paperskills/skills/$entry_name" "$target"
+        fi
         linked+=("$entry_name")
       fi
     fi

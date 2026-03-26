@@ -35,14 +35,14 @@ Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/pa
 
 4. Link each sub-skill for direct invocation:
    ```bash
-   ln -s /path/to/paperskills/abstract ~/.agents/skills/abstract
-   ln -s /path/to/paperskills/cite-verify ~/.agents/skills/cite-verify
-   ln -s /path/to/paperskills/citation-network ~/.agents/skills/citation-network
-   ln -s /path/to/paperskills/journal-match ~/.agents/skills/journal-match
-   ln -s /path/to/paperskills/lit-search ~/.agents/skills/lit-search
-   ln -s /path/to/paperskills/peer-review ~/.agents/skills/peer-review
-   ln -s /path/to/paperskills/research-gap ~/.agents/skills/research-gap
-   ln -s /path/to/paperskills/topic-framing ~/.agents/skills/topic-framing
+   ln -s /path/to/paperskills/skills/abstract ~/.agents/skills/abstract
+   ln -s /path/to/paperskills/skills/cite-verify ~/.agents/skills/cite-verify
+   ln -s /path/to/paperskills/skills/citation-network ~/.agents/skills/citation-network
+   ln -s /path/to/paperskills/skills/journal-match ~/.agents/skills/journal-match
+   ln -s /path/to/paperskills/skills/lit-search ~/.agents/skills/lit-search
+   ln -s /path/to/paperskills/skills/peer-review ~/.agents/skills/peer-review
+   ln -s /path/to/paperskills/skills/research-gap ~/.agents/skills/research-gap
+   ln -s /path/to/paperskills/skills/topic-framing ~/.agents/skills/topic-framing
    ```
 
 5. Restart Codex.
@@ -57,14 +57,14 @@ Codex scans `~/.agents/skills/` at startup and loads matching skills on demand. 
 ```text
 ~/.agents/skills/
 ├── paperskills/    -> /path/to/paperskills/       (router)
-├── abstract/       -> /path/to/paperskills/abstract/
-├── cite-verify/    -> /path/to/paperskills/cite-verify/
-├── citation-network/ -> /path/to/paperskills/citation-network/
-├── journal-match/  -> /path/to/paperskills/journal-match/
-├── lit-search/     -> /path/to/paperskills/lit-search/
-├── peer-review/    -> /path/to/paperskills/peer-review/
-├── research-gap/   -> /path/to/paperskills/research-gap/
-└── topic-framing/  -> /path/to/paperskills/topic-framing/
+├── abstract/       -> /path/to/paperskills/skills/abstract/
+├── cite-verify/    -> /path/to/paperskills/skills/cite-verify/
+├── citation-network/ -> /path/to/paperskills/skills/citation-network/
+├── journal-match/  -> /path/to/paperskills/skills/journal-match/
+├── lit-search/     -> /path/to/paperskills/skills/lit-search/
+├── peer-review/    -> /path/to/paperskills/skills/peer-review/
+├── research-gap/   -> /path/to/paperskills/skills/research-gap/
+└── topic-framing/  -> /path/to/paperskills/skills/topic-framing/
 ```
 
 ## Available Skills
@@ -113,14 +113,14 @@ If you only want PaperSkills in one project, create local skills links:
 ```bash
 mkdir -p .agents/skills
 ln -s /path/to/paperskills .agents/skills/paperskills
-ln -s /path/to/paperskills/abstract .agents/skills/abstract
-ln -s /path/to/paperskills/cite-verify .agents/skills/cite-verify
-ln -s /path/to/paperskills/citation-network .agents/skills/citation-network
-ln -s /path/to/paperskills/journal-match .agents/skills/journal-match
-ln -s /path/to/paperskills/lit-search .agents/skills/lit-search
-ln -s /path/to/paperskills/peer-review .agents/skills/peer-review
-ln -s /path/to/paperskills/research-gap .agents/skills/research-gap
-ln -s /path/to/paperskills/topic-framing .agents/skills/topic-framing
+ln -s /path/to/paperskills/skills/abstract .agents/skills/abstract
+ln -s /path/to/paperskills/skills/cite-verify .agents/skills/cite-verify
+ln -s /path/to/paperskills/skills/citation-network .agents/skills/citation-network
+ln -s /path/to/paperskills/skills/journal-match .agents/skills/journal-match
+ln -s /path/to/paperskills/skills/lit-search .agents/skills/lit-search
+ln -s /path/to/paperskills/skills/peer-review .agents/skills/peer-review
+ln -s /path/to/paperskills/skills/research-gap .agents/skills/research-gap
+ln -s /path/to/paperskills/skills/topic-framing .agents/skills/topic-framing
 ```
 
 ## Updating
@@ -132,7 +132,7 @@ If `paperskills` is a git checkout, pull the latest changes. The symlinks contin
 ### Skills not showing up
 
 1. Verify symlinks: `ls -la ~/.agents/skills/`
-2. Check SKILL.md exists: `ls /path/to/paperskills/*/SKILL.md`
+2. Check SKILL.md exists: `ls /path/to/paperskills/skills/*/SKILL.md`
 3. Restart Codex, since skills are discovered at startup
 
 ### Local project install not working

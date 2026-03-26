@@ -39,7 +39,7 @@ Use PaperSkills when the user asks to:
 - For paper tracking and periodic paper watchlists: use `/paper-tracker` skill
 - For research gap analysis: use `/research-gap` skill
 - For peer review: use `/peer-review` skill
-- For report design or HTML report generation: read `shared/report-template.md`
+- For report design or HTML report generation: read `shared/report-template.md` (in the paperskills root directory)
 
 ## Notes
 
