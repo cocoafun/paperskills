@@ -1,0 +1,73 @@
+---
+title: lit-search
+description: 跨 Semantic Scholar、OpenAlex、PubMed、arXiv 检索文献的 skill 使用说明。
+---
+
+# lit-search
+
+`lit-search` 用来做一次性的学术文献检索、去重、排序和摘要汇总。它更像“高质量文献搜索器”，而不是完整综述生成器。
+
+## 适用场景
+
+- 我想快速找某个主题的核心论文
+- 我需要跨多个公开学术源检索并合并结果
+- 我想先得到一份去重后的候选文献池
+- 我需要查看论文标题、作者、期刊、引用量和开放获取状态
+
+## 它会做什么
+
+按照当前 skill 设计，这个能力通常会：
+
+1. 先从你的主题生成多个检索变体
+2. 识别学科类型，决定是否额外搜索 PubMed 或 arXiv
+3. 并行查询 Semantic Scholar 和 OpenAlex，并在适合时扩展到其他源
+4. 按 DOI 或标题近似匹配去重
+5. 输出排序后的论文列表，并附带摘要片段
+
+## 你最好提供什么输入
+
+- 清晰的主题、问题或关键词
+- 如果有学科范围，也建议写明
+- 如果你只关心某个方法、数据集或应用场景，也一并说明
+- 如果需要中文结果，也可以直接指定
+
+## 常见用法
+
+下面示例统一使用显式 skill 前缀，便于 Agent 稳定触发对应能力。
+
+### 直接检索主题
+
+```text
+/lit-search 大模型支持文献综述写作
+```
+
+### 指定更清晰的问题
+
+```text
+/lit-search Search academic literature on LLM-assisted academic writing, especially literature review support and citation planning.
+```
+
+### 医学或交叉学科检索
+
+```text
+/lit-search 检索关于 large language models in clinical decision support 的近期文献，优先医学和 AI 交叉研究。
+```
+
+## 输出通常包含什么
+
+- 去重后的 Top N 论文列表
+- 作者、年份、venue、引用量、DOI
+- open access 状态
+- 摘要摘要或摘要前几句
+- 后续动作建议
+
+## 不要拿它做什么
+
+- 不要把它当成“最近一周论文追踪器”
+  这个场景更适合 `/paper-tracker`
+- 不要期待它自动产出完整综述
+  如果要做研究缺口或综述分析，继续用 `/research-gap`
+
+## 推荐搭配流程
+
+先用 `/lit-search` 得到候选文献池；如果你已经有几篇关键论文，可以继续用 `/citation-network`；如果要做研究缺口分析，再继续用 `/research-gap`。

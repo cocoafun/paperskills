@@ -1,0 +1,121 @@
+---
+title: 安装方式
+description: 在 Claude Code、Codex、Cursor 等环境中安装和使用 PaperSkills。
+---
+
+# 安装方式
+
+如果你希望在 Claude Code、Codex、Cursor 等 Agent 环境里真正调用这些 skill，就需要把 `paperskills` 仓库放到对应环境能够发现的位置。
+
+## Claude Code
+
+### 全局安装
+
+适合希望在所有项目里都能使用 PaperSkills 的场景。
+
+```bash
+git clone https://github.com/cocoafun/paperskills.git ~/.claude/skills/paperskills
+cd ~/.claude/skills/paperskills && ./setup
+```
+
+执行 `./setup` 后，会自动在同级目录创建各个子 skill 的软链接，方便 Claude Code 发现和调用。
+
+### 单项目安装
+
+适合只希望在某一个仓库中启用 PaperSkills。
+
+```bash
+mkdir -p .claude/skills
+ln -s /path/to/paperskills .claude/skills/paperskills
+cd .claude/skills/paperskills && ./setup
+```
+
+### 安装后如何验证
+
+在新的 Claude Code 会话里直接提出一个学术任务，例如：
+
+```text
+Use paperskills to help me review this manuscript.
+```
+
+如果安装正确，Claude Code 会识别 `paperskills` 并路由到合适的子 skill。
+
+## Codex
+
+### 全局安装
+
+```bash
+git clone https://github.com/cocoafun/paperskills.git ~/.agents/skills/paperskills
+cd ~/.agents/skills/paperskills && ./setup
+```
+
+### 单项目安装
+
+```bash
+mkdir -p .agents/skills
+ln -s /path/to/paperskills .agents/skills/paperskills
+cd .agents/skills/paperskills && ./setup
+```
+
+### 在 Codex 中的推荐调用方式
+
+直接给 Codex 一个研究任务，或者明确要求使用 `paperskills`：
+
+```text
+Use paperskills to help me search literature about LLM-assisted academic writing.
+```
+
+也可以先让 Codex 阅读安装说明原文：
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/paperskills/refs/heads/main/.codex/INSTALL.md
+```
+
+## Cursor
+
+Cursor 目前不会像 Claude Code 或 Codex 那样原生发现 `SKILL.md` 仓库，所以推荐方式是“仓库本地化 + Cursor Rule”。
+
+### 安装步骤
+
+先把仓库克隆到项目内：
+
+```bash
+git clone https://github.com/cocoafun/paperskills.git .cursor/paperskills
+mkdir -p .cursor/rules
+```
+
+然后创建 `.cursor/rules/paperskills.mdc`，让 Cursor 在学术任务场景下优先使用 PaperSkills。
+
+如果你不想手动写规则，可以直接让 Cursor 读取安装文档：
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/paperskills/refs/heads/main/.cursor/INSTALL.md
+```
+
+## 更新方式
+
+无论你使用哪种环境，更新方式都相似：
+
+```bash
+cd /path/to/paperskills
+git pull
+./setup
+```
+
+其中 `./setup` 很重要，因为它会重新创建或刷新各个子 skill 的软链接。
+
+## 常见问题
+
+### 安装后 skill 没有出现
+
+- 确认仓库路径放在 Agent 会扫描的位置
+- 确认已经执行过 `./setup`
+- 重新开启一个新的 Agent 会话，因为很多环境会在会话开始时扫描 skill
+
+### 共享资源找不到
+
+某些报告型 skill 依赖共享资源或同级软链接。最直接的修复方式是重新执行一次：
+
+```bash
+./setup
+```
