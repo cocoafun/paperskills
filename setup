@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# PaperSkills setup — register skills with Claude Code / Codex / Gemini CLI
+# PaperSkills setup — register skills with Claude Code / Codex. Cursor uses project rules.
 set -e
 
 PAPERSKILLS_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -61,6 +61,9 @@ else
   echo "To install for Codex:"
   echo "  git clone https://github.com/cocoafun/paperskills.git ~/.agents/skills/paperskills"
   echo "  cd ~/.agents/skills/paperskills && ./setup"
+  echo ""
+  echo "To install for Cursor:"
+  echo "  see .cursor/INSTALL.md for the project-rules setup"
   echo ""
   echo "To install for a single project:"
   echo "  mkdir -p .claude/skills  # or .agents/skills"

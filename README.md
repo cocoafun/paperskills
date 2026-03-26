@@ -1,17 +1,19 @@
 # PaperSkills
 
-Academic research skills for Claude Code and Codex. Each skill handles one research task using public APIs (Semantic Scholar, OpenAlex, CrossRef, Unpaywall, etc.).
+Academic research skills for Claude Code, Cursor, and Codex. Each skill handles one research task using public APIs (Semantic Scholar, OpenAlex, CrossRef, Unpaywall, etc.).
 
-## Install
+## Installation
 
-### Claude Code — global (all projects)
+### Claude Code
+
+#### Global install (all projects)
 
 ```bash
 git clone https://github.com/cocoafun/paperskills.git ~/.claude/skills/paperskills
 cd ~/.claude/skills/paperskills && ./setup
 ```
 
-### Claude Code — single project
+#### Single-project install
 
 ```bash
 mkdir -p .claude/skills
@@ -20,6 +22,18 @@ cd .claude/skills/paperskills && ./setup
 ```
 
 `./setup` will create sibling links such as `.claude/skills/peer-review` and `.claude/skills/shared`, so report-generating skills can read the shared report template. Re-run `./setup` after updating PaperSkills.
+
+### Cursor
+
+Cursor does not currently discover `SKILL.md` files natively. The practical install path is to add PaperSkills as a project-local prompt library and point Cursor Rules at it.
+
+Tell Cursor:
+
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/paperskills/refs/heads/main/.cursor/INSTALL.md
+```
+
+Or follow the manual steps in [`.cursor/INSTALL.md`](.cursor/INSTALL.md).
 
 ### Codex
 
