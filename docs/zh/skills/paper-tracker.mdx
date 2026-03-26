@@ -1,0 +1,83 @@
+---
+title: paper-tracker
+description: 追踪近期论文并生成一次性阅读清单或报告的 skill 使用说明。
+---
+
+它的重点是时间维度上的追踪，适合回答“最近有哪些值得看”的问题，而不是系统梳理过去几年整个方向的研究脉络。
+
+它适合“最近有哪些值得看”，不适合“过去几年整体研究怎么演化”。
+
+## 适用场景
+
+- 追踪某个期刊最近一个月的新论文
+- 跟踪某个作者、机构或 venue 最近的发表
+- 想看某个主题最近一周或最近 90 天的新进展
+- 想快速得到一个“值得阅读的 Top N 论文清单”
+
+## 你最好提供什么输入
+
+这个 skill 最依赖输入的结构化程度，建议至少说清楚：
+
+- 时间窗口
+  例如：`1 week`、`1 month`、`last 90 days`
+- 跟踪范围
+  例如：作者、期刊、venue、机构、关键词、主题
+- 输出数量
+  例如：10 篇、20 篇
+- 输出格式
+  例如：简短列表、markdown 报告、HTML 报告
+
+## 常见用法
+
+下面示例统一使用显式 skill 前缀，便于 Agent 稳定触发对应能力。
+
+### 按期刊追踪
+
+```text
+/paper-tracker track papers from Nature and Science in the last month
+```
+
+### 按作者追踪
+
+```text
+/paper-tracker 追踪 Geoffrey Hinton 和 Yann LeCun 过去 30 天的新论文
+```
+
+### 按主题追踪
+
+```text
+/paper-tracker track new LLM safety papers between 2026-01-01 and 2026-03-15
+```
+
+## 它通常会输出什么
+
+一个较完整的 `paper-tracker` 结果通常会包含：
+
+- 时间窗口说明
+- 查询范围与匹配逻辑
+- Top N 值得读论文
+- 每篇论文的一句话贡献摘要
+- 一个简短趋势总结
+- 如果用户要求，也可以输出完整论文列表或 HTML 报告
+
+## 它和 `lit-search` / `research-gap` 的区别
+
+`paper-tracker` 关心的是最近、发现、筛选、清单。
+
+`lit-search` 更关心跨源检索、去重和候选论文池；`research-gap` 更关心主题综合、脉络梳理和研究缺口。
+
+如果你只是想知道“最近有哪些新论文”，优先用 `paper-tracker`，不要一上来就做大范围文献分析。
+
+## 建议配合使用的资源
+
+- skill 主说明
+- brief 结构说明
+- 来源策略
+- 示例 brief
+- HTML 模板
+
+## 使用建议
+
+- 时间窗口越明确，结果越稳定
+- 范围越具体，排序越有意义
+- 如果目标是后续做系统检索或缺口分析，可以先用这个 skill 生成候选阅读池，再转入 `/lit-search` 或 `/research-gap`

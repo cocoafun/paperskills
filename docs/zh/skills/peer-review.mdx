@@ -1,0 +1,91 @@
+---
+title: peer-review
+description: 对单篇论文生成 reviewer 风格反馈的 skill 使用说明。
+---
+
+它更像一次外部视角的压力测试，适合在投稿前或写作中途检查论文最容易被审稿人挑出来的问题。
+
+它的核心价值不在于“润色语言”，而在于帮助你识别论文当前最主要的问题、修改优先级和潜在审稿风险。
+
+## 适用场景
+
+- 我想在投稿前先做一次模拟审稿
+- 我想让 Agent 以 reviewer 口吻指出 major issues
+- 我只有摘要或部分章节，也想先拿到一版早期反馈
+- 我想为 rebuttal 或修稿准备问题清单
+
+## 输入完整度会影响结果
+
+### 最理想
+
+提供完整论文全文。
+
+### 次优
+
+提供摘要加主要章节。
+
+### 还能继续做
+
+只提供摘要或简要 brief，但结果应该被明确标记为 `partial` 或低置信度。
+
+## 这个 skill 通常会关注什么
+
+按照当前设计，评审一般会覆盖：
+
+- 论文想解决什么问题
+- 方法或论证是否站得住
+- 贡献是否清晰
+- 证据是否支持结论
+- 主要缺陷和次要缺陷
+- 最终建议
+  例如：`weak accept`、`weak reject`、`major revision`
+
+## 常见用法
+
+下面示例统一使用显式 skill 前缀，便于 Agent 稳定触发对应能力。
+
+### 直接审稿
+
+```text
+/peer-review Perform a peer review of this paper draft.
+```
+
+### 指定风格和语言
+
+```text
+/peer-review 请用中文给这篇论文做一份 reviewer 风格的审稿意见，重点指出 major issues 和可执行修改建议。
+```
+
+### 只给摘要做早期评估
+
+```text
+/peer-review Review this abstract as if you were a conference reviewer, and clearly mark confidence as partial.
+```
+
+## 输出通常包含什么
+
+- 论文主张的简要总结
+- strengths
+- major issues
+- minor issues
+- 修改建议
+- 模拟 recommendation
+- confidence note
+
+## 使用时要注意
+
+- 这是模拟同行评审，不是正式投稿系统里的真实审稿
+- 如果没有全文，必须降低置信度
+- 它适合发现问题和制定修改计划，不适合替代专业领域专家的最终判断
+
+## 建议配合使用的资源
+
+- skill 主说明
+- brief 结构说明
+- 评审逻辑
+- 常见红旗清单
+- 输出模板
+
+## 推荐搭配流程
+
+如果论文还没写完，可以先用 `/lit-search` 或 `/research-gap` 补足文献与问题定位；如果是投稿前最后检查，可以在 `/peer-review` 之后继续用 `/cite-verify` 做引文核验。

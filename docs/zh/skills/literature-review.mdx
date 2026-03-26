@@ -1,0 +1,32 @@
+---
+title: literature-review
+description: 兼容说明：当前仓库没有独立的 literature-review 子 skill，请改用 lit-search 与 research-gap。
+---
+
+当前仓库把”文献综述”拆成了几个更具体的 skill，如果你想做相关任务，需要组合使用。
+
+## 当前应如何替代
+
+- 如果你要先找文献、合并结果、形成候选论文池，使用 `/lit-search`
+- 如果你要识别研究脉络、主题空白和潜在问题，使用 `/research-gap`
+- 如果你想追踪最近的新论文，使用 `/paper-tracker`
+
+## 推荐写法
+
+```text
+/lit-search 大模型支持文献综述写作
+```
+
+```text
+/research-gap Analyze research gaps in LLM-assisted academic writing.
+```
+
+## 为什么这样调整
+
+当前仓库把“文献综述相关工作”拆成了几个更明确的能力：
+
+- `/lit-search` 负责检索
+- `/research-gap` 负责空白识别
+- `/citation-network` 负责引文网络分析
+
+这样做的好处是每个 skill 的输入、输出和边界都更清晰，也更利于稳定触发。

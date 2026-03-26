@@ -1,4 +1,8 @@
 {
   "title": "PaperSkills 文档",
-  "pages": ["index", "getting-started", "architecture-v2"]
+  "pages": [
+    "index",
+    "installation",
+    "skills"
+  ]
 }
