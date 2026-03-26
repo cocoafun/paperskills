@@ -1,0 +1,136 @@
+---
+title: 快速开始
+description: 安装、技能选择与使用路径总览。
+---
+
+如果你第一次接触，建议不要一上来就直接调用某个 skill。更高效的方式是先判断自己处于哪个任务阶段，再进入对应 skill 页面。
+
+建议按下面顺序上手：
+
+1. 先阅读 `安装方式`
+2. 再根据任务类型选择合适的 skill
+3. 需要时再深入到具体 skill 页面
+
+## 你可以获得什么
+
+- 面向 Claude Code、Codex、Cursor 等环境的安装与上手说明。
+- 当前核心 skill 的使用文档。
+- 按任务类型组织的能力说明和选择建议。
+
+## 当前文档结构
+
+1. `快速开始`
+   帮你快速理解 PaperSkills 的使用方式。
+2. `安装方式`
+   说明如何在 Claude Code、Codex、Cursor 等环境里安装并调用 PaperSkills。
+3. 各具体 skill 页面
+   分别介绍各个子 skill 的输入、输出、典型用法与注意事项。
+
+## 当前技能
+
+- `topic-framing`
+- `lit-search`
+- `abstract`
+- `cite-verify`
+- `citation-network`
+- `research-gap`
+- `paper-tracker`
+- `peer-review`
+- `journal-match`
+
+这些 skill 都来自当前仓库中的实际能力定义。
+
+## 按任务快速理解
+
+- 想收敛研究题目：用 `/topic-framing`
+- 想做一次性文献检索：用 `/lit-search`
+- 想找最近的新论文：用 `/paper-tracker`
+- 想识别研究缺口：用 `/research-gap`
+- 想对论文做模拟审稿：用 `/peer-review`
+- 想核查引用：用 `/cite-verify`
+
+## 技能选择指南
+
+为了提高 skill 触发的稳定性，实际使用时建议在提示词前显式加上对应前缀，例如 `/lit-search`、`/peer-review`、`/paper-tracker`。
+
+### 按任务阶段选择
+
+#### 选题与研究定位
+
+- `topic-framing`
+  适合把模糊研究想法收敛成可研究的问题和论文标题
+- `research-gap`
+  适合在一个领域里系统识别研究缺口、提出潜在研究问题
+
+#### 检索与文献分析
+
+- `lit-search`
+  适合跨多个公开学术源做一次性文献检索、去重和排序
+- `paper-tracker`
+  适合追踪最近一段时间的新论文、作者、期刊或 venue 动态
+- `citation-network`
+  适合从种子论文出发构建引文网络、找核心论文和桥梁论文
+
+#### 写作与投稿准备
+
+- `abstract`
+  适合根据论文正文生成多种版本摘要
+- `peer-review`
+  适合对草稿做模拟审稿和问题诊断
+- `cite-verify`
+  适合提交前逐条核验参考文献与引文准确性
+- `journal-match`
+  适合根据稿件主题、方法和相近论文推荐目标期刊
+
+## 一个常见工作流
+
+如果你是第一次使用，可以先按下面顺序理解：
+
+1. 用 `paper-tracker` 发现近期相关论文
+2. 用 `lit-search` 或 `citation-network` 补齐文献脉络
+3. 用 `research-gap` 判断是否存在可做的新问题
+4. 在写出草稿后用 `peer-review` 做一轮模拟评审
+5. 投稿前再用 `cite-verify` 做引用核验
+
+## 快速判断
+
+### 我还没有题目
+
+用 `/topic-framing`
+
+### 我想先找论文
+
+用 `/lit-search`
+
+### 我只关心最近的新论文
+
+用 `/paper-tracker`
+
+### 我想知道这个领域还有哪些没做
+
+用 `/research-gap`
+
+### 我想看关键论文之间怎么互相引用
+
+用 `/citation-network`
+
+### 我已经有论文草稿
+
+先用 `/peer-review`，再用 `/cite-verify`
+
+### 我只需要摘要
+
+用 `/abstract`
+
+### 我想投稿但不知道投哪里
+
+用 `/journal-match`
+
+## 当前文档范围
+
+中文版当前覆盖两类内容：
+
+- 安装与上手
+- 仓库内全部核心 skill 的使用说明
+
+后续如果仓库增加新 skill，再继续补对应文档。
