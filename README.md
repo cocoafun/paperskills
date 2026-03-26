@@ -49,6 +49,7 @@ cd ~/.agents/skills/paperskills && ./setup
 | `/citation-network` | Build and visualize citation networks with interactive HTML report | 35–55K |
 | `/research-gap` | Analyze research gaps (temporal, methodological, thematic, application) | 55–85K |
 | `/peer-review` | Academic peer review with 8-criteria scoring and radar chart | 35–60K |
+| `/paper-tracker` | Track newly published papers for journals, authors, venues, keywords, or institutions within a time window | 15–30K |
 | `/journal-match` | Recommend target journals for manuscript submission | 25–35K |
 
 ## Usage
@@ -59,6 +60,7 @@ Invoke skills directly:
 /cite-verify my-manuscript.md
 /peer-review draft.md
 /lit-search 大模型支持文献综述写作
+/paper-tracker track new Nature papers in the last month
 ```
 
 Or use the router for guided dispatch:
@@ -69,7 +71,7 @@ Or use the router for guided dispatch:
 
 ## Language Support
 
-Report-generating skills (cite-verify, citation-network, journal-match, research-gap, peer-review) support both English and Chinese output. Language is auto-detected from manuscript content, or can be explicitly requested (e.g., "用中文生成报告").
+Report-generating skills (cite-verify, citation-network, journal-match, research-gap, peer-review, paper-tracker) support both English and Chinese output. Language is auto-detected from manuscript content, or can be explicitly requested (e.g., "用中文生成报告").
 
 ## Workflow
 
@@ -80,6 +82,7 @@ Skills can be composed for multi-step workflows:
 3. `/research-gap` → identify gaps in the field
 4. `/peer-review` → critique a draft manuscript
 5. `/cite-verify` → verify all references before submission
+6. `/paper-tracker` → monitor new papers for journals, authors, venues, or keywords
 
 ## License
 

@@ -10,7 +10,7 @@ SKILLS_BASENAME="$(basename "$INSTALL_SKILLS_DIR")"
 # If installed inside .claude/skills/ or .agents/skills/, auto-link sub-skills
 # Otherwise, print manual instructions
 
-SKILL_DIRS=(abstract cite-verify citation-network journal-match lit-search peer-review research-gap topic-framing)
+SKILL_DIRS=(abstract cite-verify citation-network journal-match lit-search paper-tracker peer-review research-gap topic-framing)
 LINK_DIRS=(shared "${SKILL_DIRS[@]}")
 
 link_skill_dirs() {

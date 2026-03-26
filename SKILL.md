@@ -1,6 +1,6 @@
 ---
 name: paperskills
-description: Academic paper and literature workflow. Use when the user needs help with topic framing, research question sharpening, paper title convergence, paper writing, literature search, research gaps, citation checking, peer review, journal matching, abstracts, or academic report generation. Triggers: paper, manuscript, topic framing, research question, paper title, literature review, abstract, peer review, citation, journal, research gap.
+description: Academic paper and literature workflow. Use when the user needs help with topic framing, research question sharpening, paper title convergence, paper writing, literature search, research gaps, citation checking, peer review, journal matching, paper tracking, abstracts, or academic report generation. Triggers: paper, manuscript, topic framing, research question, paper title, literature review, abstract, peer review, citation, journal, research gap, paper tracker, paper tracking.
 ---
 
 # PaperSkills
@@ -18,6 +18,7 @@ Use PaperSkills when the user asks to:
 - Draft or revise abstracts
 - Perform peer review
 - Match a manuscript to journals
+- Track newly published papers for specific journals, authors, venues, institutions, or keywords
 - Generate academic-style reports
 
 ## Workflow
@@ -35,6 +36,7 @@ Use PaperSkills when the user asks to:
 - For citation verification: use `/cite-verify` skill
 - For citation network analysis: use `/citation-network` skill
 - For journal matching: use `/journal-match` skill
+- For paper tracking and periodic paper watchlists: use `/paper-tracker` skill
 - For research gap analysis: use `/research-gap` skill
 - For peer review: use `/peer-review` skill
 - For report design or HTML report generation: read `shared/report-template.md`
