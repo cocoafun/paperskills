@@ -183,7 +183,10 @@ Content:
   - orange = FABRICATED flag (author exists, but this specific work does not)
   - blue = attribution issue (STEP 4 only)
 
-Open with: `open {file_path}`
+After writing the file:
+- Return the exact absolute file path to the user
+- Ask whether they want it opened
+- Only run `open {file_path}` after the user explicitly confirms
 
 ## API REFERENCE
 

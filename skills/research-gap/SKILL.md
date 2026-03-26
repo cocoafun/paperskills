@@ -122,7 +122,10 @@ SECTIONS:
 4. Suggested Research Questions (numbered)
 5. Methodology Notes & Limitations
 
-Open with: open {file_path}
+After writing the file:
+- Return the exact absolute file path to the user
+- Ask whether they want it opened
+- Only run `open {file_path}` after the user explicitly confirms
 ```
 
 ## STEP 4: Next Actions

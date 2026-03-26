@@ -18,7 +18,7 @@ Main Session — coordination only, does NOT read the manuscript
   ├── 1a. Subagent → read manuscript + evaluate 8 criteria (parallel)
   ├── 1b. Subagent → search for missing references via public APIs (parallel)
   │
-  └── 2. Report subagent → combine 1a + 1b → HTML report + open
+  └── 2. Report subagent → combine 1a + 1b → HTML report + offer to open
 ```
 
 1a and 1b run IN PARALLEL. Main session stays clean.
@@ -119,7 +119,10 @@ DESIGN:
 - Missing references table
 - Print-friendly
 
-Open with: open {file_path}
+After writing the file:
+- Return the exact absolute file path to the user
+- Ask whether they want it opened
+- Only run `open {file_path}` after the user explicitly confirms
 ```
 
 ## STEP 3: Next Actions

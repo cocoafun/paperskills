@@ -263,7 +263,10 @@ File: `artifacts/{date}-topic-framing-{topic-slug}.md`
 5. {title}
 ```
 
-Open the file after writing: `open {file_path}`
+After writing the file:
+- Return the exact absolute file path to the user
+- Ask whether they want it opened
+- Only run `open {file_path}` after the user explicitly confirms
 
 ---
 

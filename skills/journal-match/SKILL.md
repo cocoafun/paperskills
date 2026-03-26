@@ -81,6 +81,10 @@ WebFetch: https://api.crossref.org/journals/{issn}
 
 ## STEP 4: Present Recommendations
 
+Write a single-file HTML report:
+
+`reports/{date}-journal-match-{slug}.html`
+
 ```
 ## Recommended Journals
 
@@ -106,6 +110,11 @@ For each journal:
 - Impact metrics (h-index, citation rate)
 - Open access status
 - Homepage URL
+
+After writing the file:
+- Return the exact absolute file path to the user
+- Ask whether they want it opened
+- Only run `open {file_path}` after the user explicitly confirms
 
 ## STEP 5: Next Actions
 

@@ -155,6 +155,11 @@ For HTML reports include:
 Suggested filename:
 `reports/{date}-paper-tracker-{slug}.html`
 
+After writing the HTML file:
+- Return the exact absolute file path to the user
+- Ask whether they want it opened
+- Only run `open {file_path}` after the user explicitly confirms
+
 If the user explicitly asks for Markdown, use this structure:
 
 ```markdown
