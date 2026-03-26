@@ -1,30 +1,86 @@
+# PaperSkills
 
-# 🎓 PaperSkills
+Academic research skills for Claude Code and Codex. Each skill handles one research task using public APIs (Semantic Scholar, OpenAlex, CrossRef, Unpaywall, etc.).
 
-> **专为 AI Agent 打造的学术技能套件**
-> 一个开源的学术工作流框架，用于持续论文追踪、文献综述、研究设计与证据驱动写作。
+## Install
 
-PaperSkills 提供了一套开箱即用的 Agent Skills，旨在帮助 AI 代理更好地完成科研、科学、工程、分析、金融以及学术写作任务。
+### Claude Code — global (all projects)
 
-### ✨ 核心优势
+```bash
+git clone https://github.com/cocoafun/paperskills.git ~/.claude/skills/paperskills
+cd ~/.claude/skills/paperskills && ./setup
+```
 
-* 🚀 **开箱即用**：零学习门槛，小白也能快速上手，专注于学术本身而非工具配置。
-* 🌐 **通用生态**：天然兼容当前主流的 AI 辅助工具和生态，包括 **Claude Code**、**Codex**、**VS Code** 以及 **OpenClaw**。
-* 🪶 **极致轻量**：采用 Web 内置设计，供 Agent 直接调用。无需繁琐的本地安装步骤，开户即用，直接生成所需内容。
+### Claude Code — single project
 
-### 🧰 当前支持的 Skills
+```bash
+mkdir -p .claude/skills
+ln -s /path/to/paperskills .claude/skills/paperskills
+cd .claude/skills/paperskills && ./setup
+```
 
-目前，PaperSkills 已支持以下核心学术技能：
+`./setup` will create sibling links such as `.claude/skills/peer-review` and `.claude/skills/shared`, so report-generating skills can read the shared report template. Re-run `./setup` after updating PaperSkills.
 
-* `skills/literature-review`：文献综述生成与结构化梳理。
-* `skills/paper-tracker`：持续追踪前沿论文与学术动态。
-* `skills/peer-review`：提供基于证据的同行评审意见与修改建议。
+### Codex
 
-### 🚀 快速开始
+Tell Codex:
 
-*（您可以在这里补充 1-2 句具体的使用方法，例如：“只需让您的 Agent 读取对应 Skill 的 Web 链接即可开始工作...”）*
+```text
+Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/paperskills/refs/heads/main/.codex/INSTALL.md
+```
 
-### 🤝 参与贡献
+Or manually:
 
-欢迎任何形式的贡献！无论是提交新的 Skill 提案、修复问题，还是完善文档，我们都期待您的加入，共同打造更强大的开源学术工具。
+```bash
+git clone https://github.com/cocoafun/paperskills.git ~/.agents/skills/paperskills
+cd ~/.agents/skills/paperskills && ./setup
+```
 
+`./setup` also links the shared assets directory required by report-generating skills.
+
+## Available Skills
+
+| Skill | Description | Token Budget |
+|-------|-------------|--------------|
+| `/topic-framing` | Converge from fuzzy idea to concrete paper title | 15–25K |
+| `/lit-search` | Search literature across Semantic Scholar, OpenAlex, PubMed, arXiv | 15–25K |
+| `/abstract` | Generate abstracts in multiple formats (IMRaD, thematic, extended, short) | 10–20K |
+| `/cite-verify` | Verify all citations against CrossRef / Semantic Scholar / OpenAlex | 25–65K |
+| `/citation-network` | Build and visualize citation networks with interactive HTML report | 35–55K |
+| `/research-gap` | Analyze research gaps (temporal, methodological, thematic, application) | 55–85K |
+| `/peer-review` | Academic peer review with 8-criteria scoring and radar chart | 35–60K |
+| `/journal-match` | Recommend target journals for manuscript submission | 25–35K |
+
+## Usage
+
+Invoke skills directly:
+
+```text
+/cite-verify my-manuscript.md
+/peer-review draft.md
+/lit-search 大模型支持文献综述写作
+```
+
+Or use the router for guided dispatch:
+
+```text
+/paperskills 帮我检索关于大模型支持文献综述写作的文献
+```
+
+## Language Support
+
+Report-generating skills (cite-verify, citation-network, journal-match, research-gap, peer-review) support both English and Chinese output. Language is auto-detected from manuscript content, or can be explicitly requested (e.g., "用中文生成报告").
+
+## Workflow
+
+Skills can be composed for multi-step workflows:
+
+1. `/topic-framing` → converge on a research question
+2. `/lit-search` → find relevant papers
+3. `/research-gap` → identify gaps in the field
+4. `/peer-review` → critique a draft manuscript
+5. `/cite-verify` → verify all references before submission
+
+## License
+
+MIT
