@@ -365,7 +365,7 @@ After the title is confirmed, produce a one-shot framing card.
 Default output is a single-file HTML report.
 
 Suggested filename:
-`artifacts/{date}-topic-framing-{topic-slug}.html`
+`reports/{date}-topic-framing-{topic-slug}.html`
 
 For HTML output include:
 - header with topic, confirmed title, and date
@@ -454,7 +454,7 @@ After writing the HTML file:
 
 If the user explicitly asks for Markdown, write:
 
-File: `artifacts/{date}-topic-framing-{topic-slug}.md`
+File: `reports/{date}-topic-framing-{topic-slug}.md`
 
 ```markdown
 # Topic Framing Card
