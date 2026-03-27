@@ -2,6 +2,8 @@
 
 Academic research skills for Claude Code, Cursor, and Codex. Each skill handles one research task using public APIs (Semantic Scholar, OpenAlex, CrossRef, Unpaywall, etc.).
 
+[中文说明](./README.zh-CN.md)
+
 ## Installation
 
 ### Claude Code
