@@ -12,7 +12,7 @@ Input may specify:
 
 Examples:
 - `frame a paper topic about AI search ads and advertiser strategy`
-- `帮我把“平台算法治理”收敛成一个可写论文题目`
+- `帮我把"平台算法治理"收敛成一个可写论文题目`
 - `turn this fuzzy idea into a researchable title and output html`
 
 Do NOT use subagents. Do NOT jump into full literature review, detailed method design, or manuscript drafting. This skill ends at a confirmed academic framing and title.
@@ -22,13 +22,50 @@ Do NOT use subagents. Do NOT jump into full literature review, detailed method d
 ```
 Main Session — academic framing dialogue
   │
+  ├── PHASE 0: Academic Profile — establish academic level, field, and constraints
   ├── PHASE 1: Seed Capture — restate the initial idea as a research interest
-  ├── PHASE 2: Academic Sharpening — six framing questions, one at a time
+  ├── PHASE 2: Academic Sharpening — framing questions, one at a time
   ├── PHASE 3: Literature Positioning — quick scan to test whether the framing is viable
   ├── PHASE 4: Framing Synthesis — question, gap, contribution, boundaries
-  ├── PHASE 5: Title Workshop — generate and refine academic title options
+  ├── PHASE 5: Title Workshop — generate and refine academic title options (calibrated to level)
   └── PHASE 6: Output Framing Card
 ```
+
+---
+
+## PHASE 0: Academic Profile
+
+Before engaging with the idea itself, establish the user's academic context. This information shapes every subsequent phase — especially how sharply to push on theory, what title conventions to follow, and how ambitious the contribution claim should be.
+
+Ask the following via AskUserQuestion in a single turn:
+
+> Before we dig into your idea, a few quick questions so I can calibrate:
+
+**Q0a: Academic Level**
+> What stage are you at?
+> A) Undergraduate (bachelor's thesis / capstone)
+> B) Master's (thesis or coursework paper)
+> C) Doctoral (dissertation chapter or qualifying paper)
+> D) Post-doc / faculty (journal submission)
+> E) Independent researcher or professional
+
+**Q0b: Target Field or Discipline**
+> What is your primary field or discipline? (e.g., computer science, sociology, applied linguistics, management, public policy…)
+
+**Q0c: Target Venue (optional)**
+> Do you have a target journal, conference, or program requirement in mind? If not, skip this.
+
+Store these as session variables. Apply them as follows:
+
+| Level | Framing expectations | Title register | Contribution ambition |
+|-------|---------------------|----------------|----------------------|
+| Undergraduate | Clear question + basic lit awareness; tolerate exploratory framing | Descriptive, straightforward | Modest: describe, compare, apply |
+| Master's | Defined gap + defensible scope; push for precision | Professional but accessible | Moderate: extend, refine, test |
+| Doctoral | Theoretical engagement + clear scholarly contribution | Field-appropriate conventions | Ambitious: challenge, reconcile, build theory |
+| Faculty/Post-doc | Publication-ready positioning; sharp differentiation | Journal-calibrated | Full range |
+| Independent | Adapt to stated goals; clarify audience early | Flexible | Match to stated intent |
+
+If the user skips or rushes Phase 0, infer what you can from their language and topic, note your assumptions, and proceed. Revisit if needed during Phase 5.
 
 ---
 
@@ -62,29 +99,40 @@ Then ask:
 Use AskUserQuestion.
 
 Prioritize Phase 2 accordingly:
-- A → ask all six questions
+- A → ask all framing questions
 - B → focus on Q2-Q6
 - C → collect the angles first, then run Q2-Q6 on the strongest
 - D → verify Q3-Q6 before moving to titles
 
 ---
 
-## PHASE 2: Academic Sharpening — Six Framing Questions
+## PHASE 2: Academic Sharpening — Framing Questions
 
 Ask these ONE AT A TIME via AskUserQuestion. Wait for each answer before proceeding.
 
-The goal is not to help the user "start a project." The goal is to identify a researchable academic claim.
+### Q1: Research Question
 
-### Q1: Research Puzzle
+This is the core of the entire skill. The goal is to help the user arrive at a well-formed research question — regardless of type.
 
-**Ask:** "What is the specific phenomenon, inconsistency, tension, or underexplained pattern that makes this worth studying?"
+**Ask:** "What is the central question this paper should answer?"
 
-**Push until you hear:** a genuine scholarly puzzle, such as:
-- something the literature assumes but may not fully explain
-- two findings, concepts, or trends that do not fit neatly together
-- a recurring empirical pattern without a satisfying explanation
+If the user cannot articulate a clear question yet, help them identify one by probing:
 
-Do NOT accept answers that only name a field or topic area.
+- "Is there a specific phenomenon, pattern, or outcome you want to explain?" → empirical / explanatory question
+- "Is there a concept, theory, or framework you want to clarify, critique, or extend?" → theoretical / conceptual question
+- "Is there a practical problem you want to evaluate a solution or intervention for?" → applied / evaluative question
+- "Are there competing explanations or approaches you want to compare?" → comparative question
+- "Is there a design, system, or artifact you want to build and validate?" → design-science / engineering question
+- "Is there a normative or policy debate you want to contribute to?" → normative / policy question
+
+All of the above are legitimate academic questions. Do not steer the user toward any single type. Meet them where they are and help sharpen from there.
+
+**Push until you hear:** a question that is specific enough to be answerable within a single paper, not merely a topic label or area of interest.
+
+**Weak (reject):** "I want to study platform governance." / "My topic is AI in education."
+**Acceptable:** "How do content moderation policies affect creator behavior on short-video platforms?" / "Does automated feedback improve L2 writing accuracy more than peer feedback?"
+
+If the user's question is practice-driven or applied, help translate it into an academically investigable form without dismissing its practical motivation.
 
 ### Q2: Literature Location
 
@@ -122,13 +170,19 @@ Present options:
 > D) Extend a literature to a new case, context, or body of evidence
 > E) Compare competing explanations
 > F) Synthesize scattered work into a clearer framework
-> G) Not sure yet
+> G) Build and validate a new method, tool, or system
+> H) Not sure yet
 
-If G, proceed and infer provisionally after Phase 3.
+If H, proceed and infer provisionally after Phase 3.
+
+Calibrate expectations to academic level from Phase 0:
+- Undergraduate: A, D, E, F are most common
+- Master's: A-F are all reasonable
+- Doctoral+: all options, but push for sharper theoretical engagement
 
 ### Q5: Unit of Analysis and Evidence
 
-**Ask:** "What is the actual object of study here? What will the paper analyze: texts, cases, organizations, policies, experiments, interviews, archives, datasets, or something else?"
+**Ask:** "What is the actual object of study here? What will the paper analyze: texts, cases, organizations, policies, experiments, interviews, archives, datasets, models, systems, or something else?"
 
 **Push until you hear:** a concrete unit of analysis and plausible evidence base.
 
@@ -149,7 +203,7 @@ Strong academic framing depends on disciplined limits.
 
 ---
 
-**Smart-skip:** If "$ARGUMENTS" or earlier answers already cover a question clearly, skip it.
+**Smart-skip:** If "$ARGUMENTS" or earlier answers already cover a question clearly, skip it. Also skip questions that are not applicable to the question type (e.g., unit of analysis may be less relevant for a purely theoretical paper — adapt accordingly).
 
 **Follow-up rule:** If the user answers vaguely, ask a tighter follow-up instead of moving on. Example:
 - "Can you name the exact debate?"
@@ -157,7 +211,7 @@ Strong academic framing depends on disciplined limits.
 - "What is the paper actually explaining?"
 
 **Escape hatch:** If the user becomes impatient:
-- Say: "We can compress this. I only need the puzzle, the literature, and the contribution to make the title academically sharp."
+- Say: "We can compress this. I only need the question, the literature, and the contribution to produce a sharp framing."
 - Ask the most critical remaining questions, then proceed.
 
 ---
@@ -215,14 +269,16 @@ Synthesize the conversation into a compact academic framing and present it for c
 ```
 ACADEMIC FRAMING:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Working Question:    {one clear research question}
-Research Puzzle:     {what is puzzling or unresolved}
-Primary Literature:  {the conversation this paper enters}
-Gap / Tension:       {what is missing, unclear, or contested}
-Contribution Claim:  {what the paper contributes to scholarship}
-Unit of Analysis:    {what is being analyzed}
-Scope:               {what is IN}
-Non-scope:           {what is OUT}
+Level:              {undergraduate / master's / doctoral / faculty / independent}
+Target Field:       {discipline}
+Working Question:   {one clear research question}
+Research Puzzle:    {what is puzzling or unresolved}
+Primary Literature: {the conversation this paper enters}
+Gap / Tension:      {what is missing, unclear, or contested}
+Contribution Claim: {what the paper contributes to scholarship}
+Unit of Analysis:   {what is being analyzed}
+Scope:              {what is IN}
+Non-scope:          {what is OUT}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -245,7 +301,18 @@ Generate 5 academic title candidates. Each title should:
 - reflect the confirmed question and contribution
 - signal the paper's intellectual center, not just the topic area
 - avoid startup, consulting, or product language
-- be concise and credible as a journal or conference paper title
+- match the conventions of the user's field and academic level
+
+**Level-calibrated title guidance:**
+
+| Level | Title conventions |
+|-------|------------------|
+| Undergraduate | Clear, descriptive; may be slightly broader; avoid over-claiming |
+| Master's | Precise and professional; show command of topic and scope |
+| Doctoral | Theoretically engaged; signal scholarly contribution; field-standard format |
+| Faculty/Post-doc | Journal-calibrated; match target venue norms if known |
+
+If the user specified a target venue in Phase 0, check the venue's typical title style (e.g., length, use of colons/subtitles, question titles) and match accordingly.
 
 Cover these title styles:
 
@@ -280,6 +347,7 @@ If F, ask what emphasis is missing:
 - clearer comparative angle
 - less ambitious claim
 - more conventional journal style
+- better fit for a specific venue or program
 
 Generate 3 revised options and repeat until the user picks one.
 
@@ -301,6 +369,7 @@ Suggested filename:
 
 For HTML output include:
 - header with topic, confirmed title, and date
+- academic profile block (level, field, target venue if any)
 - executive summary
 - framing grid or card layout
 - literature snapshot block
@@ -309,6 +378,7 @@ For HTML output include:
 
 Required framing fields:
 - confirmed title
+- academic level and field
 - working question
 - research puzzle
 - primary literature
@@ -335,6 +405,11 @@ Suggested HTML structure:
       <p>{confirmed title}</p>
       <p>{date}</p>
     </header>
+
+    <section>
+      <h2>Academic Profile</h2>
+      <p>Level: {level} | Field: {field} | Target venue: {venue or "not specified"}</p>
+    </section>
 
     <section>
       <h2>Executive Summary</h2>
@@ -386,6 +461,9 @@ File: `artifacts/{date}-topic-framing-{topic-slug}.md`
 
 **Title:** {confirmed title}
 **Date:** {YYYY-MM-DD}
+**Level:** {academic level}
+**Field:** {discipline}
+**Target Venue:** {venue or "not specified"}
 
 ## Executive Summary
 {2-4 sentence synthesis of the framing}
@@ -435,10 +513,11 @@ Return the framing card content in chat too, even if file write is not available
 
 - Default to academic language, not startup or product language.
 - Treat "why this matters to scholarship" as more important than "who would use it tomorrow."
-- Prefer "research puzzle", "literature", "theoretical framing", "contribution", and "scope" over "customer", "stakeholder", "solution", or "go-to-market" phrasing.
+- Prefer "research question", "literature", "theoretical framing", "contribution", and "scope" over "customer", "stakeholder", "solution", or "go-to-market" phrasing.
 - Do not pressure the user into false novelty. Help them articulate a defensible, modest, and credible contribution.
 - If the user's idea is practice-driven, translate it into an academic puzzle instead of rejecting it.
 - If the user is early-stage, tolerate ambiguity but keep forcing movement toward a specific research question.
+- Calibrate your tone to the user's level: be more guiding and explanatory for undergraduates, more collegial and challenging for doctoral and faculty users.
 
 ## ERROR HANDLING
 
@@ -446,6 +525,7 @@ Return the framing card content in chat too, even if file write is not available
 - If the topic is too narrow or trivial, widen from case description to a more general analytical question.
 - If the literature scan suggests the user is using the wrong vocabulary, propose better field terms.
 - If the gap appears already filled, say so directly and help reposition the question.
+- If the user's academic level and their topic ambition are mismatched, gently flag this and suggest calibration (e.g., an undergraduate attempting a full theoretical overhaul may need to narrow to a focused application or comparison).
 
 ## LANGUAGE
 
