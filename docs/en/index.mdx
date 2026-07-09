@@ -169,27 +169,40 @@ Install the full PaperSkills router when you want all core workflows available.
 ### Codex
 
 ```bash
-git clone https://github.com/cocoafun/paperskills.git ~/.agents/skills/paperskills
-cd ~/.agents/skills/paperskills && ./setup
+curl -sSL https://paperskills.com/scripts/paperskills-install.sh | bash -s -- \
+  --tool codex \
+  --skills paperskills-core \
+  --registry https://paperskills.com/api/registry
 ```
 
 ### Claude Code
 
 ```bash
-git clone https://github.com/cocoafun/paperskills.git ~/.claude/skills/paperskills
-cd ~/.claude/skills/paperskills && ./setup
+curl -sSL https://paperskills.com/scripts/paperskills-install.sh | bash -s -- \
+  --tool claude \
+  --skills paperskills-core \
+  --registry https://paperskills.com/api/registry
 ```
 
 ### Cursor
 
-Cursor uses project rules rather than native `SKILL.md` discovery.
+Cursor uses rules/prompt installation in the current MVP.
 
 ```bash
-git clone https://github.com/cocoafun/paperskills.git .cursor/paperskills
-mkdir -p .cursor/rules
+curl -sSL https://paperskills.com/scripts/paperskills-install.sh | bash -s -- \
+  --tool cursor \
+  --skills paperskills-core \
+  --registry https://paperskills.com/api/registry
 ```
 
-Then follow `.cursor/INSTALL.md` to add the routing rule.
+### OpenCode
+
+```bash
+curl -sSL https://paperskills.com/scripts/paperskills-install.sh | bash -s -- \
+  --tool opencode \
+  --skills paperskills-core \
+  --registry https://paperskills.com/api/registry
+```
 
 ## 3. Verify Installation
 

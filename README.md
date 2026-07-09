@@ -76,53 +76,43 @@ Or use the router entry point:
 
 ### Claude Code
 
-Global install:
-
 ```bash
-git clone https://github.com/cocoafun/paperskills.git ~/.claude/skills/paperskills
-cd ~/.claude/skills/paperskills && ./setup
+curl -sSL https://paperskills.com/scripts/paperskills-install.sh | bash -s -- \
+  --tool claude \
+  --skills paperskills-core \
+  --registry https://paperskills.com/api/registry
 ```
-
-Project install:
-
-```bash
-mkdir -p .claude/skills
-ln -s /path/to/paperskills .claude/skills/paperskills
-cd .claude/skills/paperskills && ./setup
-```
-
-`./setup` creates sibling links such as `.claude/skills/peer-review` and `.claude/skills/shared`, so individual skills can be discovered by the agent. Re-run `./setup` after updating PaperSkills.
 
 ### Codex
 
-Tell Codex:
-
-```text
-Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/paperskills/refs/heads/main/.codex/INSTALL.md
-```
-
-Or install manually:
-
 ```bash
-git clone https://github.com/cocoafun/paperskills.git ~/.agents/skills/paperskills
-cd ~/.agents/skills/paperskills && ./setup
+curl -sSL https://paperskills.com/scripts/paperskills-install.sh | bash -s -- \
+  --tool codex \
+  --skills paperskills-core \
+  --registry https://paperskills.com/api/registry
 ```
 
 ### Cursor
 
-Cursor does not currently discover `SKILL.md` files natively. The practical path is to use PaperSkills as a project-local prompt library and point Cursor Rules at it.
+Cursor uses rules/prompt installation in the current MVP.
 
-Tell Cursor:
-
-```text
-Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/paperskills/refs/heads/main/.cursor/INSTALL.md
+```bash
+curl -sSL https://paperskills.com/scripts/paperskills-install.sh | bash -s -- \
+  --tool cursor \
+  --skills paperskills-core \
+  --registry https://paperskills.com/api/registry
 ```
 
-Or follow [`.cursor/INSTALL.md`](./.cursor/INSTALL.md).
+### OpenCode
 
-### OpenCode And Other Agents
+```bash
+curl -sSL https://paperskills.com/scripts/paperskills-install.sh | bash -s -- \
+  --tool opencode \
+  --skills paperskills-core \
+  --registry https://paperskills.com/api/registry
+```
 
-PaperSkills keeps skill metadata in a registry so installers and future integrations can generate agent-specific commands. See [`registry/skills.json`](./registry/skills.json) for supported platforms and sparse-checkout paths.
+PaperSkills keeps skill metadata in a registry so installers and integrations can generate agent-specific commands. See [`registry/skills.json`](./registry/skills.json) for supported platforms and sparse-checkout paths.
 
 ## Repository Structure
 
@@ -131,6 +121,7 @@ PaperSkills keeps skill metadata in a registry so installers and future integrat
 - [`registry/`](./registry): skill, scenario, and pack metadata
 - [`docs/`](./docs): English and Chinese documentation pages
 - [`assets/`](./assets): shared report templates and resources
+- [`scripts/`](./scripts): public installer scripts served by the PaperSkills website
 - [`setup`](./setup): link setup script for skill discovery
 
 ## Design Principles

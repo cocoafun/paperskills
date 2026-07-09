@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# PaperSkills setup — register skills with Claude Code / Codex. Cursor uses project rules.
+# PaperSkills legacy setup helper for clone-based installs.
 set -e
 
 PAPERSKILLS_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -7,8 +7,8 @@ INSTALL_SKILLS_DIR="$(dirname "$PAPERSKILLS_DIR")"
 SKILLS_BASENAME="$(basename "$INSTALL_SKILLS_DIR")"
 
 # ─── Detect install context ────────────────────────────────────
-# If installed inside .claude/skills/ or .agents/skills/, auto-link sub-skills
-# Otherwise, print manual instructions
+# If installed inside a skills directory, auto-link sub-skills.
+# Otherwise, point users to the registry installer.
 
 CORE_COLLECTION="paperskills-core"
 SKILL_DIRS=(abstract cite-verify citation-network journal-match lit-search paper-tracker peer-review research-gap topic-framing)
@@ -55,19 +55,12 @@ if [ "$SKILLS_BASENAME" = "skills" ]; then
 else
   echo "paperskills is not installed inside a skills directory."
   echo ""
-  echo "To install for Claude Code:"
-  echo "  git clone https://github.com/cocoafun/paperskills.git ~/.claude/skills/paperskills"
-  echo "  cd ~/.claude/skills/paperskills && ./setup"
+  echo "Prefer the PaperSkills registry installer:"
   echo ""
-  echo "To install for Codex:"
-  echo "  git clone https://github.com/cocoafun/paperskills.git ~/.agents/skills/paperskills"
-  echo "  cd ~/.agents/skills/paperskills && ./setup"
+  echo "  curl -sSL https://paperskills.com/scripts/paperskills-install.sh | bash -s -- \\"
+  echo "    --tool codex \\"
+  echo "    --skills paperskills-core \\"
+  echo "    --registry https://paperskills.com/api/registry"
   echo ""
-  echo "To install for Cursor:"
-  echo "  see .cursor/INSTALL.md for the project-rules setup"
-  echo ""
-  echo "To install for a single project:"
-  echo "  mkdir -p .claude/skills  # or .agents/skills"
-  echo "  ln -s /path/to/paperskills .claude/skills/paperskills"
-  echo "  cd .claude/skills/paperskills && ./setup"
+  echo "Replace --tool codex with claude, opencode, or cursor as needed."
 fi
