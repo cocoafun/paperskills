@@ -10,6 +10,7 @@ SKILLS_BASENAME="$(basename "$INSTALL_SKILLS_DIR")"
 # If installed inside .claude/skills/ or .agents/skills/, auto-link sub-skills
 # Otherwise, print manual instructions
 
+CORE_COLLECTION="paperskills-core"
 SKILL_DIRS=(abstract cite-verify citation-network journal-match lit-search paper-tracker peer-review research-gap topic-framing)
 LINK_DIRS=(shared "${SKILL_DIRS[@]}")
 
@@ -21,7 +22,7 @@ link_skill_dirs() {
     if [ "$entry_name" = "shared" ]; then
       local entry_dir="$paperskills_dir/shared"
     else
-      local entry_dir="$paperskills_dir/skills/$entry_name"
+      local entry_dir="$paperskills_dir/skills/$CORE_COLLECTION/$entry_name"
     fi
     if [ -d "$entry_dir" ] && { [ "$entry_name" = "shared" ] || [ -f "$entry_dir/SKILL.md" ]; }; then
       local target="$skills_dir/$entry_name"
@@ -29,7 +30,7 @@ link_skill_dirs() {
         if [ "$entry_name" = "shared" ]; then
           ln -snf "paperskills/shared" "$target"
         else
-          ln -snf "paperskills/skills/$entry_name" "$target"
+          ln -snf "paperskills/skills/$CORE_COLLECTION/$entry_name" "$target"
         fi
         linked+=("$entry_name")
       fi

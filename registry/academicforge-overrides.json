@@ -1,0 +1,940 @@
+{
+  "version": "0.1.0",
+  "overrides": [
+    {
+      "id": "literature-review",
+      "name": "Literature Review (PaperSkills curated)",
+      "summary": {
+        "zh": "检索、核验并综合科学文献，适合从单篇线索到完整综述的证据合成。",
+        "en": "Find, verify, and synthesize scientific literature from single leads to full reviews."
+      },
+      "source": "external-pack",
+      "stage": [
+        "literature",
+        "evidence"
+      ],
+      "scenarios": [
+        "field-entry",
+        "evidence-synthesis",
+        "pdf-to-evidence"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "literature",
+        "synthesis",
+        "evidence"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/literature-review"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "pdf-explore",
+      "name": "PDF Explore (PaperSkills curated)",
+      "summary": {
+        "zh": "解析长 PDF、论文、报告和附录，跨页定位方法、图表、表格、数据集和引用。",
+        "en": "Parse long PDFs and reports, then locate methods, figures, tables, datasets, and citations across pages."
+      },
+      "source": "external-pack",
+      "stage": [
+        "reading",
+        "evidence"
+      ],
+      "scenarios": [
+        "evidence-synthesis",
+        "pdf-to-evidence"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "pdf",
+        "extraction",
+        "reading"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/pdf-explore"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "scientific-visualization",
+      "name": "Scientific Visualization (PaperSkills curated)",
+      "summary": {
+        "zh": "用 matplotlib、seaborn、plotly 生成期刊级图表，支持多面板、色盲友好和高分辨率导出。",
+        "en": "Create journal-ready plots with matplotlib, seaborn, and plotly, including multi-panel and accessible exports."
+      },
+      "source": "external-pack",
+      "stage": [
+        "analysis",
+        "writing"
+      ],
+      "scenarios": [
+        "evidence-synthesis",
+        "publication-figures",
+        "single-cell-omics"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "figures",
+        "visualization",
+        "publication"
+      ],
+      "toolSupport": [
+        "claude",
+        "codex"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/scientific-visualization"
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "figure-style",
+      "name": "Figure Style (PaperSkills curated)",
+      "summary": {
+        "zh": "为科研图表设定可读性、色彩、标注、布局和渲染检查规则。",
+        "en": "Apply correctness, legibility, color, labeling, layout, and render-check rules to scientific figures."
+      },
+      "source": "external-pack",
+      "stage": [
+        "writing",
+        "figures"
+      ],
+      "scenarios": [
+        "publication-figures"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "figures",
+        "style",
+        "qa"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/figure-style"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "figure-composer",
+      "name": "Figure Composer (PaperSkills curated)",
+      "summary": {
+        "zh": "把一个论文论断和数据文件组织成可投稿的多面板复合图，并进行迭代自检。",
+        "en": "Compose a publication-grade multi-panel figure from a claim and data files with iterative QA."
+      },
+      "source": "external-pack",
+      "stage": [
+        "writing",
+        "figures"
+      ],
+      "scenarios": [
+        "publication-figures"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "figures",
+        "multi-panel",
+        "composition"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/figure-composer"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "paper-narrative",
+      "name": "Paper Narrative (PaperSkills curated)",
+      "summary": {
+        "zh": "从编辑视角重塑论文图组叙事，判断 Fig 1 钩子、证据弧线和缺失分析。",
+        "en": "Reshape a paper's figure story from an editor's lens: hook, evidence arc, and missing analyses."
+      },
+      "source": "external-pack",
+      "stage": [
+        "writing",
+        "figures"
+      ],
+      "scenarios": [
+        "manuscript-polish",
+        "publication-figures"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "story",
+        "figures",
+        "manuscript"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/paper-narrative"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "compute-env-setup",
+      "name": "Compute Environment Setup (PaperSkills curated)",
+      "summary": {
+        "zh": "为远程主机、Slurm、容器和云 GPU 搭建可复用科研计算环境。",
+        "en": "Set up reusable research compute environments across SSH, Slurm, containers, and cloud GPUs."
+      },
+      "source": "external-pack",
+      "stage": [
+        "compute"
+      ],
+      "scenarios": [
+        "compute-and-model-infra",
+        "protein-structure-design",
+        "single-cell-omics"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "compute",
+        "environment",
+        "gpu"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/compute-env-setup"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "remote-compute-ssh",
+      "name": "Remote Compute SSH (PaperSkills curated)",
+      "summary": {
+        "zh": "把科研任务提交到用户自己的 SSH 或 Slurm 主机，并等待、回收和整理结果。",
+        "en": "Submit jobs to the user's SSH or Slurm host, then wait, harvest, and organize outputs."
+      },
+      "source": "external-pack",
+      "stage": [
+        "compute"
+      ],
+      "scenarios": [
+        "compute-and-model-infra",
+        "protein-structure-design"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "ssh",
+        "slurm",
+        "compute"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/remote-compute-ssh"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "remote-compute-modal",
+      "name": "Remote Compute Modal (PaperSkills curated)",
+      "summary": {
+        "zh": "通过用户自己的 Modal 账户运行 GPU 作业，覆盖创建、提交、等待通知和结果回收。",
+        "en": "Run GPU jobs on the user's Modal account with create, submit, notification, and harvest flow."
+      },
+      "source": "external-pack",
+      "stage": [
+        "compute"
+      ],
+      "scenarios": [
+        "compute-and-model-infra",
+        "single-cell-omics"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "modal",
+        "gpu",
+        "compute"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/remote-compute-modal"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "managed-model-endpoints",
+      "name": "Managed Model Endpoints (PaperSkills curated)",
+      "summary": {
+        "zh": "注册本地或远程模型服务，让后续推理任务可以按需启动和调用。",
+        "en": "Register local or remote model services so inference jobs can start and call them on demand."
+      },
+      "source": "external-pack",
+      "stage": [
+        "compute",
+        "models"
+      ],
+      "scenarios": [
+        "compute-and-model-infra",
+        "genome-and-embedding-models"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "models",
+        "endpoint",
+        "inference"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/managed-model-endpoints"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "using-model-endpoint",
+      "name": "Using Model Endpoint (PaperSkills curated)",
+      "summary": {
+        "zh": "通过已注册模型端点的原生 HTTP API 执行预测和推理。",
+        "en": "Call registered model endpoints over their native HTTP APIs for prediction and inference."
+      },
+      "source": "external-pack",
+      "stage": [
+        "models"
+      ],
+      "scenarios": [
+        "compute-and-model-infra",
+        "genome-and-embedding-models"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "inference",
+        "http",
+        "models"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/using-model-endpoint"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "alphafold2",
+      "name": "AlphaFold2 (PaperSkills curated)",
+      "summary": {
+        "zh": "用 AlphaFold2/ColabFold 预测蛋白单体或复合物结构，并用 pLDDT、ipTM、RMSD 验证设计。",
+        "en": "Predict protein monomers or complexes with AlphaFold2/ColabFold and validate designs with pLDDT, ipTM, and RMSD."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "models"
+      ],
+      "scenarios": [
+        "protein-structure-design"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "protein",
+        "structure",
+        "alphafold"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/alphafold2"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "boltz",
+      "name": "Boltz (PaperSkills curated)",
+      "summary": {
+        "zh": "预测蛋白、核酸和小分子复合物结构，并可进行结合亲和力相关评估。",
+        "en": "Predict protein, nucleic-acid, and small-molecule complex structures, with optional binding-affinity assessment."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "models"
+      ],
+      "scenarios": [
+        "protein-structure-design"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "protein",
+        "ligand",
+        "structure"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/boltz"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "chai1",
+      "name": "Chai-1 (PaperSkills curated)",
+      "summary": {
+        "zh": "用 Chai-1 预测抗体-抗原、蛋白-配体等复合物，适合 GPU 批量结构预测。",
+        "en": "Predict antibody-antigen, protein-ligand, and related complexes with Chai-1, including GPU batch workflows."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "models"
+      ],
+      "scenarios": [
+        "protein-structure-design"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "protein",
+        "complex",
+        "structure"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/chai1"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "openfold3",
+      "name": "OpenFold3 (PaperSkills curated)",
+      "summary": {
+        "zh": "使用开放权重的 AlphaFold3 复现模型预测蛋白、核酸和配体复合物结构。",
+        "en": "Predict protein, nucleic-acid, and ligand complexes with an open-weights AlphaFold3 reproduction."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "models"
+      ],
+      "scenarios": [
+        "protein-structure-design"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "protein",
+        "alphafold3",
+        "structure"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/openfold3"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "proteinmpnn",
+      "name": "ProteinMPNN (PaperSkills curated)",
+      "summary": {
+        "zh": "基于蛋白骨架反向设计氨基酸序列，适合 RFdiffusion 骨架和界面固定设计。",
+        "en": "Inverse-fold protein backbones into sequences, including RFdiffusion backbones and fixed-interface redesigns."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "design"
+      ],
+      "scenarios": [
+        "protein-structure-design"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "protein",
+        "sequence-design",
+        "inverse-folding"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/proteinmpnn"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "ligandmpnn",
+      "name": "LigandMPNN (PaperSkills curated)",
+      "summary": {
+        "zh": "在配体、核酸或金属上下文中进行蛋白序列设计，适合结合口袋和配位位点重设计。",
+        "en": "Design protein sequences with ligand, nucleic-acid, or metal context for pocket and coordination-site redesign."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "design"
+      ],
+      "scenarios": [
+        "protein-structure-design"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "protein",
+        "ligand",
+        "design"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/ligandmpnn"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "solublempnn",
+      "name": "SolubleMPNN (PaperSkills curated)",
+      "summary": {
+        "zh": "为更高可溶表达倾向进行蛋白序列设计，适合处理聚集或包涵体风险。",
+        "en": "Design sequences biased toward soluble expression when aggregation or inclusion-body risk matters."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "design"
+      ],
+      "scenarios": [
+        "protein-structure-design"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "protein",
+        "solubility",
+        "design"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/solublempnn"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "diffdock",
+      "name": "DiffDock (PaperSkills curated)",
+      "summary": {
+        "zh": "预测小分子与蛋白结合姿势，适合片段库 docking 和下游重评分前的起始构象。",
+        "en": "Predict small-molecule binding poses for fragment docking and downstream rescoring starts."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "models"
+      ],
+      "scenarios": [
+        "protein-structure-design"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "docking",
+        "ligand",
+        "structure"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/diffdock"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "scvi-tools",
+      "name": "scvi-tools (PaperSkills curated)",
+      "summary": {
+        "zh": "用 scVI/scANVI 进行单细胞批次校正、潜在空间嵌入、标签迁移和差异表达分析。",
+        "en": "Use scVI/scANVI for single-cell batch correction, latent embeddings, label transfer, and differential expression."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "analysis"
+      ],
+      "scenarios": [
+        "single-cell-omics"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "single-cell",
+        "scrna-seq",
+        "scvi"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/scvi-tools"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "scgpt",
+      "name": "scGPT (PaperSkills curated)",
+      "summary": {
+        "zh": "用单细胞基础模型生成细胞嵌入、零样本/微调注释和基因表示。",
+        "en": "Use a single-cell foundation model for embeddings, zero-shot or fine-tuned annotation, and gene representations."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "models"
+      ],
+      "scenarios": [
+        "single-cell-omics"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "single-cell",
+        "foundation-model",
+        "annotation"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/scgpt"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "evo2",
+      "name": "Evo 2 (PaperSkills curated)",
+      "summary": {
+        "zh": "用长上下文基因组基础模型进行 DNA 序列打分、嵌入、生成和变异效应评估。",
+        "en": "Score, embed, and generate DNA with a long-context genomic foundation model for variant-effect work."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "models"
+      ],
+      "scenarios": [
+        "genome-and-embedding-models"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "genomics",
+        "dna",
+        "foundation-model"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/evo2"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "borzoi",
+      "name": "Borzoi (PaperSkills curated)",
+      "summary": {
+        "zh": "从 DNA 序列预测基因组功能轨道，用于非编码变异和表达/可及性影响评估。",
+        "en": "Predict genome-wide functional tracks from DNA for non-coding variant and expression/accessibility effects."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "models"
+      ],
+      "scenarios": [
+        "genome-and-embedding-models"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "genomics",
+        "variant",
+        "tracks"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/borzoi"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "fair-esm2",
+      "name": "fair-esm2 (PaperSkills curated)",
+      "summary": {
+        "zh": "提取蛋白序列/残基嵌入，做 masked-LM 似然、突变效应打分和接触预测。",
+        "en": "Extract protein embeddings, masked-LM likelihoods, mutation-effect scores, and contact predictions with ESM-2."
+      },
+      "source": "external-pack",
+      "stage": [
+        "life-science",
+        "models"
+      ],
+      "scenarios": [
+        "genome-and-embedding-models",
+        "protein-structure-design"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "protein",
+        "embeddings",
+        "mutation"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/fair-esm2"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "learn",
+      "name": "Learn (PaperSkills curated)",
+      "summary": {
+        "zh": "面向理解的教学、拆解、测验和学习路径，适合补齐理论、方法或工具背景。",
+        "en": "Teach, decompose, quiz, and sequence learning paths for theory, methods, or tools."
+      },
+      "source": "external-pack",
+      "stage": [
+        "learning"
+      ],
+      "scenarios": [
+        "research-learning-path",
+        "custom-research-agent"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "learning",
+        "concepts",
+        "teaching"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/learn"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "web-artifacts-builder",
+      "name": "Web Artifacts Builder (PaperSkills curated)",
+      "summary": {
+        "zh": "为复杂科研展示、交互式补充材料或可分享工具构建单文件前端 artifact。",
+        "en": "Build complex single-file web artifacts for research demos, interactive supplements, or shareable tools."
+      },
+      "source": "external-pack",
+      "stage": [
+        "communication"
+      ],
+      "scenarios": [
+        "research-communication-artifacts"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "artifact",
+        "frontend",
+        "communication"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/web-artifacts-builder"
+      },
+      "license": "See repository"
+    },
+    {
+      "id": "algorithmic-art",
+      "name": "Algorithmic Art (PaperSkills curated)",
+      "summary": {
+        "zh": "用 p5.js、参数和随机种子生成算法艺术，适合科研传播中的抽象视觉与互动封面。",
+        "en": "Create seeded p5.js algorithmic art for abstract visuals, interactive covers, and science communication."
+      },
+      "source": "external-pack",
+      "stage": [
+        "communication"
+      ],
+      "scenarios": [
+        "research-communication-artifacts"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "art",
+        "p5js",
+        "communication"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/algorithmic-art"
+      },
+      "license": "See repository"
+    },
+    {
+      "id": "skill-creator",
+      "name": "Skill Creator (PaperSkills curated)",
+      "summary": {
+        "zh": "创建、修改、评测和优化新的科研技能，让重复任务沉淀为可复用工作流。",
+        "en": "Create, modify, evaluate, and optimize new research skills so repeated tasks become reusable workflows."
+      },
+      "source": "external-pack",
+      "stage": [
+        "workflow"
+      ],
+      "scenarios": [
+        "custom-research-agent"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "skills",
+        "evaluation",
+        "workflow"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/skill-creator"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "customize",
+      "name": "Customize (PaperSkills curated)",
+      "summary": {
+        "zh": "创建和维护自定义 agent profiles，配置技能、连接器和 agent 能力。",
+        "en": "Create and maintain custom agent profiles, skills, connectors, and capabilities."
+      },
+      "source": "external-pack",
+      "stage": [
+        "workflow"
+      ],
+      "scenarios": [
+        "custom-research-agent"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "agent",
+        "customization",
+        "profiles"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/customize"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "id": "self-awareness",
+      "name": "Self Awareness (PaperSkills curated)",
+      "summary": {
+        "zh": "查询会话历史、执行日志、成本和 artifact 元数据，用于复盘长周期科研代理工作。",
+        "en": "Query session history, execution logs, costs, and artifact metadata for long-running research-agent audits."
+      },
+      "source": "external-pack",
+      "stage": [
+        "workflow"
+      ],
+      "scenarios": [
+        "custom-research-agent"
+      ],
+      "tags": [
+        "paperskills-curated",
+        "metadata",
+        "audit",
+        "workflow"
+      ],
+      "toolSupport": [
+        "claude"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/HughYau/AcademicForge.git",
+        "sparsePath": "skills/claude-science/self-awareness"
+      },
+      "license": "Apache-2.0"
+    }
+  ]
+}

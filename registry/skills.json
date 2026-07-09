@@ -31,7 +31,7 @@
       "install": {
         "method": "sparse-checkout",
         "url": "https://github.com/cocoafun/paperskills.git",
-        "sparsePath": "skills/topic-framing"
+        "sparsePath": "skills/paperskills-core/topic-framing"
       },
       "license": "MIT"
     },
@@ -66,7 +66,7 @@
       "install": {
         "method": "sparse-checkout",
         "url": "https://github.com/cocoafun/paperskills.git",
-        "sparsePath": "skills/research-gap"
+        "sparsePath": "skills/paperskills-core/research-gap"
       },
       "license": "MIT"
     },
@@ -101,7 +101,7 @@
       "install": {
         "method": "sparse-checkout",
         "url": "https://github.com/cocoafun/paperskills.git",
-        "sparsePath": "skills/lit-search"
+        "sparsePath": "skills/paperskills-core/lit-search"
       },
       "license": "MIT"
     },
@@ -134,7 +134,7 @@
       "install": {
         "method": "sparse-checkout",
         "url": "https://github.com/cocoafun/paperskills.git",
-        "sparsePath": "skills/citation-network"
+        "sparsePath": "skills/paperskills-core/citation-network"
       },
       "license": "MIT"
     },
@@ -167,7 +167,7 @@
       "install": {
         "method": "sparse-checkout",
         "url": "https://github.com/cocoafun/paperskills.git",
-        "sparsePath": "skills/abstract"
+        "sparsePath": "skills/paperskills-core/abstract"
       },
       "license": "MIT"
     },
@@ -201,7 +201,7 @@
       "install": {
         "method": "sparse-checkout",
         "url": "https://github.com/cocoafun/paperskills.git",
-        "sparsePath": "skills/peer-review"
+        "sparsePath": "skills/paperskills-core/peer-review"
       },
       "license": "MIT"
     },
@@ -235,7 +235,7 @@
       "install": {
         "method": "sparse-checkout",
         "url": "https://github.com/cocoafun/paperskills.git",
-        "sparsePath": "skills/cite-verify"
+        "sparsePath": "skills/paperskills-core/cite-verify"
       },
       "license": "MIT"
     },
@@ -267,7 +267,7 @@
       "install": {
         "method": "sparse-checkout",
         "url": "https://github.com/cocoafun/paperskills.git",
-        "sparsePath": "skills/journal-match"
+        "sparsePath": "skills/paperskills-core/journal-match"
       },
       "license": "MIT"
     },
@@ -301,7 +301,7 @@
       "install": {
         "method": "sparse-checkout",
         "url": "https://github.com/cocoafun/paperskills.git",
-        "sparsePath": "skills/paper-tracker"
+        "sparsePath": "skills/paperskills-core/paper-tracker"
       },
       "license": "MIT"
     }
