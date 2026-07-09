@@ -1,0 +1,112 @@
+---
+title: Attributions
+description: Credits, integration boundaries, licenses, and source notes for PaperSkills.
+---
+
+# Attributions
+
+PaperSkills combines first-party academic workflow skills with a scenario-first product layer for research users.
+
+This page explains what is first-party, what is inspired by or integrated from other projects, and what license boundaries users should respect.
+
+## How PaperSkills Works
+
+PaperSkills has two layers:
+
+- Skill distribution: installable skills, registry metadata, skill packs, and agent-specific setup commands.
+- Research scenarios: practical workflows such as topic framing, field entry, literature review, draft review, submission, and paper tracking.
+
+The distribution layer is inspired by AcademicForge-style skill registries and installers. The product experience is intentionally different: PaperSkills starts from the user's research stage instead of asking users to choose from a raw skill catalog.
+
+## First-Party Core Skills
+
+The current PaperSkills core repository maintains these first-party skills under `paperskills-core`:
+
+| Skill | Purpose | License |
+| --- | --- | --- |
+| `topic-framing` | Turn a broad interest into researchable paper questions. | MIT |
+| `lit-search` | Search scholarly literature and organize results. | MIT |
+| `citation-network` | Map key papers, authors, themes, and citation relationships. | MIT |
+| `research-gap` | Identify credible research gaps and contribution space. | MIT |
+| `abstract` | Produce academic abstracts in several formats. | MIT |
+| `peer-review` | Simulate academic review and manuscript diagnosis. | MIT |
+| `cite-verify` | Check reference accuracy and claim support. | MIT |
+| `journal-match` | Recommend target journals and submission fit. | MIT |
+| `paper-tracker` | Track new papers by topic, author, venue, or time window. | MIT |
+
+The registry currently marks these skills as MIT-licensed. If a root `LICENSE` file or per-skill license file is added later, that file should be treated as authoritative.
+
+## AcademicForge
+
+PaperSkills explicitly learns from [AcademicForge](https://github.com/HughYau/AcademicForge) for:
+
+- skill registry design
+- install command generation
+- cross-agent platform support
+- skill pack selection patterns
+- attribution and license documentation style
+
+PaperSkills is not intended to be a renamed copy of AcademicForge. The intended distinction is:
+
+- AcademicForge focuses on installing and selecting academic skills.
+- PaperSkills organizes skills around the paper lifecycle and concrete research scenarios.
+
+In short: distribution patterns are borrowed from AcademicForge; the product workflow is research-scenario-first.
+
+## External Skill Packs
+
+The PaperSkills web product may list or recommend external skills and packs from upstream projects, especially when a scenario needs capabilities beyond the core PaperSkills skills.
+
+Examples in the current web metadata include AcademicForge-linked skills such as:
+
+- `literature-review`
+- `pdf-explore`
+- `scientific-visualization`
+- `figure-style`
+- `figure-composer`
+- `paper-narrative`
+- compute, model, and life-science workflow skills
+
+These external skills retain their own upstream authorship, repository links, and licenses. PaperSkills should preserve source URLs, sparse-checkout paths, and license metadata in the registry whenever external skills are listed.
+
+## Inspiration
+
+PaperSkills is also inspired by open academic AI-writing and research workflow projects, including:
+
+- [Leey21/awesome-ai-research-writing](https://github.com/Leey21/awesome-ai-research-writing)
+- [hkcanan/katmer-code](https://github.com/hkcanan/katmer-code)
+
+These projects influenced the emphasis on practical academic workflows. They are credited as inspirations unless a specific file states that content was reused or adapted.
+
+## Public Scholarly Data Sources
+
+Some PaperSkills workflows ask an agent to consult public scholarly sources for search, verification, or metadata lookup. Common sources include:
+
+- Crossref
+- Semantic Scholar
+- OpenAlex
+- PubMed
+- arXiv
+
+PaperSkills does not own papers, abstracts, metadata, PDFs, or records returned by these services. Users and agents should respect each service's terms of use, rate limits, and citation expectations.
+
+## User-Provided Materials
+
+When you run PaperSkills on your manuscript, PDF, bibliography, notes, or dataset, those files remain user-provided inputs.
+
+PaperSkills supplies workflow instructions, prompts, checklists, and report structures. It does not grant permission to reuse third-party copyrighted papers, private manuscripts, subscription-only content, or confidential research data beyond what the user is allowed to do.
+
+## Attribution Maintenance
+
+When adding or listing a new external skill, update the relevant registry entry and this page if needed with:
+
+- source project name and URL
+- upstream author or maintainer
+- upstream license
+- install method and sparse path
+- what was reused, adapted, mirrored, or only referenced
+- required copyright notice, if any
+
+## Reporting Attribution Issues
+
+If you maintain an upstream skill or project and believe PaperSkills is missing attribution or license context, please open an issue or pull request in the PaperSkills repository.

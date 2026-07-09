@@ -1,0 +1,227 @@
+---
+title: Quickstart
+description: Start from your research scenario, install the needed skills, and run a copy-ready prompt.
+---
+
+# Quickstart
+
+PaperSkills is not meant to make you browse a long skill list first.
+
+Start with the research situation you are in, pick the recommended skill combination, install it in your agent, then run a concrete prompt.
+
+## 1. Choose Your Research Scenario
+
+### I do not have a topic yet
+
+Use this when you have a broad interest, an advisor's direction, or a vague idea.
+
+Recommended skills:
+
+- `/topic-framing`
+- `/lit-search`
+
+Try:
+
+```text
+/topic-framing I am interested in LLM-assisted literature review writing. Help me turn this into researchable questions, candidate paper titles, initial search keywords, and next-step literature search suggestions.
+```
+
+Expected output:
+
+- research direction breakdown
+- candidate research questions
+- possible paper titles
+- search keywords
+- next-step literature search plan
+
+### I need to enter a new field quickly
+
+Use this when you need a first map of a field before reading everything.
+
+Recommended skills:
+
+- `/lit-search`
+- `/citation-network`
+- `/paper-tracker`
+
+Try:
+
+```text
+/lit-search Search papers on LLM-assisted systematic literature review. Rank the results by importance, group them by theory, method, and application, and include DOI, abstract, and open-access status when available.
+```
+
+Then:
+
+```text
+/citation-network Use these core papers as seeds. Identify foundational papers, bridge papers, recent frontier papers, major authors, and topic clusters.
+```
+
+Expected output:
+
+- deduplicated paper list
+- core and frontier papers
+- citation map
+- topic clusters
+- follow-up reading plan
+
+### I need to write a literature review
+
+Use this when you are preparing a thesis proposal, related work section, or review paper.
+
+Recommended skills:
+
+- `/lit-search`
+- `/research-gap`
+- `/citation-network`
+
+Try:
+
+```text
+/research-gap Analyze research gaps in LLM-assisted literature review writing. Focus on method gaps, application gaps, evaluation gaps, and trends from the last three years.
+```
+
+Expected output:
+
+- topic map
+- gap categories
+- potential research questions
+- review structure
+- next-step topic suggestions
+
+### I already have a manuscript draft
+
+Use this before sending a draft to an advisor, coauthor, or journal.
+
+Recommended skills:
+
+- `/peer-review`
+- `/cite-verify`
+
+Try:
+
+```text
+/peer-review draft.md Evaluate this manuscript using academic review criteria. Identify problems in structure, argument, literature coverage, method, evidence, and writing, then give revision priorities.
+```
+
+Then:
+
+```text
+/cite-verify draft.md Verify whether the citations support the claims they are attached to. Check DOI, author, year, title, and reference accuracy.
+```
+
+Expected output:
+
+- simulated review report
+- major and minor concerns
+- revision priorities
+- section-level suggestions
+- citation verification report
+
+### I am preparing for submission
+
+Use this when the paper exists but the target venue is unclear.
+
+Recommended skills:
+
+- `/journal-match`
+- `/cite-verify`
+
+Try:
+
+```text
+/journal-match draft.md Recommend target journals based on the manuscript topic, method, references, likely audience, fit, risks, and backup options.
+```
+
+Expected output:
+
+- ranked journal candidates
+- fit rationale
+- submission risks
+- positioning differences
+- citation and format checks
+
+### I need to keep tracking new papers
+
+Use this when you want a repeatable watchlist for a topic, venue, author, institution, or time window.
+
+Recommended skill:
+
+- `/paper-tracker`
+
+Try:
+
+```text
+/paper-tracker Track new papers about AI-assisted literature review in the last 30 days, focusing on top journals and highly cited authors.
+```
+
+Expected output:
+
+- new paper list
+- source and time-window notes
+- short summaries
+- importance ranking
+- follow-up reading suggestions
+
+## 2. Install PaperSkills
+
+Install the full PaperSkills router when you want all core workflows available.
+
+### Codex
+
+```bash
+git clone https://github.com/cocoafun/paperskills.git ~/.agents/skills/paperskills
+cd ~/.agents/skills/paperskills && ./setup
+```
+
+### Claude Code
+
+```bash
+git clone https://github.com/cocoafun/paperskills.git ~/.claude/skills/paperskills
+cd ~/.claude/skills/paperskills && ./setup
+```
+
+### Cursor
+
+Cursor uses project rules rather than native `SKILL.md` discovery.
+
+```bash
+git clone https://github.com/cocoafun/paperskills.git .cursor/paperskills
+mkdir -p .cursor/rules
+```
+
+Then follow `.cursor/INSTALL.md` to add the routing rule.
+
+## 3. Verify Installation
+
+Start a new agent session and ask:
+
+```text
+/paperskills I have a manuscript draft and need to know what to do before submission.
+```
+
+The agent should load the PaperSkills router, identify the scenario, and recommend the relevant skill or skill combination.
+
+## 4. Use a Skill Pack Mindset
+
+PaperSkills works best as scenario-based combinations:
+
+| Scenario | Recommended skills |
+| --- | --- |
+| No topic yet | `/topic-framing` + `/lit-search` |
+| Enter a new field | `/lit-search` + `/citation-network` + `/paper-tracker` |
+| Literature review | `/lit-search` + `/research-gap` + `/citation-network` |
+| Draft review | `/peer-review` + `/cite-verify` |
+| Submission | `/journal-match` + `/cite-verify` |
+| Ongoing tracking | `/paper-tracker` |
+
+You do not need to understand every skill first. Start from the scenario, copy the prompt, and let the workflow reveal the next step.
+
+## 5. Update
+
+```bash
+cd /path/to/paperskills
+git pull
+./setup
+```
+
+Run `./setup` after updates so linked sub-skills stay current.

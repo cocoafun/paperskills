@@ -1,0 +1,112 @@
+---
+title: 致谢与归因
+description: PaperSkills 的项目归因、集成边界、许可证和来源说明。
+---
+
+# 致谢与归因
+
+PaperSkills 由一方维护的学术工作流 skills，以及面向科研用户的场景化产品层组成。
+
+本页说明哪些内容属于 PaperSkills 一方核心能力，哪些内容来自其他项目的启发或外部集成，以及使用时需要注意哪些许可证和来源边界。
+
+## PaperSkills 如何工作
+
+PaperSkills 有两层：
+
+- Skill 分发层：可安装 skills、registry 元数据、skill packs、面向不同 Agent 的安装命令。
+- 科研场景层：围绕选题、领域入门、文献综述、草稿体检、投稿准备和论文追踪等真实科研场景组织使用方式。
+
+分发层借鉴了 AcademicForge 风格的 registry 和安装器设计。产品体验则刻意不同：PaperSkills 从“用户现在处在哪个科研阶段”开始，而不是让用户先面对一整页 skill 目录。
+
+## 一方核心技能
+
+当前 PaperSkills 核心仓库维护这些 `paperskills-core` 技能：
+
+| Skill | 用途 | License |
+| --- | --- | --- |
+| `topic-framing` | 将宽泛兴趣收束成可研究论文问题。 | MIT |
+| `lit-search` | 检索并整理学术文献。 | MIT |
+| `citation-network` | 梳理关键论文、作者、主题和引用关系。 | MIT |
+| `research-gap` | 识别可信研究缺口和贡献空间。 | MIT |
+| `abstract` | 生成多种格式的学术摘要。 | MIT |
+| `peer-review` | 模拟学术审稿，诊断稿件问题。 | MIT |
+| `cite-verify` | 检查参考文献准确性和 claim-support 关系。 | MIT |
+| `journal-match` | 推荐目标期刊并分析投稿匹配度。 | MIT |
+| `paper-tracker` | 按主题、作者、期刊、会议或时间窗口追踪新论文。 | MIT |
+
+当前 registry 中这些技能标注为 MIT License。若后续仓库补充根目录 `LICENSE` 或单个 skill 的许可证文件，应以对应文件为权威文本。
+
+## 与 AcademicForge 的关系
+
+PaperSkills 明确参考 [AcademicForge](https://github.com/HughYau/AcademicForge) 的以下设计：
+
+- skill registry 结构
+- 安装命令生成
+- 跨 Agent 平台适配
+- skill pack 选配体验
+- 归因与许可证说明方式
+
+但 PaperSkills 不应被理解为 AcademicForge 的改名版本。两者的区别是：
+
+- AcademicForge 更偏向学术 skills 的安装和选配平台。
+- PaperSkills 围绕论文生命周期和具体科研场景组织工作流。
+
+可以概括为：分发模式借鉴 AcademicForge，产品体验坚持科研场景优先。
+
+## 外部 Skill Packs
+
+PaperSkills 的 web 产品可能列出或推荐来自上游项目的外部 skills 和 packs，尤其是在某些场景需要超出 PaperSkills 核心技能的能力时。
+
+当前 web 元数据中可见的 AcademicForge 相关外部技能示例包括：
+
+- `literature-review`
+- `pdf-explore`
+- `scientific-visualization`
+- `figure-style`
+- `figure-composer`
+- `paper-narrative`
+- 计算环境、模型端点和生命科学工作流相关 skills
+
+这些外部 skills 保留各自的上游作者、仓库链接和许可证。PaperSkills 在列出外部技能时，应在 registry 中保留 source URL、sparse-checkout 路径和 license metadata。
+
+## 灵感来源
+
+PaperSkills 也受到以下开放学术 AI 写作与研究工作流项目启发：
+
+- [Leey21/awesome-ai-research-writing](https://github.com/Leey21/awesome-ai-research-writing)
+- [hkcanan/katmer-code](https://github.com/hkcanan/katmer-code)
+
+这些项目影响了 PaperSkills 对实用学术工作流的关注。除非具体文件另有说明，它们在这里被列为灵感来源，而不是已复用或改写的内容来源。
+
+## 公开学术数据源
+
+部分 PaperSkills 工作流会要求 Agent 在检索、核验或元数据查询时使用公开学术数据源。常见数据源包括：
+
+- Crossref
+- Semantic Scholar
+- OpenAlex
+- PubMed
+- arXiv
+
+PaperSkills 不主张拥有这些服务返回的论文、摘要、元数据、PDF 或记录。使用者和 Agent 应遵守对应服务的使用条款、访问限制、速率限制和引用规范。
+
+## 用户提供的材料
+
+当你把自己的论文草稿、PDF、参考文献、笔记或数据集交给 PaperSkills 使用时，这些文件仍然是用户输入。
+
+PaperSkills 提供的是工作流说明、prompt、检查清单和报告结构。它不会额外授予你复用第三方版权论文、订阅内容、私有稿件或保密研究数据的权利。
+
+## 归因维护规则
+
+当新增或展示一个外部 skill 时，必要时应同步更新 registry 和本页，说明：
+
+- 来源项目名称与链接
+- 上游作者或维护者
+- 上游许可证
+- 安装方式和 sparse path
+- 复用、改写、镜像，还是仅作为引用
+- 是否需要保留特定版权声明
+
+## 归因问题反馈
+
+如果你是上游 skill 或项目维护者，并认为 PaperSkills 缺少归因或许可证说明，请在 PaperSkills 仓库中提交 issue 或 pull request。

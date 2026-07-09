@@ -1,0 +1,227 @@
+---
+title: 快速上手
+description: 从科研场景出发，安装需要的 skills，并复制 prompt 直接开始。
+---
+
+# 快速上手
+
+PaperSkills 不希望你一上来面对一长串 skill 名称，然后自己猜怎么组合。
+
+更好的开始方式是：先判断自己处在哪个科研场景，再选择推荐 skill 组合，安装到自己的 Agent 环境里，然后直接复制 prompt 开始。
+
+## 1. 选择你的科研场景
+
+### 我还没有题目
+
+适合：你只有一个兴趣方向、导师给的大方向，或者一个还很模糊的想法。
+
+推荐 skills：
+
+- `/topic-framing`
+- `/lit-search`
+
+可以直接复制：
+
+```text
+/topic-framing 我对大模型支持文献综述写作感兴趣，想收敛成一个适合研究生论文的题目。请帮我提出可研究问题、候选标题、初步检索关键词和下一步文献检索建议。
+```
+
+预期输出：
+
+- 研究方向拆解
+- 候选研究问题
+- 候选论文标题
+- 检索关键词
+- 下一步文献检索计划
+
+### 我要快速进入一个新领域
+
+适合：你需要先建立领域地图，而不是一篇篇从零读完。
+
+推荐 skills：
+
+- `/lit-search`
+- `/citation-network`
+- `/paper-tracker`
+
+可以直接复制：
+
+```text
+/lit-search 大模型辅助系统性文献综述，请检索相关论文，按重要性排序，并按理论、方法、应用场景分组，尽量标注 DOI、摘要和开放获取状态。
+```
+
+后续可以接：
+
+```text
+/citation-network 以这些核心论文为种子，构建引用网络，找出基础论文、桥梁论文、近两年前沿论文、核心作者和主题簇。
+```
+
+预期输出：
+
+- 去重后的文献列表
+- 核心论文与前沿论文
+- 引文网络
+- 文献主题簇
+- 后续阅读路径
+
+### 我要写文献综述
+
+适合：你要写开题报告、related work、综述章节或综述论文。
+
+推荐 skills：
+
+- `/lit-search`
+- `/research-gap`
+- `/citation-network`
+
+可以直接复制：
+
+```text
+/research-gap 请基于“大模型辅助文献综述写作”这个方向，分析当前研究缺口，重点关注方法缺口、应用场景缺口、评估指标缺口和近三年趋势。
+```
+
+预期输出：
+
+- 研究主题地图
+- 研究缺口分类
+- 潜在研究问题
+- 可写作的综述结构
+- 后续选题建议
+
+### 我已经有论文草稿
+
+适合：你已经写出初稿，想在给导师、合作者或期刊前先做一次自查。
+
+推荐 skills：
+
+- `/peer-review`
+- `/cite-verify`
+
+可以直接复制：
+
+```text
+/peer-review draft.md 请按学术审稿标准评估这篇论文，指出结构、论证、文献覆盖、方法、证据和表达方面的问题，并给出修改优先级。
+```
+
+后续可以接：
+
+```text
+/cite-verify draft.md 请核验文中引用是否真实支撑对应论点，检查 DOI、作者、年份、标题和参考文献准确性。
+```
+
+预期输出：
+
+- 模拟审稿报告
+- major / minor concerns
+- 修改优先级
+- 逐节修改建议
+- 引用核验报告
+
+### 我要投稿
+
+适合：论文已经成型，但你还不确定目标期刊、投稿顺序和主要风险。
+
+推荐 skills：
+
+- `/journal-match`
+- `/cite-verify`
+
+可以直接复制：
+
+```text
+/journal-match draft.md 请根据论文主题、方法、引用文献和潜在读者，推荐合适的目标期刊，并说明匹配理由、投稿风险和备选顺序。
+```
+
+预期输出：
+
+- 推荐期刊列表
+- 匹配理由
+- 投稿风险
+- 期刊定位差异
+- 引用和格式检查建议
+
+### 我要持续追踪新论文
+
+适合：你需要长期跟踪某个方向、作者、期刊、会议、机构或时间窗口。
+
+推荐 skill：
+
+- `/paper-tracker`
+
+可以直接复制：
+
+```text
+/paper-tracker track new papers about AI-assisted literature review in the last 30 days, focusing on top journals and highly cited authors.
+```
+
+预期输出：
+
+- 新论文列表
+- 来源和时间窗口
+- 简要摘要
+- 重要性排序
+- 后续阅读建议
+
+## 2. 安装 PaperSkills
+
+如果你希望完整使用 PaperSkills 的核心科研工作流，可以安装整个路由入口。
+
+### Codex
+
+```bash
+git clone https://github.com/cocoafun/paperskills.git ~/.agents/skills/paperskills
+cd ~/.agents/skills/paperskills && ./setup
+```
+
+### Claude Code
+
+```bash
+git clone https://github.com/cocoafun/paperskills.git ~/.claude/skills/paperskills
+cd ~/.claude/skills/paperskills && ./setup
+```
+
+### Cursor
+
+Cursor 当前主要通过项目规则使用 PaperSkills，而不是原生发现 `SKILL.md`。
+
+```bash
+git clone https://github.com/cocoafun/paperskills.git .cursor/paperskills
+mkdir -p .cursor/rules
+```
+
+然后按照 `.cursor/INSTALL.md` 添加路由规则。
+
+## 3. 验证安装
+
+重新打开一个 Agent 会话，然后输入：
+
+```text
+/paperskills 我已经有论文草稿，想知道投稿前应该先做哪些检查。
+```
+
+如果安装正常，Agent 应该读取 PaperSkills 路由入口，识别你的科研场景，并推荐对应 skill 或 skill 组合。
+
+## 4. 用 skill pack 的方式理解
+
+PaperSkills 更适合按场景组合使用：
+
+| 场景 | 推荐 skills |
+| --- | --- |
+| 我还没有题目 | `/topic-framing` + `/lit-search` |
+| 我要快速进入新领域 | `/lit-search` + `/citation-network` + `/paper-tracker` |
+| 我要写文献综述 | `/lit-search` + `/research-gap` + `/citation-network` |
+| 我已经有论文草稿 | `/peer-review` + `/cite-verify` |
+| 我要投稿 | `/journal-match` + `/cite-verify` |
+| 我要持续追踪新论文 | `/paper-tracker` |
+
+你不需要先理解所有 skill。先从场景进入，复制 prompt 开始，再根据输出自然进入下一步。
+
+## 5. 更新
+
+```bash
+cd /path/to/paperskills
+git pull
+./setup
+```
+
+更新后重新执行 `./setup`，可以刷新子 skill 链接。
