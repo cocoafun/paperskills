@@ -1,101 +1,89 @@
 # PaperSkills
 
-面向 Claude Code、Cursor、Codex 等 AI Agents 的开源学术技能库。
+<p align="center">
+  <img src="./logo-readme.png" alt="PaperSkills logo" width="120" />
+</p>
 
-项目主页：<https://www.paperskills.com/>
+面向 AI Agent 的场景化学术工作流技能工具箱。
 
-## 为什么做这个项目
+[English](./README.md) | [项目主页](https://www.paperskills.com/)
 
-如果你也经历过这些时刻，应该很容易理解 PaperSkills 想解决什么问题：
+## PaperSkills 是什么
 
-- 一个模糊选题聊了十几轮，最后还是不知道能不能写成论文
-- 文献检索 prompt 改了一下午，结果仍然是一堆不成体系的论文列表
-- 让 AI 帮忙审稿，它只会说“结构清晰、创新性较强、建议补充实验”
-- 投稿前才发现引用里混着不存在的 DOI、错配的标题和不完整的参考文献
-- 想持续追踪某个方向的新论文，但每次都要重新组织检索条件
+PaperSkills 帮助研究者在真实科研流程中判断：**现在该用哪些 AI-agent skills，如何安装，第一条 prompt 怎么写，应该得到什么结果，下一步如何推进。**
 
-AI 已经开始进入科研工作流，但真正有价值的使用方法并没有公平地分布。少数研究组可能已经沉淀了自己的 prompt 库、审稿标准、文献追踪流程和引用核验方法；更多研究者仍然在每一次任务里从零拼 prompt、补流程、猜步骤。
+它不是单纯的 prompt 合集，也不再只是一个独立 skill 仓库。当前项目由两层组成：
 
-PaperSkills 想降低这种隐性门槛。
+- Skill 分发层：把学术 skills 安装到 Claude Code、Codex、Cursor、OpenCode 等 agent 环境中。
+- 科研场景层：从用户当前科研处境出发，推荐 skill 组合、可复制 prompt、预期输出和后续动作。
 
-它不是再增加一批零散 prompt，而是把学术研究中那些高频、重复、结构化的任务，沉淀成 agent 可以直接调用的 research skills。
+一句话说：
 
-目标很简单：
+**PaperSkills 想把 AI Agent 的科研工作流变得可安装、可理解、可真正用于论文工作。**
 
-**少一点从零搭流程的消耗，多一点真正用于研究本身的时间。**
+## 从科研场景开始
 
-## PaperSkills 做什么
+PaperSkills 的入口不应该是“这里有一堆 skill，请自己猜怎么组合”，而应该是“你现在处在哪一步”：
 
-PaperSkills 为 Claude Code、Cursor、Codex 等 agent / coding assistant 提供一组可复用、可组合、可扩展的学术工作流技能，帮助研究者把 AI 真正接入论文研究与写作过程，而不只是把它当成一个聊天工具。
+| 当前场景 | 推荐工作流 |
+| --- | --- |
+| 我刚进入一个新领域，需要快速建立判断力 | `/lit-search` + `/citation-network` + `/research-gap` + `/paper-tracker` |
+| 我有兴趣方向，但还没有可投稿的问题 | `/topic-framing` + `/research-gap` + `/lit-search` |
+| 我要把文献和 PDF 整理成证据 | 文献综述 + PDF 精读 + `/cite-verify` + 可视化技能 |
+| 我已经有论文草稿，需要投稿前体检 | `/abstract` + `/peer-review` + `/cite-verify` + `/journal-match` |
+| 我要选择投稿期刊 | `/journal-match` + `/peer-review` + `/abstract` + `/cite-verify` |
+| 我要做期刊级图表或科研展示产物 | 科学可视化、图组叙事、web artifact 技能 |
+| 我想把课题组流程沉淀成自定义 agent | skill 创建、自定义、学习路径、自我审计技能 |
 
-你可以直接调用具体技能：
+结构化场景目录见 [`registry/scenarios.json`](./registry/scenarios.json)，skill packs 见 [`registry/packs.json`](./registry/packs.json)。
+
+## 当前核心技能
+
+PaperSkills core package 目前维护这些论文工作流技能：
+
+| Skill | 作用 |
+| --- | --- |
+| `/topic-framing` | 把宽泛兴趣收束成可研究、可投稿、可执行的论文题目 |
+| `/lit-search` | 跨公开学术 API 检索文献，并按主题、证据和相关性整理 |
+| `/research-gap` | 从文献和现有讨论中提炼真实研究缺口与贡献空间 |
+| `/citation-network` | 梳理关键论文、作者、主题和引用关系，建立领域地图 |
+| `/abstract` | 把研究问题、方法、发现和贡献压缩成清晰摘要 |
+| `/peer-review` | 模拟学术审稿，识别结构、证据、贡献和投稿风险 |
+| `/cite-verify` | 核验引用是否支撑原文论断，减少错引和过度引用 |
+| `/journal-match` | 根据论文主题、方法、贡献和风险匹配目标期刊 |
+| `/paper-tracker` | 持续追踪主题、作者、期刊和关键词，维护可复用论文监测清单 |
+
+同时，registry 可以引用外部精选 skills 或未来扩展 skills，用于更完整的场景包，例如文献综述、PDF 精读、科学可视化、图组叙事、计算基础设施和领域建模工作流。
+
+## 使用示例
+
+可以直接调用具体 skill：
 
 ```text
-/lit-search 大模型支持文献综述写作
-/peer-review draft.md
-/cite-verify my-manuscript.md
-/paper-tracker track new Nature papers in the last month
+/topic-framing 我想研究大模型辅助文献综述写作，请帮我收敛成可投稿的研究问题。
+/lit-search 检索 AI-assisted systematic literature review 方向近五年和高被引核心论文。
+/peer-review draft.md 请按期刊审稿标准评估这篇论文，并按优先级列出修改风险。
+/cite-verify draft.md 请核验文中引用是否真实支撑对应论点。
 ```
 
-每个 skill 都围绕一个明确的研究任务设计：它会说明任务边界、输入要求、执行步骤、报告结构，以及在需要检索或核验时应使用哪些公开数据源。
+也可以使用统一路由入口：
 
-具体来说，PaperSkills 当前覆盖：
-
-- 从模糊想法收敛出更具体的研究问题与论文标题
-- 检索和整理相关文献
-- 识别研究缺口
-- 生成更符合学术写作要求的摘要
-- 核验引用是否真实、准确、可追溯
-- 构建引用网络并生成可视化报告
-- 对草稿进行结构化同行评审
-- 匹配更合适的投稿期刊
-- 持续追踪相关方向的新论文
-
-换句话说，PaperSkills 提供的是一层“学术工作流能力层”，让 agent 在科研任务上更稳定、更可复用、更接近真实可交付的工作方式。
-
-## 适合谁使用
-
-PaperSkills 适合：
-
-- 本科生、硕士生、博士生
-- 青年教师与科研工作者
-- 需要频繁阅读、整理、撰写论文的研究人员
-- 希望把 Claude Code、Cursor、Codex 等 agent 真正接入学术工作流的人
-- 希望构建学术 AI 工作流、并愿意参与开源共建的开发者
-
-## 设计原则
-
-为了把这个项目做成一个长期可维护的开源项目，PaperSkills 当前遵循几条很明确的设计原则：
-
-- `Skill-first`：每个 skill 只解决一个清晰问题，降低理解和维护成本
-- `Agent-native`：优先适配 Claude Code、Cursor、Codex 这类原生 agent 使用方式
-- `Composable`：技能既可以单独使用，也可以串成完整工作流
-- `Open stack`：尽量基于公开可访问的数据源和透明流程构建
-- `Practical over fancy`：优先解决真实研究流程中的高频问题，而不是堆叠概念
-- `Readable by humans`：既方便 agent 调用，也方便研究者和贡献者直接阅读、修改、扩展
-
-## 当前支持的生态
-
-PaperSkills 目前面向以下 agent 生态提供接入方式：
-
-- Claude Code：支持原生 skills 安装
-- Codex：支持原生 skills 安装
-- Cursor：通过项目规则与 prompt library 方式接入
-
-这意味着 PaperSkills 的目标不是绑定单一平台，而是尽可能成为一套跨 agent 的学术技能标准化仓库。
+```text
+/paperskills 我刚进入 AI 搜索广告这个领域，请帮我选择合适的研究工作流。
+```
 
 ## 安装
 
 ### Claude Code
 
-#### 全局安装（所有项目可用）
+全局安装：
 
 ```bash
 git clone https://github.com/cocoafun/paperskills.git ~/.claude/skills/paperskills
 cd ~/.claude/skills/paperskills && ./setup
 ```
 
-#### 单项目安装
+单项目安装：
 
 ```bash
 mkdir -p .claude/skills
@@ -103,133 +91,86 @@ ln -s /path/to/paperskills .claude/skills/paperskills
 cd .claude/skills/paperskills && ./setup
 ```
 
-`./setup` 会创建诸如 `.claude/skills/peer-review` 之类的同级链接，便于各个子技能被 agent 原生发现。更新 PaperSkills 后，建议重新执行一次 `./setup`。
-
-### Cursor
-
-Cursor 当前不会原生自动发现 `SKILL.md`。较实用的接入方式，是把 PaperSkills 作为项目内 prompt library 使用，并通过 Cursor Rules 指向安装说明。
-
-可直接告诉 Cursor：
-
-```text
-Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/paperskills/refs/heads/main/.cursor/INSTALL.md
-```
-
-或者手动参考仓库中的 [`.cursor/INSTALL.md`](.cursor/INSTALL.md)。
+`./setup` 会创建诸如 `.claude/skills/peer-review` 和 `.claude/skills/shared` 的同级链接，便于 agent 原生发现各个子技能。更新 PaperSkills 后建议重新执行一次 `./setup`。
 
 ### Codex
 
-可直接告诉 Codex：
+可以直接告诉 Codex：
 
 ```text
 Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/paperskills/refs/heads/main/.codex/INSTALL.md
 ```
 
-或者手动安装：
+也可以手动安装：
 
 ```bash
 git clone https://github.com/cocoafun/paperskills.git ~/.agents/skills/paperskills
 cd ~/.agents/skills/paperskills && ./setup
 ```
 
-`./setup` 同样会链接各个子技能目录，便于 Codex 原生发现与调用。
+### Cursor
 
-## 可用技能
+Cursor 当前不会原生自动发现 `SKILL.md`。更实用的方式是把 PaperSkills 作为项目内 prompt library，并通过 Cursor Rules 指向安装说明。
 
-| Skill               | 说明                                               | Token Budget |
-| ------------------- | ------------------------------------------------ | ------------ |
-| `/topic-framing`    | 将模糊想法收敛为更具体的研究问题与论文标题                            | 15–25K       |
-| `/lit-search`       | 跨 Semantic Scholar、OpenAlex、PubMed、arXiv 等进行文献检索 | 15–25K       |
-| `/abstract`         | 生成多种格式的摘要（IMRaD、thematic、extended、short）         | 10–20K       |
-| `/cite-verify`      | 基于 CrossRef / Semantic Scholar / OpenAlex 核验引文   | 25–65K       |
-| `/citation-network` | 构建引用网络，并生成交互式 HTML 报告                            | 35–55K       |
-| `/research-gap`     | 从时间、方法、主题、应用等维度分析研究缺口                            | 55–85K       |
-| `/peer-review`      | 对论文草稿进行结构化同行评审，并支持评分与图表展示                        | 35–60K       |
-| `/paper-tracker`    | 在指定时间窗口内追踪作者、期刊、会议、关键词、机构的新论文                    | 15–30K       |
-| `/journal-match`    | 为论文推荐更合适的目标投稿期刊                                  | 25–35K       |
-
-## 使用方式
-
-安装后，你可以直接调用具体技能：
+可以直接告诉 Cursor：
 
 ```text
-/cite-verify my-manuscript.md
-/peer-review draft.md
-/lit-search 大模型支持文献综述写作
-/paper-tracker track new Nature papers in the last month
+Fetch and follow instructions from https://raw.githubusercontent.com/cocoafun/paperskills/refs/heads/main/.cursor/INSTALL.md
 ```
 
-也可以通过路由入口统一分发：
+或参考 [`.cursor/INSTALL.md`](./.cursor/INSTALL.md)。
 
-```text
-/paperskills 帮我检索关于大模型支持文献综述写作的文献
-```
+### OpenCode 和其他 Agent
 
-## 推荐工作流
+PaperSkills 使用 registry 保存 skill metadata，便于安装器和后续集成生成不同 agent 平台的安装命令。支持平台和 sparse-checkout 路径见 [`registry/skills.json`](./registry/skills.json)。
 
-这些技能可以串联使用，形成一条更完整的学术工作流：
+## 项目结构
 
-1. `/topic-framing` → 从模糊想法收敛出研究问题
-2. `/lit-search` → 检索相关文献
-3. `/research-gap` → 识别研究缺口
-4. `/abstract` → 起草或重塑论文摘要
-5. `/peer-review` → 对草稿进行结构化评审
-6. `/cite-verify` → 在投稿前核验全部引用
-7. `/journal-match` → 匹配更合适的投稿期刊
-8. `/paper-tracker` → 持续追踪相关方向的新论文
+- [`SKILL.md`](./SKILL.md)：PaperSkills 路由入口
+- [`skills/`](./skills)：核心学术工作流 skills
+- [`registry/`](./registry)：skill、scenario、pack 元数据
+- [`docs/`](./docs)：中英文文档页面
+- [`assets/`](./assets)：共享报告模板与资源
+- [`setup`](./setup)：安装后的链接初始化脚本
+
+## 设计原则
+
+- `Scenario-first`：用户应从自己的科研处境开始，而不是先解码一堆 skill 名称。
+- `Skill-native`：每个工作流都应能在真实 AI agent 环境里安装和调用。
+- `Composable`：skill 可以单独使用，也可以组合成完整论文生命周期。
+- `Traceable`：文献检索、引用核验和投稿匹配优先基于公开、可检查的数据源。
+- `Practical`：优先解决真实科研流程里的高频问题，而不是只做演示。
+- `Extensible`：registry 应能同时承载 core skills、外部 skills 和未来 skill packs。
 
 ## 语言支持
 
-报告生成类技能支持中英文输出，包括：
-
-- `cite-verify`
-- `citation-network`
-- `journal-match`
-- `research-gap`
-- `peer-review`
-- `paper-tracker`
-
-系统会根据论文内容自动判断输出语言，也可以显式指定，例如：
+报告生成类 skills 支持中英文输出。系统会根据稿件内容自动判断，也可以显式指定：
 
 ```text
 用中文生成报告
 ```
 
-## 项目结构
+## 路线图
 
-当前仓库大致由以下部分组成：
+当前 MVP 重点是：
 
-- `SKILL.md`：项目级路由入口
-- `skills/`：各个独立学术技能
-- `assets/`：项目资源文件
-- `artifacts/`：产物与示例输出目录
-- `.codex/`：Codex 集成说明
-- `.cursor/`：Cursor 集成说明
-- `setup`：安装后自动注册链接
+- 为常见科研阶段建立场景页
+- 建立 skills、packs、推荐 workflow 的 registry
+- 支持跨 agent 平台生成安装命令
+- 为每个场景提供可复制 prompt 和预期输出
+- 维护一组可在本地 agent 环境中运行的核心论文 skills
 
-这种结构的目标很直接：让仓库既能作为“使用中的技能库”，也能作为“可持续扩展的开源代码库”。
+后续会继续扩展外部 skill packs、用户 preset、paper-tracker watchlist、面向 agent 的结构化索引，以及更多领域化科研工作流。
 
-## 开源协作方向
+## 参考项目与感谢
 
-如果你也希望把这个项目做成一个真正可扩展的大型开源项目，PaperSkills 欢迎以下方向的贡献：
+PaperSkills 受到以下开源项目的启发，也对它们表示感谢：
 
-- 新的学术技能：例如综述生成、方法比较、审稿回复、实验设计辅助等
-- 新的数据源接入：例如更多公开论文数据库、期刊目录、机构库
-- 更稳定的报告模板与评估标准
-- 更好的路由逻辑、任务分解方式与跨 skill 协同
-- 更多 agent 平台的适配与安装方式
-- 中英文文档、案例、教程与 benchmark
+- [HughYau/AcademicForge](https://github.com/HughYau/AcademicForge)：PaperSkills 在 skill registry、安装命令生成、跨 agent 分发和 skill 选配体验上重点参考了这个项目。
+- [Leey21/awesome-ai-research-writing](https://github.com/Leey21/awesome-ai-research-writing)：提供了 AI 学术研究与写作工具生态的重要整理。
+- [hkcanan/katmer-code](https://github.com/hkcanan/katmer-code)：在 agent 工作流组织和研究型 coding-agent 实践上提供了启发。
 
-如果你在实际研究中反复遇到某个任务，而它又适合被结构化、复用、自动化，这类问题就很适合被沉淀成新的 PaperSkills skill。
-
-## 灵感来源
-
-PaperSkills 的部分灵感和素材来源于以下开源项目，特别感谢：
-
-- [Leey21/awesome-ai-research-writing](https://github.com/Leey21/awesome-ai-research-writing)
-- [hkcanan/katmer-code](https://github.com/hkcanan/katmer-code)
-
-它们在 AI 学术写作、研究技能整理与 agent 工作流方面提供了重要启发。
+PaperSkills 会借鉴这些项目的基础能力，但产品方向有所不同：分发能力是基础设施，围绕论文生命周期组织的场景化科研工作流才是核心体验。
 
 ## License
 
