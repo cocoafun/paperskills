@@ -1,0 +1,309 @@
+{
+  "version": "0.1.0",
+  "skills": [
+    {
+      "id": "topic-framing",
+      "name": "Topic Framing",
+      "summary": {
+        "zh": "把宽泛兴趣收束成可研究、可投稿、可执行的论文题目。",
+        "en": "Turn a broad interest into a researchable, publishable, executable paper topic."
+      },
+      "source": "paperskills-core",
+      "stage": [
+        "topic",
+        "field-entry"
+      ],
+      "scenarios": [
+        "field-entry",
+        "topic-to-question"
+      ],
+      "tags": [
+        "topic",
+        "question",
+        "positioning"
+      ],
+      "toolSupport": [
+        "claude",
+        "codex",
+        "cursor",
+        "opencode"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/cocoafun/paperskills.git",
+        "sparsePath": "skills/topic-framing"
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "research-gap",
+      "name": "Research Gap",
+      "summary": {
+        "zh": "从文献和现有讨论中提炼真实研究缺口与贡献空间。",
+        "en": "Extract credible research gaps and contribution space from the literature."
+      },
+      "source": "paperskills-core",
+      "stage": [
+        "topic",
+        "literature"
+      ],
+      "scenarios": [
+        "field-entry",
+        "topic-to-question",
+        "evidence-synthesis"
+      ],
+      "tags": [
+        "gap",
+        "contribution",
+        "literature"
+      ],
+      "toolSupport": [
+        "claude",
+        "codex",
+        "cursor",
+        "opencode"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/cocoafun/paperskills.git",
+        "sparsePath": "skills/research-gap"
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "lit-search",
+      "name": "Literature Search",
+      "summary": {
+        "zh": "跨公开学术 API 检索文献，并按主题、证据和相关性整理。",
+        "en": "Search scholarly literature across public academic APIs and organize the results."
+      },
+      "source": "paperskills-core",
+      "stage": [
+        "literature",
+        "field-entry"
+      ],
+      "scenarios": [
+        "field-entry",
+        "evidence-synthesis"
+      ],
+      "tags": [
+        "literature",
+        "search",
+        "openalex",
+        "semantic-scholar"
+      ],
+      "toolSupport": [
+        "claude",
+        "codex",
+        "cursor",
+        "opencode"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/cocoafun/paperskills.git",
+        "sparsePath": "skills/lit-search"
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "citation-network",
+      "name": "Citation Network",
+      "summary": {
+        "zh": "梳理关键论文、作者、主题和引用关系，建立领域地图。",
+        "en": "Map key papers, authors, themes, and citation relationships in a field."
+      },
+      "source": "paperskills-core",
+      "stage": [
+        "literature"
+      ],
+      "scenarios": [
+        "field-entry",
+        "evidence-synthesis"
+      ],
+      "tags": [
+        "citation",
+        "network",
+        "mapping"
+      ],
+      "toolSupport": [
+        "claude",
+        "codex",
+        "cursor",
+        "opencode"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/cocoafun/paperskills.git",
+        "sparsePath": "skills/citation-network"
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "abstract",
+      "name": "Abstract",
+      "summary": {
+        "zh": "把研究问题、方法、发现和贡献压缩成清晰摘要。",
+        "en": "Compress the question, method, findings, and contribution into a clear abstract."
+      },
+      "source": "paperskills-core",
+      "stage": [
+        "writing"
+      ],
+      "scenarios": [
+        "manuscript-polish",
+        "submission-fit"
+      ],
+      "tags": [
+        "abstract",
+        "writing",
+        "positioning"
+      ],
+      "toolSupport": [
+        "claude",
+        "codex",
+        "cursor",
+        "opencode"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/cocoafun/paperskills.git",
+        "sparsePath": "skills/abstract"
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "peer-review",
+      "name": "Peer Review",
+      "summary": {
+        "zh": "模拟学术审稿，识别结构、证据、贡献和投稿风险。",
+        "en": "Simulate academic peer review to identify structure, evidence, contribution, and submission risks."
+      },
+      "source": "paperskills-core",
+      "stage": [
+        "writing",
+        "submission"
+      ],
+      "scenarios": [
+        "manuscript-polish",
+        "submission-fit"
+      ],
+      "tags": [
+        "review",
+        "manuscript",
+        "risk"
+      ],
+      "toolSupport": [
+        "claude",
+        "codex",
+        "cursor",
+        "opencode"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/cocoafun/paperskills.git",
+        "sparsePath": "skills/peer-review"
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "cite-verify",
+      "name": "Citation Verify",
+      "summary": {
+        "zh": "核验引用是否支撑原文论断，减少错引和过度引用。",
+        "en": "Verify whether cited sources support manuscript claims and reduce citation risk."
+      },
+      "source": "paperskills-core",
+      "stage": [
+        "writing",
+        "submission"
+      ],
+      "scenarios": [
+        "manuscript-polish",
+        "submission-fit"
+      ],
+      "tags": [
+        "citation",
+        "verification",
+        "claims"
+      ],
+      "toolSupport": [
+        "claude",
+        "codex",
+        "cursor",
+        "opencode"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/cocoafun/paperskills.git",
+        "sparsePath": "skills/cite-verify"
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "journal-match",
+      "name": "Journal Match",
+      "summary": {
+        "zh": "根据论文主题、方法、贡献和风险匹配目标期刊。",
+        "en": "Match a manuscript to target journals by topic, method, contribution, and risk."
+      },
+      "source": "paperskills-core",
+      "stage": [
+        "submission"
+      ],
+      "scenarios": [
+        "submission-fit"
+      ],
+      "tags": [
+        "journal",
+        "submission",
+        "fit"
+      ],
+      "toolSupport": [
+        "claude",
+        "codex",
+        "cursor",
+        "opencode"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/cocoafun/paperskills.git",
+        "sparsePath": "skills/journal-match"
+      },
+      "license": "MIT"
+    },
+    {
+      "id": "paper-tracker",
+      "name": "Paper Tracker",
+      "summary": {
+        "zh": "持续追踪主题、作者、期刊和关键词，维护可复用的论文监测清单。",
+        "en": "Track topics, authors, journals, and keywords as a reusable paper monitoring list."
+      },
+      "source": "paperskills-core",
+      "stage": [
+        "literature",
+        "tracking"
+      ],
+      "scenarios": [
+        "field-entry",
+        "evidence-synthesis"
+      ],
+      "tags": [
+        "tracking",
+        "alerts",
+        "literature"
+      ],
+      "toolSupport": [
+        "claude",
+        "codex",
+        "cursor",
+        "opencode"
+      ],
+      "install": {
+        "method": "sparse-checkout",
+        "url": "https://github.com/cocoafun/paperskills.git",
+        "sparsePath": "skills/paper-tracker"
+      },
+      "license": "MIT"
+    }
+  ]
+}

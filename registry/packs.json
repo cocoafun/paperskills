@@ -1,0 +1,134 @@
+{
+  "version": "0.1.0",
+  "packs": [
+    {
+      "id": "field-entry-pack",
+      "name": {
+        "zh": "领域入门包",
+        "en": "Field entry pack"
+      },
+      "description": {
+        "zh": "从陌生领域快速建立关键词、核心文献、引用网络、研究缺口和追踪清单。",
+        "en": "Build keywords, core papers, citation maps, research gaps, and tracking lists for an unfamiliar field."
+      },
+      "scenarioSlug": "field-entry",
+      "skillIds": [
+        "lit-search",
+        "citation-network",
+        "research-gap",
+        "paper-tracker"
+      ]
+    },
+    {
+      "id": "evidence-synthesis-pack",
+      "name": {
+        "zh": "证据合成包",
+        "en": "Evidence synthesis pack"
+      },
+      "description": {
+        "zh": "把论文列表和 PDF 转成证据矩阵、方法比较、引用核验和综述图表。",
+        "en": "Turn paper lists and PDFs into evidence matrices, method comparisons, citation checks, and review figures."
+      },
+      "scenarioSlug": "evidence-synthesis",
+      "skillIds": [
+        "literature-review",
+        "pdf-explore",
+        "cite-verify",
+        "scientific-visualization"
+      ]
+    },
+    {
+      "id": "draft-review-pack",
+      "name": {
+        "zh": "草稿体检包",
+        "en": "Draft review pack"
+      },
+      "description": {
+        "zh": "投稿前检查摘要、图组叙事、审稿风险和引用支撑。",
+        "en": "Check abstract clarity, figure narrative, review risk, and citation support before submission."
+      },
+      "scenarioSlug": "manuscript-polish",
+      "skillIds": [
+        "abstract",
+        "paper-narrative",
+        "peer-review",
+        "cite-verify"
+      ]
+    },
+    {
+      "id": "publication-figures-pack",
+      "name": {
+        "zh": "期刊图表包",
+        "en": "Publication figures pack"
+      },
+      "description": {
+        "zh": "生成期刊级单图、多面板图、视觉质检和论文图组叙事。",
+        "en": "Create journal-grade single plots, multi-panel figures, visual QA, and figure-story structure."
+      },
+      "scenarioSlug": "publication-figures",
+      "skillIds": [
+        "scientific-visualization",
+        "figure-style",
+        "figure-composer",
+        "paper-narrative"
+      ]
+    },
+    {
+      "id": "bio-modeling-pack",
+      "name": {
+        "zh": "生命科学建模包",
+        "en": "Life-science modeling pack"
+      },
+      "description": {
+        "zh": "覆盖蛋白结构预测、序列设计、单细胞分析、基因组模型和远程计算。",
+        "en": "Cover protein structure prediction, sequence design, single-cell analysis, genomic models, and remote compute."
+      },
+      "scenarioSlug": "protein-structure-design",
+      "skillIds": [
+        "alphafold2",
+        "boltz",
+        "proteinmpnn",
+        "scvi-tools",
+        "evo2",
+        "remote-compute-ssh"
+      ]
+    },
+    {
+      "id": "compute-infra-pack",
+      "name": {
+        "zh": "计算基础设施包",
+        "en": "Compute infrastructure pack"
+      },
+      "description": {
+        "zh": "把远程主机、云 GPU、模型端点和推理调用整理成可复用科研执行环境。",
+        "en": "Turn remote hosts, cloud GPUs, model endpoints, and inference calls into reusable research execution environments."
+      },
+      "scenarioSlug": "compute-and-model-infra",
+      "skillIds": [
+        "compute-env-setup",
+        "remote-compute-ssh",
+        "remote-compute-modal",
+        "managed-model-endpoints",
+        "using-model-endpoint"
+      ]
+    },
+    {
+      "id": "custom-agent-pack",
+      "name": {
+        "zh": "课题组 Agent 包",
+        "en": "Lab agent pack"
+      },
+      "description": {
+        "zh": "把重复科研流程沉淀为自定义技能、agent profile、评测样例和复盘机制。",
+        "en": "Turn repeated lab workflows into custom skills, agent profiles, eval cases, and audit loops."
+      },
+      "scenarioSlug": "custom-research-agent",
+      "skillIds": [
+        "skill-creator",
+        "customize",
+        "self-awareness",
+        "learn"
+      ]
+    }
+  ]
+}
