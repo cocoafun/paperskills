@@ -7,6 +7,10 @@ INSTALLER="$REPO_ROOT/scripts/paperskills-install.sh"
 TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/paperskills-installer-test.XXXXXX")"
 
 cleanup() {
+  if [[ "${KEEP_TEST_TMP:-0}" == "1" ]]; then
+    echo "Preserved test directory: $TMP_DIR" >&2
+    return
+  fi
   rm -rf "$TMP_DIR"
 }
 trap cleanup EXIT
@@ -197,5 +201,67 @@ PATH="$BIN_DIR:$PATH" bash "$INSTALLER" \
   --skills sparse-alpha \
   --registry "$REGISTRY" > "$TMP_DIR/python-fallback.out"
 assert_file "$TMP_DIR/python-fallback-skills/sparse-alpha/SKILL.md"
+
+echo "Test: Git mirror fallback after origin failure"
+MIRROR_BIN="$TMP_DIR/mirror-bin"
+MIRROR_STATE="$TMP_DIR/mirror-attempts"
+MIRROR_LOG="$TMP_DIR/mirror-urls.log"
+MIRROR_REGISTRY="$TMP_DIR/mirror-registry.json"
+REAL_GIT="$(command -v git)"
+mkdir -p "$MIRROR_BIN"
+cat > "$MIRROR_BIN/git" <<EOF
+#!/usr/bin/env bash
+set -euo pipefail
+args=("\$@")
+is_clone=0
+for arg in "\${args[@]}"; do
+  [[ "\$arg" != "clone" ]] || is_clone=1
+done
+if [[ "\$is_clone" == "1" ]]; then
+  count=0
+  [[ ! -f "$MIRROR_STATE" ]] || count="\$(cat "$MIRROR_STATE")"
+  count=\$((count + 1))
+  printf '%s' "\$count" > "$MIRROR_STATE"
+  for i in "\${!args[@]}"; do
+    case "\${args[\$i]}" in
+      https://*)
+        printf '%s\n' "\${args[\$i]}" >> "$MIRROR_LOG"
+        if (( count <= 2 )); then
+          exit 1
+        fi
+        [[ "\${args[\$i]}" == "https://mirror.example/https://github.com/example/pinned-skill.git" ]] || exit 91
+        args[\$i]="$SINGLE_REPO"
+        ;;
+    esac
+  done
+fi
+exec "$REAL_GIT" "\${args[@]}"
+EOF
+chmod +x "$MIRROR_BIN/git"
+cat > "$MIRROR_REGISTRY" <<'EOF'
+{
+  "skills": [
+    {
+      "id": "mirror-skill",
+      "install": {
+        "method": "git-clone",
+        "url": "https://github.com/example/pinned-skill.git"
+      }
+    }
+  ],
+  "packs": []
+}
+EOF
+PATH="$MIRROR_BIN:$PATH" \
+PAPERSKILLS_GIT_CLONE_ATTEMPTS=3 \
+PAPERSKILLS_GIT_MIRRORS="https://mirror.example" \
+bash "$INSTALLER" \
+  --path "$TMP_DIR/mirror-skills" \
+  --skills mirror-skill \
+  --registry "$MIRROR_REGISTRY" > "$TMP_DIR/mirror.out"
+assert_file "$TMP_DIR/mirror-skills/mirror-skill/SKILL.md"
+assert_contains "$MIRROR_LOG" "https://github.com/example/pinned-skill.git"
+assert_contains "$MIRROR_LOG" "https://mirror.example/https://github.com/example/pinned-skill.git"
+assert_contains "$TMP_DIR/mirror.out" "via mirror, Git default (attempt 3/3)"
 
 echo "All PaperSkills installer tests passed."

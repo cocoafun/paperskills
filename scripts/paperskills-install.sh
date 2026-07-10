@@ -7,6 +7,7 @@ SCOPE="project"
 INSTALL_PATH=""
 REGISTRY="${PAPERSKILLS_REGISTRY_URL:-https://paperskills.com/api/registry}"
 FORCE="0"
+GIT_MIRRORS="${PAPERSKILLS_GIT_MIRRORS:-}"
 
 if [[ -t 1 && -z "${NO_COLOR:-}" ]]; then
   BLUE=$'\033[0;34m'
@@ -42,6 +43,7 @@ Options:
   --path <directory>     Custom install directory; overrides --scope
   --registry <source>    Registry JSON URL or local path
                          Default: https://paperskills.com/api/registry
+  --git-mirrors <urls>   Comma-separated trusted Git proxy prefixes
   --force                Replace existing installed skill directories
   -h, --help             Show this help
 
@@ -54,6 +56,11 @@ Default paths:
 Environment:
   PAPERSKILLS_REGISTRY_URL        Override the default registry URL
   PAPERSKILLS_GIT_CLONE_ATTEMPTS  Git clone attempts (default: 3)
+  PAPERSKILLS_GIT_MIRRORS         Comma-separated Git proxy prefixes. Each prefix
+                                  is prepended to the original HTTPS Git URL.
+  PAPERSKILLS_GIT_LOW_SPEED_TIME  Abort a stalled Git transfer after N seconds
+                                  below 1 byte/sec (default: 20)
+  PAPERSKILLS_CURL_MAX_TIME       Registry download timeout in seconds (default: 30)
   NO_COLOR                        Disable colored output
 USAGE
 }
@@ -102,6 +109,11 @@ while [[ $# -gt 0 ]]; do
     --registry)
       require_value "$1" "$#" "${2:-}"
       REGISTRY="$2"
+      shift 2
+      ;;
+    --git-mirrors)
+      require_value "$1" "$#" "${2:-}"
+      GIT_MIRRORS="$2"
       shift 2
       ;;
     --force)
@@ -176,7 +188,17 @@ REGISTRY_FILE="$TMP_DIR/registry.json"
 printf '%sLoading registry...%s\n' "$BLUE" "$RESET"
 case "$REGISTRY" in
   http://*|https://*)
-    if ! curl -fsSL "$REGISTRY" -o "$REGISTRY_FILE"; then
+    CURL_MAX_TIME="${PAPERSKILLS_CURL_MAX_TIME:-30}"
+    case "$CURL_MAX_TIME" in
+      ''|*[!0-9]*) CURL_MAX_TIME=30 ;;
+    esac
+    (( CURL_MAX_TIME >= 1 )) || CURL_MAX_TIME=30
+    CURL_RETRY_ARGS=(--retry 2)
+    if curl --help all 2>/dev/null | grep -q -- '--retry-all-errors'; then
+      CURL_RETRY_ARGS+=(--retry-all-errors)
+    fi
+    if ! curl -fsSL "${CURL_RETRY_ARGS[@]}" --connect-timeout 8 \
+      --max-time "$CURL_MAX_TIME" "$REGISTRY" -o "$REGISTRY_FILE"; then
       die "Failed to download registry from $REGISTRY."
     fi
     ;;
@@ -331,17 +353,59 @@ clone_with_retry() {
   shift 4
 
   local attempts="${PAPERSKILLS_GIT_CLONE_ATTEMPTS:-3}"
+  local low_speed_time="${PAPERSKILLS_GIT_LOW_SPEED_TIME:-20}"
+  local mirror_prefixes="$GIT_MIRRORS"
   local delays=(2 5 10)
-  local attempt delay_index delay
+  local attempt delay_index delay original_url candidate_url source_label protocol_label candidate_index
+  local -a clone_args candidates
 
   case "$attempts" in
     ''|*[!0-9]*) attempts=3 ;;
   esac
   (( attempts >= 1 )) || attempts=1
 
+  case "$low_speed_time" in
+    ''|*[!0-9]*) low_speed_time=20 ;;
+  esac
+  (( low_speed_time >= 1 )) || low_speed_time=20
+
+  clone_args=("$@")
+  original_url="${clone_args[${#clone_args[@]} - 1]}"
+  candidates=("$original_url")
+  if [[ -n "$mirror_prefixes" && "$original_url" == https://* ]]; then
+    while IFS= read -r mirror_prefix; do
+      mirror_prefix="${mirror_prefix#${mirror_prefix%%[![:space:]]*}}"
+      mirror_prefix="${mirror_prefix%${mirror_prefix##*[![:space:]]}}"
+      [[ -n "$mirror_prefix" ]] || continue
+      case "$mirror_prefix" in
+        http://*|https://*) candidates+=("${mirror_prefix%/}/$original_url") ;;
+        *) printf '%s  Ignoring invalid Git mirror prefix: %s%s\n' \
+          "$YELLOW" "$mirror_prefix" "$RESET" >&2 ;;
+      esac
+    done < <(printf '%s\n' "$mirror_prefixes" | tr ',' '\n')
+  fi
+
   for ((attempt = 1; attempt <= attempts; attempt++)); do
     rm -rf "$workdir"
-    if git -c http.version=HTTP/1.1 clone "$@" "$workdir" >/dev/null 2>&1 &&
+    candidate_index=$((((attempt - 1) / 2) % ${#candidates[@]}))
+    candidate_url="${candidates[$candidate_index]}"
+    clone_args[${#clone_args[@]} - 1]="$candidate_url"
+    source_label="origin"
+    [[ "$candidate_url" == "$original_url" ]] || source_label="mirror"
+    protocol_label="Git default"
+    if (( attempt % 2 == 0 )); then
+      protocol_label="HTTP/1.1 fallback"
+    fi
+    printf '%s  Fetching %s via %s, %s (attempt %s/%s)...%s\n' \
+      "$BLUE" "$skill_id" "$source_label" "$protocol_label" "$attempt" "$attempts" "$RESET"
+    if { if (( attempt % 2 == 0 )); then
+        git -c http.version=HTTP/1.1 -c http.lowSpeedLimit=1 \
+          -c "http.lowSpeedTime=$low_speed_time" \
+          clone "${clone_args[@]}" "$workdir" >/dev/null 2>&1
+      else
+        git -c http.lowSpeedLimit=1 -c "http.lowSpeedTime=$low_speed_time" \
+          clone "${clone_args[@]}" "$workdir" >/dev/null 2>&1
+      fi; } &&
       checkout_ref "$workdir" "$ref" &&
       { [[ -z "$sparse_path" ]] || git -C "$workdir" sparse-checkout set "$sparse_path" >/dev/null 2>&1; }; then
       return 0
@@ -349,6 +413,10 @@ clone_with_retry() {
 
     if (( attempt >= attempts )); then
       error "Git checkout failed for $skill_id after $attempts attempt(s)."
+      if [[ -z "$mirror_prefixes" ]]; then
+        printf '%s  Tip: pass --git-mirrors with one or more trusted Git proxy prefixes.%s\n' \
+          "$YELLOW" "$RESET" >&2
+      fi
       return 1
     fi
 
