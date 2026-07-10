@@ -2,1993 +2,1705 @@
   "version": "0.1.0",
   "scenarios": [
     {
-      "slug": "field-entry",
+      "slug": "literature-to-evidence",
       "title": {
-        "zh": "我刚进入一个新领域，需要快速建立判断力",
-        "en": "I am entering a new field and need a first map"
+        "zh": "我要把一个方向的文献变成可靠证据，而不是只攒 PDF",
+        "en": "I need to turn literature into evidence, not just collect PDFs"
       },
       "shortTitle": {
-        "zh": "领域入门",
-        "en": "Field entry"
+        "zh": "文献与证据",
+        "en": "Literature to evidence"
       },
       "description": {
-        "zh": "从宽泛主题出发，建立关键词、代表论文、核心作者、引用网络和后续追踪清单。",
-        "en": "Start from a broad topic and build keywords, representative papers, core authors, citation maps, and tracking lists."
+        "zh": "从检索、全文精读、引用核验到证据表，把论文、预印本和 PDF 变成可写、可复查的研究判断。",
+        "en": "Move from search, full-text reading, and citation checks to evidence tables that support research judgment."
       },
-      "stage": "field-entry",
+      "stage": "literature-evidence",
       "targetUsers": [
         {
-          "zh": "研究生",
-          "en": "Graduate students"
+          "zh": "刚进入新领域的研究者",
+          "en": "Researchers entering a field"
         },
         {
-          "zh": "跨学科研究者",
-          "en": "Interdisciplinary researchers"
+          "zh": "做综述或开题的人",
+          "en": "Review and proposal writers"
         },
         {
-          "zh": "新课题负责人",
-          "en": "New project leads"
+          "zh": "需要核验引用的作者",
+          "en": "Authors checking citations"
         },
         {
-          "zh": "刚加入项目的 RA",
-          "en": "New research assistants"
+          "zh": "课题组 RA",
+          "en": "Research assistants"
         }
       ],
       "inputMaterials": [
         {
-          "zh": "一个宽泛主题",
-          "en": "A broad topic"
+          "zh": "主题、关键词或 DOI",
+          "en": "Topics, keywords, or DOIs"
         },
         {
-          "zh": "若干种子论文",
-          "en": "Several seed papers"
+          "zh": "种子论文或 PDF 文件夹",
+          "en": "Seed papers or a PDF folder"
         },
         {
-          "zh": "导师或项目给出的关键词",
-          "en": "Keywords from an advisor or project"
+          "zh": "目标数据库或期刊范围",
+          "en": "Target databases or venues"
         },
         {
-          "zh": "想了解的时间范围",
-          "en": "The time range you want to understand"
+          "zh": "希望回答的证据问题",
+          "en": "Evidence questions to answer"
         }
       ],
       "skillIds": [
-        "lit-search",
-        "citation-network",
-        "research-gap",
-        "literature-review",
-        "paper-tracker"
+        "sa.paper-lookup",
+        "cs.literature-review",
+        "ns.nature-reader",
+        "sa.citation-management",
+        "cite-verify"
       ],
       "workflow": [
         {
           "step": {
-            "zh": "建立第一批可靠文献池",
-            "en": "Build the first reliable paper pool"
+            "zh": "检索并去重第一批论文",
+            "en": "Search and deduplicate the first paper pool"
           },
-          "skillId": "lit-search",
+          "skillId": "sa.paper-lookup",
           "prompt": {
-            "zh": "/lit-search 围绕“我的研究主题”检索近五年和高被引核心论文，按理论、方法、应用场景分组，并标注开放获取链接。",
-            "en": "/lit-search Search recent and highly cited core papers around my topic, group them by theory, method, and application, and mark open-access links."
+            "zh": "用 paper-lookup 围绕这个研究问题检索 PubMed、arXiv、OpenAlex、Semantic Scholar 和 Crossref，去重后按证据类型、年份和开放获取状态分组。",
+            "en": "Use paper-lookup to search PubMed, arXiv, OpenAlex, Semantic Scholar, and Crossref for this question. Deduplicate and group by evidence type, year, and open-access status."
           },
           "expectedOutput": [
             {
-              "zh": "关键词与检索式",
-              "en": "Keywords and search strings"
+              "zh": "检索式",
+              "en": "Search strings"
             },
             {
-              "zh": "核心论文清单",
-              "en": "Core paper list"
+              "zh": "去重论文池",
+              "en": "Deduplicated paper pool"
             },
             {
-              "zh": "主题簇",
-              "en": "Topic clusters"
+              "zh": "开放获取链接",
+              "en": "Open-access links"
             }
           ]
         },
         {
           "step": {
-            "zh": "画出领域骨架",
-            "en": "Map the field structure"
+            "zh": "把全文读成证据表",
+            "en": "Read full text into an evidence table"
           },
-          "skillId": "citation-network",
+          "skillId": "ns.nature-reader",
           "prompt": {
-            "zh": "/citation-network 使用这些种子论文识别经典论文、核心作者、机构群和新兴分支，输出一张可解释的领域地图。",
-            "en": "/citation-network Use these seed papers to identify classics, core authors, institutions, and emerging branches, then output an interpretable field map."
+            "zh": "用 nature-reader 精读这些 PDF/DOI，保留图表位置、关键实验、样本量、方法限制和可引用原文锚点，输出中英双语证据表。",
+            "en": "Use nature-reader to read these PDFs/DOIs with figure/table placement, key experiments, sample sizes, limitations, and source anchors. Output a bilingual evidence table."
           },
           "expectedOutput": [
             {
-              "zh": "引用网络",
-              "en": "Citation network"
+              "zh": "证据表",
+              "en": "Evidence table"
             },
             {
-              "zh": "关键节点",
-              "en": "Key nodes"
+              "zh": "图表锚点",
+              "en": "Figure/table anchors"
             },
             {
-              "zh": "新兴分支",
-              "en": "Emerging branches"
+              "zh": "方法限制",
+              "en": "Method limitations"
             }
           ]
         },
         {
           "step": {
-            "zh": "设置后续追踪",
-            "en": "Set up ongoing tracking"
+            "zh": "综合成可写判断",
+            "en": "Synthesize into writable claims"
           },
-          "skillId": "paper-tracker",
+          "skillId": "cs.literature-review",
           "prompt": {
-            "zh": "/paper-tracker 追踪这个领域未来 30 天的新论文，范围包括这些关键词、作者、机构和目标期刊，输出 Markdown 周报模板。",
-            "en": "/paper-tracker Track new papers in this field for the next 30 days across these keywords, authors, institutions, and venues, and output a Markdown digest template."
+            "zh": "用 literature-review 把证据表综合成 5-8 条可写论断，标注支持强度、反例、争议点和需要补检索的空白。",
+            "en": "Use literature-review to synthesize the evidence table into 5-8 writable claims with strength, counterexamples, debates, and remaining search gaps."
           },
           "expectedOutput": [
             {
-              "zh": "追踪实体",
-              "en": "Tracked entities"
+              "zh": "核心论断",
+              "en": "Core claims"
             },
             {
-              "zh": "更新频率",
-              "en": "Update cadence"
+              "zh": "证据强度",
+              "en": "Evidence strength"
             },
             {
-              "zh": "周报模板",
-              "en": "Weekly digest template"
+              "zh": "补检索清单",
+              "en": "Follow-up search list"
             }
           ]
         }
       ],
       "nextScenarioSlugs": [
-        "topic-to-question",
-        "evidence-synthesis"
+        "research-design-and-statistics",
+        "manuscript-and-submission"
       ]
     },
     {
-      "slug": "topic-to-question",
+      "slug": "research-design-and-statistics",
       "title": {
-        "zh": "我有兴趣方向，但还没有可投稿的问题",
-        "en": "I have an interest area but no publishable question"
+        "zh": "我要把想法变成可执行研究设计，并提前算清风险",
+        "en": "I need to turn an idea into an executable study design and quantify risk"
       },
       "shortTitle": {
-        "zh": "选题成型",
-        "en": "Question framing"
+        "zh": "设计与统计",
+        "en": "Design and statistics"
       },
       "description": {
-        "zh": "把模糊兴趣收束为研究问题、理论贡献、边界条件、可执行设计和风险清单。",
-        "en": "Turn a fuzzy interest into a research question, theoretical contribution, boundaries, executable design, and risk list."
+        "zh": "在采集数据前明确假设、变量、随机化、样本量、统计检验和报告口径，避免做到最后才发现设计站不住。",
+        "en": "Clarify hypotheses, variables, randomization, power, statistical tests, and reporting before data collection."
       },
-      "stage": "topic",
+      "stage": "study-design",
       "targetUsers": [
         {
-          "zh": "博士生",
-          "en": "PhD students"
+          "zh": "准备开题或预注册的人",
+          "en": "Proposal and preregistration writers"
         },
         {
-          "zh": "青年教师",
-          "en": "Early-career faculty"
+          "zh": "要做实验/问卷/临床分析的人",
+          "en": "Experiment, survey, or clinical analysts"
         },
         {
-          "zh": "课题申请者",
-          "en": "Grant applicants"
-        },
-        {
-          "zh": "论文开题学生",
-          "en": "Thesis proposal students"
+          "zh": "需要 IRB 或基金论证的人",
+          "en": "IRB or grant applicants"
         }
       ],
       "inputMaterials": [
         {
-          "zh": "兴趣方向",
-          "en": "Interest area"
+          "zh": "研究问题和假设",
+          "en": "Research question and hypotheses"
         },
         {
-          "zh": "初步文献笔记",
-          "en": "Initial literature notes"
+          "zh": "可用样本或数据来源",
+          "en": "Samples or data sources"
         },
         {
-          "zh": "可获得数据",
-          "en": "Available data"
+          "zh": "主要结局和协变量",
+          "en": "Primary outcomes and covariates"
         },
         {
-          "zh": "方法或样本约束",
-          "en": "Method or sample constraints"
+          "zh": "效应量预期或先导结果",
+          "en": "Expected effect sizes or pilot results"
         }
       ],
       "skillIds": [
         "topic-framing",
-        "research-gap",
-        "lit-search",
-        "citation-network"
-      ],
-      "workflow": [
-        {
-          "step": {
-            "zh": "把兴趣收束成候选题",
-            "en": "Turn the interest into candidate questions"
-          },
-          "skillId": "topic-framing",
-          "prompt": {
-            "zh": "/topic-framing 基于这些材料，生成 5 个可研究论文问题；每个问题说明核心变量、机制、边界、可用数据和可能标题。",
-            "en": "/topic-framing Generate five researchable paper questions from these notes; for each, state variables, mechanism, boundary, available data, and possible title."
-          },
-          "expectedOutput": [
-            {
-              "zh": "候选研究问题",
-              "en": "Candidate research questions"
-            },
-            {
-              "zh": "变量与机制",
-              "en": "Variables and mechanisms"
-            },
-            {
-              "zh": "题目备选",
-              "en": "Title options"
-            }
-          ]
-        },
-        {
-          "step": {
-            "zh": "验证是不是真缺口",
-            "en": "Validate whether the gap is real"
-          },
-          "skillId": "research-gap",
-          "prompt": {
-            "zh": "/research-gap 检查这些候选问题是否对应真实文献缺口，区分时间缺口、方法缺口、理论缺口和应用缺口，并按贡献潜力排序。",
-            "en": "/research-gap Check whether these candidate questions map to real gaps; separate temporal, methodological, theoretical, and application gaps, then rank contribution potential."
-          },
-          "expectedOutput": [
-            {
-              "zh": "缺口证据",
-              "en": "Gap evidence"
-            },
-            {
-              "zh": "贡献排序",
-              "en": "Contribution ranking"
-            },
-            {
-              "zh": "风险与反证",
-              "en": "Risks and counter-evidence"
-            }
-          ]
-        },
-        {
-          "step": {
-            "zh": "补齐必须阅读的论文",
-            "en": "Complete the must-read papers"
-          },
-          "skillId": "lit-search",
-          "prompt": {
-            "zh": "/lit-search 针对排名最高的 2 个问题，补齐必须阅读的经典论文和近三年论文，并说明每篇论文对选题判断的作用。",
-            "en": "/lit-search For the top two questions, complete the must-read classic and recent papers, and explain how each informs topic choice."
-          },
-          "expectedOutput": [
-            {
-              "zh": "必读清单",
-              "en": "Must-read list"
-            },
-            {
-              "zh": "阅读顺序",
-              "en": "Reading order"
-            },
-            {
-              "zh": "选题证据表",
-              "en": "Topic evidence table"
-            }
-          ]
-        }
-      ],
-      "nextScenarioSlugs": [
-        "evidence-synthesis",
-        "manuscript-polish"
-      ]
-    },
-    {
-      "slug": "evidence-synthesis",
-      "title": {
-        "zh": "我要把一批文献整理成可写的证据结构",
-        "en": "I need to turn papers into a writable evidence structure"
-      },
-      "shortTitle": {
-        "zh": "证据合成",
-        "en": "Evidence synthesis"
-      },
-      "description": {
-        "zh": "把论文列表、BibTeX、阅读笔记和 PDF 转成主题结构、争议矩阵、证据强度和综述骨架。",
-        "en": "Turn paper lists, BibTeX, notes, and PDFs into themes, debate matrices, evidence strength, and review structure."
-      },
-      "stage": "literature",
-      "targetUsers": [
-        {
-          "zh": "综述作者",
-          "en": "Review authors"
-        },
-        {
-          "zh": "论文作者",
-          "en": "Manuscript authors"
-        },
-        {
-          "zh": "课题组成员",
-          "en": "Lab members"
-        },
-        {
-          "zh": "系统综述初学者",
-          "en": "Systematic review beginners"
-        }
-      ],
-      "inputMaterials": [
-        {
-          "zh": "论文列表",
-          "en": "Paper list"
-        },
-        {
-          "zh": "BibTeX 或 Zotero 导出",
-          "en": "BibTeX or Zotero export"
-        },
-        {
-          "zh": "PDF 文件夹",
-          "en": "PDF folder"
-        },
-        {
-          "zh": "阅读笔记",
-          "en": "Reading notes"
-        }
-      ],
-      "skillIds": [
-        "literature-review",
-        "pdf-explore",
-        "cite-verify",
-        "scientific-visualization",
+        "sa.experimental-design",
+        "sa.statistical-power",
+        "sa.statistical-analysis",
         "research-gap"
       ],
       "workflow": [
         {
           "step": {
-            "zh": "把文献读成证据表",
-            "en": "Read the literature into an evidence table"
+            "zh": "把兴趣收束为可检验问题",
+            "en": "Frame a testable question"
           },
-          "skillId": "literature-review",
+          "skillId": "topic-framing",
           "prompt": {
-            "zh": "/literature-review 基于这批论文，按研究问题、方法、样本、主要发现、限制和证据强度生成证据矩阵。",
-            "en": "/literature-review Build an evidence matrix from these papers by question, method, sample, main finding, limitation, and evidence strength."
+            "zh": "基于这些笔记生成 3 个可检验研究问题；每个问题列出变量、机制、边界条件、可用数据和最小可行研究设计。",
+            "en": "Generate three testable research questions from these notes. For each, list variables, mechanism, boundaries, available data, and the minimum viable design."
           },
           "expectedOutput": [
             {
-              "zh": "证据矩阵",
-              "en": "Evidence matrix"
+              "zh": "候选问题",
+              "en": "Candidate questions"
             },
             {
-              "zh": "主题结构",
-              "en": "Theme structure"
+              "zh": "变量机制图",
+              "en": "Variable-mechanism map"
             },
             {
-              "zh": "证据强度",
-              "en": "Evidence strength"
+              "zh": "最小设计",
+              "en": "Minimum viable design"
             }
           ]
         },
         {
           "step": {
-            "zh": "从长 PDF 和附录抽取细节",
-            "en": "Extract details from long PDFs and appendices"
+            "zh": "设计实验或观察研究",
+            "en": "Design the study"
           },
-          "skillId": "pdf-explore",
+          "skillId": "sa.experimental-design",
           "prompt": {
-            "zh": "/pdf-explore 扫描这些 PDF，抽取所有数据集、样本量、模型设定、评价指标和附录中的关键表格。",
-            "en": "/pdf-explore Scan these PDFs and extract all datasets, sample sizes, model settings, evaluation metrics, and key appendix tables."
+            "zh": "用 experimental-design 为首选问题设计研究方案，说明对照、随机化/匹配、区组、混杂控制、采样规则和失败风险。",
+            "en": "Use experimental-design to design the study, covering controls, randomization/matching, blocking, confounding control, sampling rules, and failure risks."
           },
           "expectedOutput": [
             {
-              "zh": "方法细节",
-              "en": "Method details"
+              "zh": "设计方案",
+              "en": "Study design"
             },
             {
-              "zh": "表格摘录",
-              "en": "Table excerpts"
+              "zh": "混杂控制",
+              "en": "Confounding controls"
             },
             {
-              "zh": "页码定位",
-              "en": "Page references"
+              "zh": "风险清单",
+              "en": "Risk list"
             }
           ]
         },
         {
           "step": {
-            "zh": "将证据变成图表和综述骨架",
-            "en": "Turn evidence into figures and a review outline"
+            "zh": "估算样本量和统计口径",
+            "en": "Estimate power and reporting plan"
           },
-          "skillId": "scientific-visualization",
+          "skillId": "sa.statistical-power",
           "prompt": {
-            "zh": "/scientific-visualization 根据证据矩阵生成适合综述的趋势图、研究设计分布图和证据强度图，并输出可投稿格式。",
-            "en": "/scientific-visualization Create review-ready trend, study-design distribution, and evidence-strength figures from the matrix, using submission-ready formats."
+            "zh": "用 statistical-power 根据目标效应和可用资源计算样本量、功效曲线和最小可检测效应，并给出统计报告模板。",
+            "en": "Use statistical-power to calculate sample size, power curves, and minimum detectable effects, then provide a statistical reporting template."
           },
           "expectedOutput": [
             {
-              "zh": "趋势图",
-              "en": "Trend chart"
+              "zh": "样本量估算",
+              "en": "Sample size estimate"
             },
             {
-              "zh": "证据图",
-              "en": "Evidence figure"
+              "zh": "功效曲线",
+              "en": "Power curve"
             },
             {
-              "zh": "综述章节线索",
-              "en": "Review section cues"
+              "zh": "统计报告模板",
+              "en": "Statistical reporting template"
             }
           ]
         }
       ],
       "nextScenarioSlugs": [
-        "topic-to-question",
-        "manuscript-polish",
-        "publication-figures"
+        "data-analysis-pipeline",
+        "manuscript-and-submission"
       ]
     },
     {
-      "slug": "pdf-to-evidence",
+      "slug": "data-analysis-pipeline",
       "title": {
-        "zh": "我有很多 PDF，不想再手工翻附录和图表",
-        "en": "I have many PDFs and need the details without manual hunting"
+        "zh": "我拿到数据了，需要从探索、清洗到可复现分析",
+        "en": "I have data and need reproducible analysis from exploration to results"
       },
       "shortTitle": {
-        "zh": "PDF 精读",
-        "en": "PDF to evidence"
+        "zh": "数据分析管线",
+        "en": "Data analysis pipeline"
       },
       "description": {
-        "zh": "面向长论文、技术报告、政策文件和补充材料，跨页抽取方法、数据、图表、指标和引用证据。",
-        "en": "Extract methods, data, figures, metrics, and citation evidence across long papers, reports, policies, and supplements."
+        "zh": "面向表格、科学文件、时间序列和大数据，把探索性分析、清洗、建模、统计解释和可复现执行串起来。",
+        "en": "Connect exploratory analysis, cleaning, modeling, statistical interpretation, and reproducible execution across tabular and scientific data."
       },
-      "stage": "reading",
+      "stage": "data-analysis",
       "targetUsers": [
         {
-          "zh": "需要精读 PDF 的研究者",
-          "en": "Researchers doing deep PDF reading"
+          "zh": "有原始数据但流程未定的研究者",
+          "en": "Researchers with raw data and no settled pipeline"
         },
         {
-          "zh": "RA",
-          "en": "Research assistants"
+          "zh": "需要复现旧分析的人",
+          "en": "Researchers reproducing old analyses"
         },
         {
-          "zh": "系统综述团队",
-          "en": "Systematic review teams"
-        },
-        {
-          "zh": "政策研究者",
-          "en": "Policy researchers"
+          "zh": "处理较大数据集的团队",
+          "en": "Teams handling larger datasets"
         }
       ],
       "inputMaterials": [
         {
-          "zh": "PDF 文件",
-          "en": "PDF files"
+          "zh": "CSV、Excel、HDF5、图像或科学数据文件",
+          "en": "CSV, Excel, HDF5, image, or scientific data files"
         },
         {
-          "zh": "需要抽取的问题清单",
-          "en": "Questions to extract"
+          "zh": "数据字典或字段说明",
+          "en": "Data dictionary or field notes"
         },
         {
-          "zh": "目标表格字段",
-          "en": "Target table fields"
+          "zh": "目标图表/统计问题",
+          "en": "Target figures or statistical questions"
         },
         {
-          "zh": "论文草稿中的待核验论断",
-          "en": "Claims to verify in a draft"
+          "zh": "运行环境限制",
+          "en": "Runtime constraints"
         }
       ],
       "skillIds": [
-        "pdf-explore",
-        "literature-review",
-        "cite-verify"
+        "sa.exploratory-data-analysis",
+        "sa.polars",
+        "sa.dask",
+        "sa.statistical-analysis",
+        "sa.scientific-visualization"
       ],
       "workflow": [
         {
           "step": {
-            "zh": "先定位再精读",
-            "en": "Locate first, then read deeply"
+            "zh": "先读懂数据形状和质量",
+            "en": "Understand shape and quality first"
           },
-          "skillId": "pdf-explore",
+          "skillId": "sa.exploratory-data-analysis",
           "prompt": {
-            "zh": "/pdf-explore 对这组 PDF 建立页码索引，定位所有提到数据集、实验设置、稳健性检验和局限性的页面。",
-            "en": "/pdf-explore Build a page index for these PDFs and locate every page mentioning datasets, experimental settings, robustness checks, and limitations."
+            "zh": "用 exploratory-data-analysis 检查这些数据文件的格式、字段、缺失、异常值、重复、单位和可疑批次，并给出下游分析建议。",
+            "en": "Use exploratory-data-analysis to inspect file formats, fields, missingness, outliers, duplicates, units, suspicious batches, and downstream analysis options."
           },
           "expectedOutput": [
             {
-              "zh": "页码索引",
-              "en": "Page index"
+              "zh": "数据画像",
+              "en": "Data profile"
             },
             {
-              "zh": "候选页面",
-              "en": "Candidate pages"
+              "zh": "质量问题",
+              "en": "Quality issues"
             },
             {
-              "zh": "关键摘录",
-              "en": "Key excerpts"
+              "zh": "分析建议",
+              "en": "Analysis recommendations"
             }
           ]
         },
         {
           "step": {
-            "zh": "把摘录转成综述证据",
-            "en": "Turn excerpts into review evidence"
+            "zh": "建立可复现处理管线",
+            "en": "Build a reproducible processing pipeline"
           },
-          "skillId": "literature-review",
+          "skillId": "sa.polars",
           "prompt": {
-            "zh": "/literature-review 将这些 PDF 摘录整理成可写入文献综述的方法比较、结果比较和局限比较。",
-            "en": "/literature-review Turn these PDF excerpts into writable comparisons of methods, results, and limitations."
+            "zh": "用 polars 把清洗、类型转换、聚合、连接和派生变量写成可复现脚本；如果数据超过内存，说明何时切换到 dask。",
+            "en": "Use polars to script cleaning, type conversion, aggregation, joins, and derived variables. Explain when to switch to dask if data exceeds memory."
           },
           "expectedOutput": [
             {
-              "zh": "方法比较",
-              "en": "Method comparison"
+              "zh": "清洗脚本",
+              "en": "Cleaning script"
             },
             {
-              "zh": "结果比较",
-              "en": "Result comparison"
+              "zh": "派生变量表",
+              "en": "Derived variables"
             },
             {
-              "zh": "局限比较",
-              "en": "Limitation comparison"
+              "zh": "性能策略",
+              "en": "Performance strategy"
             }
           ]
         },
         {
           "step": {
-            "zh": "核验草稿里的引用支撑",
-            "en": "Verify citation support in the draft"
+            "zh": "输出统计结论和图表草案",
+            "en": "Produce statistical findings and draft figures"
           },
-          "skillId": "cite-verify",
+          "skillId": "sa.statistical-analysis",
           "prompt": {
-            "zh": "/cite-verify 根据 PDF 原文核验 draft.md 中每个关键论断是否被对应引用真实支撑。",
-            "en": "/cite-verify Verify against the PDF sources whether each key claim in draft.md is genuinely supported by its citation."
+            "zh": "用 statistical-analysis 选择合适检验/模型，检查假设，输出结果解释、效应量、置信区间和可视化建议。",
+            "en": "Use statistical-analysis to choose tests/models, check assumptions, and output interpretations, effect sizes, confidence intervals, and visualization suggestions."
           },
           "expectedOutput": [
             {
-              "zh": "支撑充分",
-              "en": "Well supported"
+              "zh": "统计结果",
+              "en": "Statistical results"
             },
             {
-              "zh": "支撑不足",
-              "en": "Weakly supported"
+              "zh": "效应量",
+              "en": "Effect sizes"
             },
             {
-              "zh": "需替换引用",
-              "en": "Citations to replace"
+              "zh": "图表草案",
+              "en": "Draft figures"
             }
           ]
         }
       ],
       "nextScenarioSlugs": [
-        "evidence-synthesis",
-        "manuscript-polish"
-      ]
-    },
-    {
-      "slug": "manuscript-polish",
-      "title": {
-        "zh": "我正在打磨论文草稿，想进入可评审状态",
-        "en": "I am polishing a manuscript into review-ready shape"
-      },
-      "shortTitle": {
-        "zh": "草稿打磨",
-        "en": "Draft polish"
-      },
-      "description": {
-        "zh": "集中处理摘要、论证主线、图组叙事、审稿风险和引用支撑，让草稿更像一篇可以投稿的论文。",
-        "en": "Tighten the abstract, argument, figure story, review risks, and citation support so the draft becomes submission-ready."
-      },
-      "stage": "writing",
-      "targetUsers": [
-        {
-          "zh": "论文作者",
-          "en": "Manuscript authors"
-        },
-        {
-          "zh": "共同作者",
-          "en": "Co-authors"
-        },
-        {
-          "zh": "导师",
-          "en": "Advisors"
-        },
-        {
-          "zh": "写作小组",
-          "en": "Writing groups"
-        }
-      ],
-      "inputMaterials": [
-        {
-          "zh": "完整论文草稿",
-          "en": "Full manuscript draft"
-        },
-        {
-          "zh": "摘要",
-          "en": "Abstract"
-        },
-        {
-          "zh": "图表或 figure deck",
-          "en": "Figures or figure deck"
-        },
-        {
-          "zh": "参考文献列表",
-          "en": "Reference list"
-        },
-        {
-          "zh": "目标期刊",
-          "en": "Target journal"
-        }
-      ],
-      "skillIds": [
-        "abstract",
-        "paper-narrative",
-        "peer-review",
-        "cite-verify",
-        "journal-match"
-      ],
-      "workflow": [
-        {
-          "step": {
-            "zh": "重写摘要和定位",
-            "en": "Rewrite the abstract and positioning"
-          },
-          "skillId": "abstract",
-          "prompt": {
-            "zh": "/abstract 请基于 draft.md 生成结构化摘要、短摘要和投稿版摘要，突出问题、方法、发现、贡献和目标读者。",
-            "en": "/abstract Generate structured, short, and submission abstracts from draft.md, highlighting question, method, findings, contribution, and target readers."
-          },
-          "expectedOutput": [
-            {
-              "zh": "摘要版本",
-              "en": "Abstract versions"
-            },
-            {
-              "zh": "关键词建议",
-              "en": "Keyword suggestions"
-            },
-            {
-              "zh": "贡献表达",
-              "en": "Contribution framing"
-            }
-          ]
-        },
-        {
-          "step": {
-            "zh": "检查图组和论文叙事",
-            "en": "Check figures and manuscript narrative"
-          },
-          "skillId": "paper-narrative",
-          "prompt": {
-            "zh": "/paper-narrative 基于论文草稿、摘要和图注，判断 Fig 1 是否有送审钩子，重排图组证据弧线，并列出缺失分析。",
-            "en": "/paper-narrative Use the manuscript, abstract, and captions to judge whether Fig 1 has a review hook, reshape the evidence arc, and list missing analyses."
-          },
-          "expectedOutput": [
-            {
-              "zh": "叙事弧线",
-              "en": "Narrative arc"
-            },
-            {
-              "zh": "图组调整",
-              "en": "Figure adjustments"
-            },
-            {
-              "zh": "缺失分析",
-              "en": "Missing analyses"
-            }
-          ]
-        },
-        {
-          "step": {
-            "zh": "模拟审稿并核验引用",
-            "en": "Simulate review and verify citations"
-          },
-          "skillId": "peer-review",
-          "prompt": {
-            "zh": "/peer-review draft.md 请按 8 项审稿标准模拟审稿，列出最可能导致拒稿的问题，并给出引用核验优先级。",
-            "en": "/peer-review draft.md Simulate peer review across eight criteria, list the issues most likely to cause rejection, and prioritize citation verification."
-          },
-          "expectedOutput": [
-            {
-              "zh": "审稿评分",
-              "en": "Review score"
-            },
-            {
-              "zh": "拒稿风险",
-              "en": "Rejection risks"
-            },
-            {
-              "zh": "修改优先级",
-              "en": "Revision priorities"
-            }
-          ]
-        }
-      ],
-      "nextScenarioSlugs": [
-        "publication-figures",
-        "submission-fit"
-      ]
-    },
-    {
-      "slug": "publication-figures",
-      "title": {
-        "zh": "我要把数据和图组做成期刊级表达",
-        "en": "I need journal-ready figures and figure narratives"
-      },
-      "shortTitle": {
-        "zh": "论文图表",
-        "en": "Publication figures"
-      },
-      "description": {
-        "zh": "从单张统计图到多面板复合图，处理图形选择、可读性、配色、标注、导出格式和图组叙事。",
-        "en": "Move from single plots to multi-panel figures with chart choice, legibility, color, labels, export formats, and figure narrative."
-      },
-      "stage": "figures",
-      "targetUsers": [
-        {
-          "zh": "实验研究者",
-          "en": "Experimental researchers"
-        },
-        {
-          "zh": "数据分析者",
-          "en": "Data analysts"
-        },
-        {
-          "zh": "论文作者",
-          "en": "Manuscript authors"
-        },
-        {
-          "zh": "准备返修的作者",
-          "en": "Authors preparing revisions"
-        }
-      ],
-      "inputMaterials": [
-        {
-          "zh": "CSV/Excel/统计结果",
-          "en": "CSV, Excel, or statistical results"
-        },
-        {
-          "zh": "figure brief",
-          "en": "Figure brief"
-        },
-        {
-          "zh": "现有图表",
-          "en": "Existing figures"
-        },
-        {
-          "zh": "目标期刊格式",
-          "en": "Target journal format"
-        }
-      ],
-      "skillIds": [
-        "scientific-visualization",
-        "figure-style",
-        "figure-composer",
-        "paper-narrative"
-      ],
-      "workflow": [
-        {
-          "step": {
-            "zh": "确定每张图回答的问题",
-            "en": "Define the question each figure answers"
-          },
-          "skillId": "paper-narrative",
-          "prompt": {
-            "zh": "/paper-narrative 基于摘要、结果部分和现有图注，判断每张图在论文证据链中的角色，并建议 Fig 1、主图和补充图分配。",
-            "en": "/paper-narrative Based on the abstract, results, and captions, judge each figure's role in the evidence chain and suggest Fig 1, main-figure, and supplement allocation."
-          },
-          "expectedOutput": [
-            {
-              "zh": "图组角色",
-              "en": "Figure roles"
-            },
-            {
-              "zh": "Fig 1 建议",
-              "en": "Fig. 1 recommendation"
-            },
-            {
-              "zh": "补充图清单",
-              "en": "Supplementary figure list"
-            }
-          ]
-        },
-        {
-          "step": {
-            "zh": "生成单图或统计图",
-            "en": "Generate single figures or statistical charts"
-          },
-          "skillId": "scientific-visualization",
-          "prompt": {
-            "zh": "/scientific-visualization 根据这些数据生成期刊级图表，要求色盲友好、灰度可读、带误差线和显著性标注，并导出 PDF/TIFF。",
-            "en": "/scientific-visualization Generate journal-ready figures from these data with colorblind-safe palettes, grayscale readability, error bars, significance labels, and PDF/TIFF export."
-          },
-          "expectedOutput": [
-            {
-              "zh": "可投稿图表",
-              "en": "Submission-ready figures"
-            },
-            {
-              "zh": "导出文件",
-              "en": "Exported files"
-            },
-            {
-              "zh": "绘图代码",
-              "en": "Plotting code"
-            }
-          ]
-        },
-        {
-          "step": {
-            "zh": "组合多面板并做视觉质检",
-            "en": "Compose multi-panel figures and run visual QA"
-          },
-          "skillId": "figure-composer",
-          "prompt": {
-            "zh": "/figure-composer 基于这个核心论断和数据文件，设计 12 栏网格多面板图，逐面板渲染、拼接、标号，并做不超过 3 轮自检修订。",
-            "en": "/figure-composer Build a 12-column multi-panel figure from this core claim and data, render panels, tile and label them, then run up to three QA revision rounds."
-          },
-          "expectedOutput": [
-            {
-              "zh": "多面板图",
-              "en": "Multi-panel figure"
-            },
-            {
-              "zh": "视觉 QA",
-              "en": "Visual QA"
-            },
-            {
-              "zh": "修订记录",
-              "en": "Revision log"
-            }
-          ]
-        }
-      ],
-      "nextScenarioSlugs": [
-        "manuscript-polish",
-        "submission-fit"
-      ]
-    },
-    {
-      "slug": "submission-fit",
-      "title": {
-        "zh": "我要选择投稿目标并降低拒稿风险",
-        "en": "I need to choose a submission target and reduce rejection risk"
-      },
-      "shortTitle": {
-        "zh": "投稿匹配",
-        "en": "Submission fit"
-      },
-      "description": {
-        "zh": "根据论文定位、期刊范围、贡献强度、参考文献结构和模拟审稿结果选择投稿路径。",
-        "en": "Choose a submission path from manuscript positioning, journal scope, contribution strength, reference profile, and mock review."
-      },
-      "stage": "submission",
-      "targetUsers": [
-        {
-          "zh": "准备投稿的作者",
-          "en": "Authors preparing submission"
-        },
-        {
-          "zh": "课题负责人",
-          "en": "Project leads"
-        },
-        {
-          "zh": "研究生",
-          "en": "Graduate students"
-        },
-        {
-          "zh": "共同作者",
-          "en": "Co-authors"
-        }
-      ],
-      "inputMaterials": [
-        {
-          "zh": "论文摘要",
-          "en": "Manuscript abstract"
-        },
-        {
-          "zh": "完整草稿",
-          "en": "Full draft"
-        },
-        {
-          "zh": "候选期刊列表",
-          "en": "Candidate journal list"
-        },
-        {
-          "zh": "投稿偏好",
-          "en": "Submission preferences"
-        },
-        {
-          "zh": "拒稿历史",
-          "en": "Rejection history"
-        }
-      ],
-      "skillIds": [
-        "journal-match",
-        "peer-review",
-        "abstract",
-        "cite-verify"
-      ],
-      "workflow": [
-        {
-          "step": {
-            "zh": "匹配期刊与读者",
-            "en": "Match the journal and readership"
-          },
-          "skillId": "journal-match",
-          "prompt": {
-            "zh": "/journal-match 请根据摘要、关键词、参考文献和候选期刊，评估范围匹配、方法匹配、贡献匹配、审稿风险和投稿优先级。",
-            "en": "/journal-match Evaluate scope, method, contribution fit, reviewer risk, and submission priority from the abstract, keywords, references, and candidate journals."
-          },
-          "expectedOutput": [
-            {
-              "zh": "期刊排序",
-              "en": "Journal ranking"
-            },
-            {
-              "zh": "匹配理由",
-              "en": "Fit rationale"
-            },
-            {
-              "zh": "风险提示",
-              "en": "Risk notes"
-            }
-          ]
-        },
-        {
-          "step": {
-            "zh": "针对目标期刊重塑摘要",
-            "en": "Reshape the abstract for the target journal"
-          },
-          "skillId": "abstract",
-          "prompt": {
-            "zh": "/abstract 根据首选期刊读者和栏目定位，调整摘要中的问题开场、贡献表达、关键词和预期读者。",
-            "en": "/abstract Adjust the opening problem, contribution framing, keywords, and reader expectations for the top target journal."
-          },
-          "expectedOutput": [
-            {
-              "zh": "投稿版摘要",
-              "en": "Submission abstract"
-            },
-            {
-              "zh": "关键词",
-              "en": "Keywords"
-            },
-            {
-              "zh": "cover letter 线索",
-              "en": "Cover letter cues"
-            }
-          ]
-        },
-        {
-          "step": {
-            "zh": "投稿前做一次压力测试",
-            "en": "Run a pre-submission stress test"
-          },
-          "skillId": "peer-review",
-          "prompt": {
-            "zh": "/peer-review draft.md 针对首选期刊模拟审稿，列出编辑 desk reject 风险、审稿人可能挑战和必须先改的问题。",
-            "en": "/peer-review draft.md Simulate review for the top journal and list desk-reject risks, likely reviewer challenges, and must-fix issues."
-          },
-          "expectedOutput": [
-            {
-              "zh": "desk reject 风险",
-              "en": "Desk-reject risks"
-            },
-            {
-              "zh": "审稿人挑战",
-              "en": "Reviewer challenges"
-            },
-            {
-              "zh": "投稿前清单",
-              "en": "Pre-submission checklist"
-            }
-          ]
-        }
-      ],
-      "nextScenarioSlugs": [
-        "manuscript-polish",
-        "publication-figures"
-      ]
-    },
-    {
-      "slug": "single-cell-omics",
-      "title": {
-        "zh": "我要分析单细胞数据并形成可发表结果",
-        "en": "I need to analyze single-cell data into publishable results"
-      },
-      "shortTitle": {
-        "zh": "单细胞分析",
-        "en": "Single-cell omics"
-      },
-      "description": {
-        "zh": "围绕 h5ad/表达矩阵进行批次校正、细胞嵌入、注释迁移、差异表达、基础模型分析和图表输出。",
-        "en": "Work from h5ad or expression matrices through batch correction, embeddings, label transfer, DE, foundation-model analysis, and figures."
-      },
-      "stage": "life-science",
-      "targetUsers": [
-        {
-          "zh": "单细胞研究者",
-          "en": "Single-cell researchers"
-        },
-        {
-          "zh": "生信分析师",
-          "en": "Bioinformatics analysts"
-        },
-        {
-          "zh": "湿实验课题组",
-          "en": "Wet-lab teams"
-        },
-        {
-          "zh": "转化医学团队",
-          "en": "Translational medicine teams"
-        }
-      ],
-      "inputMaterials": [
-        {
-          "zh": "h5ad 文件",
-          "en": "h5ad files"
-        },
-        {
-          "zh": "原始 UMI counts",
-          "en": "Raw UMI counts"
-        },
-        {
-          "zh": "参考注释",
-          "en": "Reference annotations"
-        },
-        {
-          "zh": "样本元数据",
-          "en": "Sample metadata"
-        },
-        {
-          "zh": "GPU 或远程计算资源",
-          "en": "GPU or remote compute resources"
-        }
-      ],
-      "skillIds": [
-        "scvi-tools",
-        "scgpt",
-        "scientific-visualization",
-        "compute-env-setup",
-        "remote-compute-modal"
-      ],
-      "workflow": [
-        {
-          "step": {
-            "zh": "建立可复现分析环境",
-            "en": "Build a reproducible analysis environment"
-          },
-          "skillId": "compute-env-setup",
-          "prompt": {
-            "zh": "/compute-env-setup 为单细胞分析搭建 GPU 环境，包含 scvi-tools、scanpy、torch、可复用缓存和结果目录约定。",
-            "en": "/compute-env-setup Set up a GPU environment for single-cell analysis with scvi-tools, scanpy, torch, reusable caches, and output-directory conventions."
-          },
-          "expectedOutput": [
-            {
-              "zh": "环境说明",
-              "en": "Environment notes"
-            },
-            {
-              "zh": "依赖清单",
-              "en": "Dependency list"
-            },
-            {
-              "zh": "运行约定",
-              "en": "Run conventions"
-            }
-          ]
-        },
-        {
-          "step": {
-            "zh": "批次校正和标签迁移",
-            "en": "Batch correction and label transfer"
-          },
-          "skillId": "scvi-tools",
-          "prompt": {
-            "zh": "/scvi-tools 使用 raw counts 训练 scVI/scANVI，生成低维表示、批次校正 UMAP、标签迁移结果和差异表达候选基因。",
-            "en": "/scvi-tools Train scVI/scANVI from raw counts and produce latent embeddings, batch-corrected UMAPs, label transfer, and DE candidate genes."
-          },
-          "expectedOutput": [
-            {
-              "zh": "潜在空间",
-              "en": "Latent space"
-            },
-            {
-              "zh": "注释结果",
-              "en": "Annotation results"
-            },
-            {
-              "zh": "差异表达",
-              "en": "Differential expression"
-            }
-          ]
-        },
-        {
-          "step": {
-            "zh": "用基础模型补充解释",
-            "en": "Add interpretation with foundation models"
-          },
-          "skillId": "scgpt",
-          "prompt": {
-            "zh": "/scgpt 基于 AnnData 生成细胞嵌入和零样本注释，并对关键 cluster 的基因表示和扰动线索做解释。",
-            "en": "/scgpt Generate cell embeddings and zero-shot annotations from AnnData, then interpret gene representations and perturbation clues for key clusters."
-          },
-          "expectedOutput": [
-            {
-              "zh": "基础模型嵌入",
-              "en": "Foundation-model embeddings"
-            },
-            {
-              "zh": "注释对照",
-              "en": "Annotation comparison"
-            },
-            {
-              "zh": "解释线索",
-              "en": "Interpretation cues"
-            }
-          ]
-        }
-      ],
-      "nextScenarioSlugs": [
-        "publication-figures",
+        "figures-slides-posters",
         "compute-and-model-infra"
       ]
     },
     {
-      "slug": "protein-structure-design",
+      "slug": "ai-model-experiments",
       "title": {
-        "zh": "我要做蛋白结构预测、设计或 docking",
-        "en": "I need protein structure prediction, design, or docking"
+        "zh": "我要做 AI/机器学习科研实验，而不是只跑一个 demo",
+        "en": "I need to run AI/ML research experiments, not just a demo"
       },
       "shortTitle": {
-        "zh": "蛋白结构设计",
-        "en": "Protein design"
+        "zh": "AI 与模型实验",
+        "en": "AI and model experiments"
       },
       "description": {
-        "zh": "从序列、PDB、SMILES 或设计骨架出发，完成结构预测、复合物共折叠、反向折叠、可溶性优化和小分子 docking。",
-        "en": "Start from sequences, PDBs, SMILES, or design backbones to run structure prediction, co-folding, inverse folding, solubility optimization, and docking."
+        "zh": "覆盖科学数据集发现、深度学习训练、GPU 加速、基准迭代和结果记录，适合 AI4Science、LLM、ML 论文和工程型研究。",
+        "en": "Discover scientific datasets, train models, optimize GPU workloads, iterate benchmarks, and record results for AI4Science, LLM, ML, and systems research."
+      },
+      "stage": "ai-experiments",
+      "targetUsers": [
+        {
+          "zh": "AI4Science 研究者",
+          "en": "AI4Science researchers"
+        },
+        {
+          "zh": "训练或微调模型的学生",
+          "en": "Students training or fine-tuning models"
+        },
+        {
+          "zh": "做 benchmark 或消融实验的人",
+          "en": "Benchmark and ablation researchers"
+        }
+      ],
+      "inputMaterials": [
+        {
+          "zh": "任务定义和评价指标",
+          "en": "Task definition and metrics"
+        },
+        {
+          "zh": "数据集或候选模型",
+          "en": "Datasets or candidate models"
+        },
+        {
+          "zh": "训练脚本或 notebook",
+          "en": "Training scripts or notebooks"
+        },
+        {
+          "zh": "GPU/预算限制",
+          "en": "GPU or budget constraints"
+        }
+      ],
+      "skillIds": [
+        "sa.hugging-science",
+        "sa.pytorch-lightning",
+        "sa.optimize-for-gpu",
+        "sa.arbor",
+        "air.ml-paper-writing"
+      ],
+      "workflow": [
+        {
+          "step": {
+            "zh": "找到可用数据集和模型基线",
+            "en": "Find datasets and model baselines"
+          },
+          "skillId": "sa.hugging-science",
+          "prompt": {
+            "zh": "用 hugging-science 为这个科学 ML 任务查找合适的数据集、预训练模型、演示空间和基线论文，说明许可、输入输出和复现实用性。",
+            "en": "Use hugging-science to find datasets, pretrained models, spaces, and baseline papers for this scientific ML task, with licensing, I/O, and reproducibility notes."
+          },
+          "expectedOutput": [
+            {
+              "zh": "数据集候选",
+              "en": "Dataset candidates"
+            },
+            {
+              "zh": "模型基线",
+              "en": "Model baselines"
+            },
+            {
+              "zh": "复现风险",
+              "en": "Reproducibility risks"
+            }
+          ]
+        },
+        {
+          "step": {
+            "zh": "整理训练循环和实验配置",
+            "en": "Structure training and experiment config"
+          },
+          "skillId": "sa.pytorch-lightning",
+          "prompt": {
+            "zh": "用 pytorch-lightning 把现有训练代码整理成可配置、可记录、可扩展到多 GPU 的实验框架，并列出必要回调和日志字段。",
+            "en": "Use pytorch-lightning to organize the training code into a configurable, logged, multi-GPU-ready experiment framework with required callbacks and log fields."
+          },
+          "expectedOutput": [
+            {
+              "zh": "训练框架",
+              "en": "Training framework"
+            },
+            {
+              "zh": "配置模板",
+              "en": "Config template"
+            },
+            {
+              "zh": "日志字段",
+              "en": "Logging fields"
+            }
+          ]
+        },
+        {
+          "step": {
+            "zh": "迭代提升指标但控制过拟合",
+            "en": "Iterate metrics while controlling overfitting"
+          },
+          "skillId": "sa.arbor",
+          "prompt": {
+            "zh": "用 arbor 规划多轮实验搜索：假设树、每轮候选改动、开发集/测试集隔离、停止规则和结果复盘表。",
+            "en": "Use arbor to plan iterative experiment search: hypothesis tree, candidate changes, dev/test isolation, stopping rules, and result review table."
+          },
+          "expectedOutput": [
+            {
+              "zh": "实验树",
+              "en": "Experiment tree"
+            },
+            {
+              "zh": "消融计划",
+              "en": "Ablation plan"
+            },
+            {
+              "zh": "复盘表",
+              "en": "Review table"
+            }
+          ]
+        }
+      ],
+      "nextScenarioSlugs": [
+        "compute-and-model-infra",
+        "manuscript-and-submission"
+      ]
+    },
+    {
+      "slug": "life-science-omics",
+      "title": {
+        "zh": "我要分析组学、细胞或临床生物医学数据",
+        "en": "I need to analyze omics, cellular, or biomedical data"
+      },
+      "shortTitle": {
+        "zh": "生命科学数据",
+        "en": "Life science data"
+      },
+      "description": {
+        "zh": "覆盖单细胞、bulk RNA-seq、通路富集、医学影像/临床记录和公共生物数据库查询，把领域工具链接到可发表结果。",
+        "en": "Cover single-cell, bulk RNA-seq, pathway enrichment, biomedical records, and public biological databases, connecting domain tooling to publishable results."
       },
       "stage": "life-science",
       "targetUsers": [
         {
-          "zh": "蛋白设计研究者",
-          "en": "Protein design researchers"
+          "zh": "湿实验和干实验交叉团队",
+          "en": "Wet-lab and dry-lab teams"
         },
         {
-          "zh": "结构生物学团队",
-          "en": "Structural biology teams"
+          "zh": "单细胞或转录组研究者",
+          "en": "Single-cell or transcriptomics researchers"
         },
         {
-          "zh": "药物发现团队",
-          "en": "Drug discovery teams"
-        },
-        {
-          "zh": "计算生物学学生",
-          "en": "Computational biology students"
+          "zh": "临床/生物医学数据分析者",
+          "en": "Clinical and biomedical data analysts"
         }
       ],
       "inputMaterials": [
         {
-          "zh": "FASTA 序列",
-          "en": "FASTA sequences"
+          "zh": "FASTQ、counts、h5ad 或基因列表",
+          "en": "FASTQ, counts, h5ad, or gene lists"
         },
         {
-          "zh": "PDB 结构",
-          "en": "PDB structures"
+          "zh": "样本分组和批次信息",
+          "en": "Sample groups and batch metadata"
         },
         {
-          "zh": "SMILES/SDF",
-          "en": "SMILES/SDF files"
+          "zh": "研究假设或疾病背景",
+          "en": "Hypotheses or disease context"
         },
         {
-          "zh": "设计骨架",
-          "en": "Design backbones"
-        },
-        {
-          "zh": "GPU 或集群资源",
-          "en": "GPU or cluster resources"
+          "zh": "目标图表或 marker",
+          "en": "Target figures or markers"
         }
       ],
       "skillIds": [
-        "alphafold2",
-        "boltz",
-        "chai1",
-        "openfold3",
-        "proteinmpnn",
-        "ligandmpnn",
-        "solublempnn",
-        "diffdock",
-        "fair-esm2",
-        "remote-compute-ssh"
+        "sa.scanpy",
+        "sa.scvi-tools",
+        "sa.bulk-rnaseq",
+        "sa.pathway-enrichment",
+        "sa.cellxgene-census"
       ],
       "workflow": [
         {
           "step": {
-            "zh": "选择结构预测路线",
-            "en": "Choose the structure prediction route"
+            "zh": "选择组学分析路径",
+            "en": "Choose the omics analysis path"
           },
-          "skillId": "boltz",
+          "skillId": "sa.scanpy",
           "prompt": {
-            "zh": "/boltz 根据这些 FASTA、PDB 和配体信息判断应使用 Boltz、Chai-1、AlphaFold2 还是 OpenFold3，并先运行最适合的复合物预测。",
-            "en": "/boltz From these FASTA, PDB, and ligand inputs, decide whether Boltz, Chai-1, AlphaFold2, or OpenFold3 fits best, then run the best complex prediction first."
+            "zh": "用 scanpy 检查 h5ad/counts 数据，完成 QC、归一化、降维、聚类和 marker 探索，并说明何时需要 scvi-tools 做批次校正。",
+            "en": "Use scanpy to inspect h5ad/counts data, run QC, normalization, dimensionality reduction, clustering, and marker exploration. Explain when scvi-tools is needed for batch correction."
           },
           "expectedOutput": [
             {
-              "zh": "模型选择理由",
-              "en": "Model choice rationale"
+              "zh": "QC 报告",
+              "en": "QC report"
             },
             {
-              "zh": "结构预测",
-              "en": "Structure prediction"
+              "zh": "细胞簇",
+              "en": "Cell clusters"
             },
             {
-              "zh": "置信度指标",
-              "en": "Confidence metrics"
+              "zh": "marker 表",
+              "en": "Marker table"
             }
           ]
         },
         {
           "step": {
-            "zh": "从骨架设计序列",
-            "en": "Design sequences from backbones"
+            "zh": "从 reads 到差异表达",
+            "en": "Go from reads to differential expression"
           },
-          "skillId": "proteinmpnn",
+          "skillId": "sa.bulk-rnaseq",
           "prompt": {
-            "zh": "/proteinmpnn 对这些骨架进行序列设计；如果存在配体、金属或核酸上下文，请切换到 LigandMPNN；如果目标是表达量，请给出 SolubleMPNN 方案。",
-            "en": "/proteinmpnn Design sequences for these backbones; switch to LigandMPNN when ligand, metal, or nucleic-acid context matters, and propose SolubleMPNN when expression is the goal."
+            "zh": "用 bulk-rnaseq 为这些 FASTQ/counts 设计从质控、比对/定量到差异表达的可复现流程，并标出关键 QC 阈值。",
+            "en": "Use bulk-rnaseq to design a reproducible path from QC and alignment/quantification to differential expression, with key QC thresholds."
           },
           "expectedOutput": [
             {
-              "zh": "设计序列",
-              "en": "Designed sequences"
+              "zh": "RNA-seq 流程",
+              "en": "RNA-seq workflow"
             },
             {
-              "zh": "温度扫描",
-              "en": "Temperature sweep"
+              "zh": "QC 阈值",
+              "en": "QC thresholds"
             },
             {
-              "zh": "设计约束",
-              "en": "Design constraints"
+              "zh": "差异表达表",
+              "en": "DE table"
             }
           ]
         },
         {
           "step": {
-            "zh": "对接和下游筛选",
-            "en": "Dock and screen downstream"
+            "zh": "解释通路和生物学意义",
+            "en": "Interpret pathways and biology"
           },
-          "skillId": "diffdock",
+          "skillId": "sa.pathway-enrichment",
           "prompt": {
-            "zh": "/diffdock 将这些 SMILES/SDF 小分子 dock 到候选蛋白结构，输出 ranked poses、置信度和需要重评分的候选。",
-            "en": "/diffdock Dock these SMILES/SDF ligands against candidate protein structures and output ranked poses, confidence, and candidates for rescoring."
+            "zh": "用 pathway-enrichment 对差异基因或 marker 做 ORA/GSEA，解释通路、背景集、多重校正和可发表图表。",
+            "en": "Use pathway-enrichment for ORA/GSEA on DE genes or markers, explaining pathways, background sets, multiple testing, and publishable figures."
           },
           "expectedOutput": [
             {
-              "zh": "结合姿势",
-              "en": "Binding poses"
+              "zh": "富集结果",
+              "en": "Enrichment results"
             },
             {
-              "zh": "候选排序",
-              "en": "Candidate ranking"
+              "zh": "通路解释",
+              "en": "Pathway interpretation"
             },
             {
-              "zh": "重评分清单",
-              "en": "Rescoring list"
+              "zh": "发表图建议",
+              "en": "Figure recommendations"
             }
           ]
         }
       ],
       "nextScenarioSlugs": [
-        "compute-and-model-infra",
-        "publication-figures"
+        "figures-slides-posters",
+        "protein-molecule-materials"
       ]
     },
     {
-      "slug": "genome-and-embedding-models",
+      "slug": "protein-molecule-materials",
       "title": {
-        "zh": "我要用基础模型做序列打分、嵌入或变异效应预测",
-        "en": "I need foundation models for sequence scoring, embeddings, or variant effects"
+        "zh": "我要做蛋白、分子、药物或材料方向的计算研究",
+        "en": "I need computational work for proteins, molecules, drugs, or materials"
       },
       "shortTitle": {
-        "zh": "序列基础模型",
-        "en": "Sequence models"
+        "zh": "蛋白分子材料",
+        "en": "Proteins, molecules, materials"
       },
       "description": {
-        "zh": "面向 DNA、蛋白和基因组功能轨道，调用 Evo 2、Borzoi、ESM-2 或自定义端点完成打分、嵌入和预测。",
-        "en": "Use Evo 2, Borzoi, ESM-2, or custom endpoints for DNA, protein, and genomic-track scoring, embeddings, and prediction."
+        "zh": "把结构预测、分子描述符、对接、药物发现和材料科学工具组织成能筛选、建模、解释和汇报的流程。",
+        "en": "Organize structure prediction, molecular descriptors, docking, drug discovery, and materials tools into screening, modeling, interpretation, and reporting workflows."
       },
-      "stage": "models",
+      "stage": "chem-materials",
       "targetUsers": [
         {
-          "zh": "基因组学研究者",
-          "en": "Genomics researchers"
+          "zh": "药物发现和化学生物学研究者",
+          "en": "Drug discovery and chemical biology researchers"
         },
         {
-          "zh": "蛋白机器学习研究者",
-          "en": "Protein ML researchers"
+          "zh": "蛋白设计团队",
+          "en": "Protein design teams"
         },
         {
-          "zh": "生信工程师",
-          "en": "Bioinformatics engineers"
-        },
-        {
-          "zh": "模型评测团队",
-          "en": "Model evaluation teams"
+          "zh": "材料计算研究者",
+          "en": "Computational materials researchers"
         }
       ],
       "inputMaterials": [
         {
-          "zh": "FASTA/DNA 序列",
-          "en": "FASTA/DNA sequences"
+          "zh": "蛋白序列、PDB、SMILES、SDF 或 CIF",
+          "en": "Protein sequences, PDB, SMILES, SDF, or CIF"
         },
         {
-          "zh": "突变列表",
-          "en": "Mutation list"
+          "zh": "筛选目标或性质指标",
+          "en": "Screening targets or property metrics"
         },
         {
-          "zh": "基因组窗口",
-          "en": "Genomic windows"
+          "zh": "候选分子/材料列表",
+          "en": "Candidate molecule or material lists"
         },
         {
-          "zh": "蛋白序列",
-          "en": "Protein sequences"
-        },
-        {
-          "zh": "已注册模型端点",
-          "en": "Registered model endpoint"
+          "zh": "已有实验约束",
+          "en": "Existing experimental constraints"
         }
       ],
       "skillIds": [
-        "evo2",
-        "borzoi",
-        "fair-esm2",
-        "using-model-endpoint",
-        "managed-model-endpoints"
+        "cs.boltz",
+        "cs.diffdock",
+        "sa.rdkit",
+        "sa.datamol",
+        "sa.pymatgen"
       ],
       "workflow": [
         {
           "step": {
-            "zh": "DNA 序列打分和生成",
-            "en": "Score and generate DNA sequences"
+            "zh": "准备结构或分子输入",
+            "en": "Prepare structural or molecular inputs"
           },
-          "skillId": "evo2",
+          "skillId": "sa.rdkit",
           "prompt": {
-            "zh": "/evo2 对这些基因组窗口计算序列似然、变异 delta 分数和嵌入，并为下游分类任务导出特征表。",
-            "en": "/evo2 Compute sequence likelihoods, variant delta scores, and embeddings for these genomic windows, then export a feature table for downstream classification."
+            "zh": "用 rdkit/datamol 清洗 SMILES/SDF，生成描述符、指纹、构象和相似性矩阵，并标记不可用输入。",
+            "en": "Use rdkit/datamol to clean SMILES/SDF, generate descriptors, fingerprints, conformers, and similarity matrices, and flag invalid inputs."
           },
           "expectedOutput": [
             {
-              "zh": "序列分数",
-              "en": "Sequence scores"
+              "zh": "标准化分子表",
+              "en": "Standardized molecule table"
             },
             {
-              "zh": "变异效应",
-              "en": "Variant effects"
+              "zh": "描述符矩阵",
+              "en": "Descriptor matrix"
             },
             {
-              "zh": "嵌入特征",
-              "en": "Embedding features"
+              "zh": "无效输入清单",
+              "en": "Invalid input list"
             }
           ]
         },
         {
           "step": {
-            "zh": "预测功能轨道变化",
-            "en": "Predict functional-track changes"
+            "zh": "预测结构或对接姿势",
+            "en": "Predict structures or docking poses"
           },
-          "skillId": "borzoi",
+          "skillId": "cs.diffdock",
           "prompt": {
-            "zh": "/borzoi 对这些非编码变异生成表达、可及性和 ChIP track delta，按组织或细胞类型解释优先级。",
-            "en": "/borzoi Generate expression, accessibility, and ChIP track deltas for these non-coding variants, then interpret priority by tissue or cell type."
+            "zh": "用 diffdock/boltz 为候选蛋白-配体组合预测结合姿势或复合体结构，输出置信度、失败案例和后续验证建议。",
+            "en": "Use diffdock/boltz to predict binding poses or complex structures for candidate protein-ligand pairs, with confidence, failures, and validation suggestions."
           },
           "expectedOutput": [
             {
-              "zh": "功能轨道",
-              "en": "Functional tracks"
+              "zh": "结构预测",
+              "en": "Structure predictions"
             },
             {
-              "zh": "delta 分数",
-              "en": "Delta scores"
+              "zh": "置信度评分",
+              "en": "Confidence scores"
             },
             {
-              "zh": "优先级解释",
-              "en": "Priority rationale"
+              "zh": "验证建议",
+              "en": "Validation suggestions"
             }
           ]
         },
         {
           "step": {
-            "zh": "蛋白嵌入和突变打分",
-            "en": "Protein embedding and mutation scoring"
+            "zh": "扩展到材料或性质分析",
+            "en": "Extend to material or property analysis"
           },
-          "skillId": "fair-esm2",
+          "skillId": "sa.pymatgen",
           "prompt": {
-            "zh": "/fair-esm2 为这些蛋白序列提取 per-residue 和 per-sequence embeddings，并计算突变 masked-LM likelihood 分数。",
-            "en": "/fair-esm2 Extract per-residue and per-sequence embeddings for these proteins and compute masked-LM likelihood scores for mutations."
+            "zh": "如果对象是材料结构，用 pymatgen 读取 CIF/POSCAR，计算基础结构信息、相图/能带相关输入和 Materials Project 查询计划。",
+            "en": "If the target is a material structure, use pymatgen to read CIF/POSCAR, compute structural information, and plan phase diagram, band-structure, or Materials Project queries."
           },
           "expectedOutput": [
             {
-              "zh": "蛋白嵌入",
-              "en": "Protein embeddings"
+              "zh": "结构摘要",
+              "en": "Structure summary"
             },
             {
-              "zh": "突变分数",
-              "en": "Mutation scores"
+              "zh": "材料查询计划",
+              "en": "Materials query plan"
             },
             {
-              "zh": "下游特征",
-              "en": "Downstream features"
+              "zh": "性质分析路径",
+              "en": "Property analysis path"
             }
           ]
         }
       ],
       "nextScenarioSlugs": [
-        "compute-and-model-infra",
-        "protein-structure-design"
+        "lab-protocol-automation",
+        "figures-slides-posters"
+      ]
+    },
+    {
+      "slug": "geospatial-physical-science",
+      "title": {
+        "zh": "我要处理地理空间、天文、物理或工程科学数据",
+        "en": "I need to process geospatial, astronomy, physics, or engineering data"
+      },
+      "shortTitle": {
+        "zh": "地理与物理科学",
+        "en": "Geo and physical science"
+      },
+      "description": {
+        "zh": "面向遥感/GIS、天文 FITS、量子/物理模拟和工程优化等非生命科学数据，让场景不只停留在论文写作。",
+        "en": "Handle remote sensing/GIS, astronomy FITS, quantum or physical simulation, and engineering optimization beyond writing-centric workflows."
+      },
+      "stage": "physical-science",
+      "targetUsers": [
+        {
+          "zh": "地球科学和遥感研究者",
+          "en": "Earth science and remote sensing researchers"
+        },
+        {
+          "zh": "天文/物理数据分析者",
+          "en": "Astronomy or physics data analysts"
+        },
+        {
+          "zh": "工程仿真和优化团队",
+          "en": "Engineering simulation and optimization teams"
+        }
+      ],
+      "inputMaterials": [
+        {
+          "zh": "栅格、矢量、FITS、观测或仿真文件",
+          "en": "Raster, vector, FITS, observation, or simulation files"
+        },
+        {
+          "zh": "坐标系/单位说明",
+          "en": "Coordinate system or unit notes"
+        },
+        {
+          "zh": "研究区域或时间窗",
+          "en": "Study area or time window"
+        },
+        {
+          "zh": "目标模型或指标",
+          "en": "Target model or metric"
+        }
+      ],
+      "skillIds": [
+        "sa.geomaster",
+        "sa.geopandas",
+        "sa.astropy",
+        "sa.fluidsim",
+        "sa.pymoo"
+      ],
+      "workflow": [
+        {
+          "step": {
+            "zh": "建立空间或观测数据底图",
+            "en": "Build the spatial or observational base layer"
+          },
+          "skillId": "sa.geomaster",
+          "prompt": {
+            "zh": "用 geomaster/geopandas 读取这些空间数据，检查坐标系、裁剪研究区、生成质量报告和第一张探索地图。",
+            "en": "Use geomaster/geopandas to read spatial data, check CRS, clip the study area, generate a quality report, and create the first exploratory map."
+          },
+          "expectedOutput": [
+            {
+              "zh": "空间数据报告",
+              "en": "Spatial data report"
+            },
+            {
+              "zh": "研究区底图",
+              "en": "Study-area map"
+            },
+            {
+              "zh": "坐标问题",
+              "en": "CRS issues"
+            }
+          ]
+        },
+        {
+          "step": {
+            "zh": "处理天文或物理观测",
+            "en": "Process astronomy or physical observations"
+          },
+          "skillId": "sa.astropy",
+          "prompt": {
+            "zh": "如果数据是 FITS/天文观测，用 astropy 处理单位、坐标、WCS、表格和时间系统，并输出可复现 notebook 结构。",
+            "en": "If the data is FITS or astronomy observations, use astropy for units, coordinates, WCS, tables, and time systems, then output a reproducible notebook outline."
+          },
+          "expectedOutput": [
+            {
+              "zh": "观测数据表",
+              "en": "Observation table"
+            },
+            {
+              "zh": "坐标转换",
+              "en": "Coordinate transforms"
+            },
+            {
+              "zh": "notebook 结构",
+              "en": "Notebook outline"
+            }
+          ]
+        },
+        {
+          "step": {
+            "zh": "进入仿真或优化",
+            "en": "Move into simulation or optimization"
+          },
+          "skillId": "sa.pymoo",
+          "prompt": {
+            "zh": "如果任务涉及工程设计或参数寻优，用 pymoo 设计目标函数、约束、Pareto 前沿和结果解释模板。",
+            "en": "If the task involves engineering design or parameter optimization, use pymoo to define objectives, constraints, Pareto fronts, and an interpretation template."
+          },
+          "expectedOutput": [
+            {
+              "zh": "优化问题定义",
+              "en": "Optimization problem"
+            },
+            {
+              "zh": "Pareto 前沿",
+              "en": "Pareto front"
+            },
+            {
+              "zh": "结果解释模板",
+              "en": "Interpretation template"
+            }
+          ]
+        }
+      ],
+      "nextScenarioSlugs": [
+        "data-analysis-pipeline",
+        "figures-slides-posters"
+      ]
+    },
+    {
+      "slug": "lab-protocol-automation",
+      "title": {
+        "zh": "我要把实验方案、记录和自动化平台接起来",
+        "en": "I need to connect protocols, records, and lab automation platforms"
+      },
+      "shortTitle": {
+        "zh": "实验与自动化",
+        "en": "Lab automation"
+      },
+      "description": {
+        "zh": "把 protocols.io、Benchling、Opentrons、Pylabrobot 和实验日志纳入同一个科研执行链，减少手工搬运和不可追溯。",
+        "en": "Connect protocols.io, Benchling, Opentrons, Pylabrobot, and experiment logs into one traceable execution chain."
+      },
+      "stage": "lab-workflow",
+      "targetUsers": [
+        {
+          "zh": "湿实验课题组",
+          "en": "Wet-lab groups"
+        },
+        {
+          "zh": "自动化平台使用者",
+          "en": "Automation platform users"
+        },
+        {
+          "zh": "需要规范实验记录的人",
+          "en": "Researchers standardizing experiment logs"
+        }
+      ],
+      "inputMaterials": [
+        {
+          "zh": "实验 protocol 或 SOP",
+          "en": "Protocol or SOP"
+        },
+        {
+          "zh": "样本/试剂/板位信息",
+          "en": "Sample, reagent, or plate layout information"
+        },
+        {
+          "zh": "仪器平台或 API 凭据说明",
+          "en": "Instrument platform or API notes"
+        },
+        {
+          "zh": "实验记录模板",
+          "en": "Experiment log template"
+        }
+      ],
+      "skillIds": [
+        "sa.protocolsio-integration",
+        "sa.benchling-integration",
+        "sa.opentrons-integration",
+        "sa.pylabrobot",
+        "ns.nature-experiment-log"
+      ],
+      "workflow": [
+        {
+          "step": {
+            "zh": "整理 protocol 和材料表",
+            "en": "Organize protocol and materials"
+          },
+          "skillId": "sa.protocolsio-integration",
+          "prompt": {
+            "zh": "用 protocolsio-integration 把现有 SOP 拆成步骤、材料、参数、注意事项和版本记录，并标出需要人工确认的地方。",
+            "en": "Use protocolsio-integration to split the SOP into steps, materials, parameters, cautions, and version history, flagging fields that need human confirmation."
+          },
+          "expectedOutput": [
+            {
+              "zh": "结构化 protocol",
+              "en": "Structured protocol"
+            },
+            {
+              "zh": "材料清单",
+              "en": "Materials list"
+            },
+            {
+              "zh": "确认项",
+              "en": "Confirmation list"
+            }
+          ]
+        },
+        {
+          "step": {
+            "zh": "连接实验数据平台",
+            "en": "Connect the lab data platform"
+          },
+          "skillId": "sa.benchling-integration",
+          "prompt": {
+            "zh": "用 benchling-integration 设计实体、库存、ELN 条目和查询字段的映射，让实验结果能回流到项目记录。",
+            "en": "Use benchling-integration to design mappings for entities, inventory, ELN entries, and query fields so results flow back into project records."
+          },
+          "expectedOutput": [
+            {
+              "zh": "Benchling 映射",
+              "en": "Benchling mapping"
+            },
+            {
+              "zh": "数据字段",
+              "en": "Data fields"
+            },
+            {
+              "zh": "回流规则",
+              "en": "Return-flow rules"
+            }
+          ]
+        },
+        {
+          "step": {
+            "zh": "生成自动化执行草案",
+            "en": "Draft automation execution"
+          },
+          "skillId": "sa.opentrons-integration",
+          "prompt": {
+            "zh": "用 opentrons-integration 或 pylabrobot 将关键步骤转为机器人协议草案，输出板位、移液动作、校验点和模拟运行清单。",
+            "en": "Use opentrons-integration or pylabrobot to turn key steps into a robot protocol draft with deck layout, liquid transfers, checkpoints, and simulation checklist."
+          },
+          "expectedOutput": [
+            {
+              "zh": "机器人协议草案",
+              "en": "Robot protocol draft"
+            },
+            {
+              "zh": "板位图",
+              "en": "Deck layout"
+            },
+            {
+              "zh": "模拟检查清单",
+              "en": "Simulation checklist"
+            }
+          ]
+        }
+      ],
+      "nextScenarioSlugs": [
+        "life-science-omics",
+        "custom-research-workflows"
       ]
     },
     {
       "slug": "compute-and-model-infra",
       "title": {
         "zh": "我要把本地、集群或云 GPU 变成可复用科研工作台",
-        "en": "I need reusable local, cluster, or cloud GPU workflows"
+        "en": "I need local, cluster, or cloud GPU resources as a reusable research workbench"
       },
       "shortTitle": {
-        "zh": "计算与模型基础设施",
-        "en": "Compute and models"
+        "zh": "算力与环境",
+        "en": "Compute and environments"
       },
       "description": {
-        "zh": "把一次性跑代码升级为可复用环境、远程作业、模型端点、结果回收和成本可控的科研执行流。",
-        "en": "Turn one-off runs into reusable environments, remote jobs, model endpoints, harvested outputs, and cost-aware execution flows."
+        "zh": "在本机、SSH/Slurm、Modal、云 GPU 和模型端点之间选择执行环境，记录依赖、资源、成本和可回收状态。",
+        "en": "Choose execution environments across local machines, SSH/Slurm, Modal, cloud GPUs, and model endpoints while tracking dependencies, resources, cost, and cleanup."
       },
-      "stage": "compute",
+      "stage": "compute-infra",
       "targetUsers": [
         {
-          "zh": "需要 GPU 的研究者",
-          "en": "Researchers who need GPUs"
+          "zh": "跑大模型或大数据分析的人",
+          "en": "Researchers running large models or data jobs"
         },
         {
-          "zh": "课题组工程师",
-          "en": "Lab engineers"
+          "zh": "课题组工程负责人",
+          "en": "Lab engineering leads"
         },
         {
-          "zh": "生信/AI4Science 团队",
-          "en": "Bioinformatics and AI4Science teams"
-        },
-        {
-          "zh": "维护共享环境的人",
-          "en": "Shared-environment maintainers"
+          "zh": "需要复现实验环境的人",
+          "en": "Researchers reproducing compute environments"
         }
       ],
       "inputMaterials": [
         {
-          "zh": "SSH 或 Slurm 主机",
-          "en": "SSH or Slurm host"
+          "zh": "代码仓库或 notebook",
+          "en": "Code repo or notebook"
         },
         {
-          "zh": "Modal/GPU 云账号",
-          "en": "Modal or GPU cloud account"
+          "zh": "依赖文件和权重需求",
+          "en": "Dependency files and model weights"
         },
         {
-          "zh": "环境依赖",
-          "en": "Environment dependencies"
+          "zh": "GPU/CPU/内存需求",
+          "en": "GPU, CPU, and memory needs"
         },
         {
-          "zh": "模型权重",
-          "en": "Model weights"
-        },
-        {
-          "zh": "推理 API 需求",
-          "en": "Inference API requirements"
+          "zh": "预算和数据安全边界",
+          "en": "Budget and data-safety boundaries"
         }
       ],
       "skillIds": [
-        "compute-env-setup",
-        "remote-compute-ssh",
-        "remote-compute-modal",
-        "managed-model-endpoints",
-        "using-model-endpoint"
+        "sa.nextflow",
+        "sa.optimize-for-gpu",
+        "cs.compute-env-setup",
+        "cs.remote-compute-ssh",
+        "cs.managed-model-endpoints"
       ],
       "workflow": [
         {
           "step": {
-            "zh": "沉淀可复用环境",
-            "en": "Capture a reusable environment"
+            "zh": "评估资源和运行策略",
+            "en": "Assess resources and execution strategy"
           },
-          "skillId": "compute-env-setup",
+          "skillId": "sa.optimize-for-gpu",
           "prompt": {
-            "zh": "/compute-env-setup 为这个项目建立可复用计算环境，记录硬件、依赖、权重缓存、测试命令和失败恢复方案。",
-            "en": "/compute-env-setup Build a reusable compute environment for this project and record hardware, dependencies, weight caches, test commands, and recovery steps."
+            "zh": "用 optimize-for-gpu 检查当前 Python/NumPy/pandas/ML 管线哪里适合 GPU 或并行化，并给出 CPU/GPU/集群取舍。",
+            "en": "Use optimize-for-gpu to identify where the current Python/NumPy/pandas/ML pipeline benefits from GPU or parallelism, with CPU/GPU/cluster tradeoffs."
           },
           "expectedOutput": [
             {
-              "zh": "环境说明",
-              "en": "Environment notes"
+              "zh": "资源策略",
+              "en": "Resource strategy"
             },
             {
-              "zh": "测试命令",
-              "en": "Test commands"
+              "zh": "加速候选点",
+              "en": "Acceleration candidates"
             },
             {
-              "zh": "恢复方案",
-              "en": "Recovery plan"
+              "zh": "风险与成本",
+              "en": "Risks and costs"
             }
           ]
         },
         {
           "step": {
-            "zh": "提交远程作业并回收结果",
-            "en": "Submit remote jobs and collect results"
+            "zh": "封装可恢复数据管线",
+            "en": "Package a resumable pipeline"
           },
-          "skillId": "remote-compute-ssh",
+          "skillId": "sa.nextflow",
           "prompt": {
-            "zh": "/remote-compute-ssh 将这个分析提交到我的 SSH/Slurm 主机，等待完成通知，回收输出，并整理 hpc/jobId 结果目录。",
-            "en": "/remote-compute-ssh Submit this analysis to my SSH/Slurm host, wait for completion, harvest outputs, and organize the hpc/jobId result directory."
+            "zh": "用 nextflow 为多步骤分析或 nf-core 流程设计 samplesheet、nextflow.config、容器/conda 环境和 -resume 运行策略。",
+            "en": "Use nextflow to design samplesheets, nextflow.config, container/conda environments, and -resume strategy for a multi-step analysis or nf-core workflow."
           },
           "expectedOutput": [
             {
-              "zh": "作业脚本",
-              "en": "Job script"
+              "zh": "Nextflow 配置",
+              "en": "Nextflow config"
             },
             {
-              "zh": "运行日志",
-              "en": "Run logs"
+              "zh": "samplesheet",
+              "en": "Samplesheet"
             },
             {
-              "zh": "结果目录",
-              "en": "Result directory"
+              "zh": "恢复运行策略",
+              "en": "Resume strategy"
             }
           ]
         },
         {
           "step": {
-            "zh": "把模型服务化",
-            "en": "Turn the model into a service"
+            "zh": "注册远程环境或模型端点",
+            "en": "Register remote environments or model endpoints"
           },
-          "skillId": "managed-model-endpoints",
+          "skillId": "cs.compute-env-setup",
           "prompt": {
-            "zh": "/managed-model-endpoints 为这个模型注册本地或远程推理端点，再用 /using-model-endpoint 调用原生 HTTP API 跑一批预测样例。",
-            "en": "/managed-model-endpoints Register a local or remote inference endpoint for this model, then use /using-model-endpoint to call its native HTTP API on a prediction batch."
+            "zh": "用 compute-env-setup 规划 SSH/Slurm/Modal/模型端点的注册方式、启动/停止脚本、权重缓存、日志和清理流程。",
+            "en": "Use compute-env-setup to plan SSH/Slurm/Modal/model-endpoint registration, start/stop scripts, weight caches, logs, and cleanup workflow."
           },
           "expectedOutput": [
             {
-              "zh": "端点注册",
-              "en": "Endpoint registration"
+              "zh": "环境清单",
+              "en": "Environment inventory"
             },
             {
-              "zh": "调用样例",
-              "en": "Call examples"
+              "zh": "启停脚本方案",
+              "en": "Start/stop script plan"
             },
             {
-              "zh": "批量预测",
-              "en": "Batch prediction"
+              "zh": "清理流程",
+              "en": "Cleanup workflow"
             }
           ]
         }
       ],
       "nextScenarioSlugs": [
-        "single-cell-omics",
-        "protein-structure-design",
-        "genome-and-embedding-models"
+        "ai-model-experiments",
+        "data-analysis-pipeline"
       ]
     },
     {
-      "slug": "research-communication-artifacts",
+      "slug": "manuscript-and-submission",
       "title": {
-        "zh": "我要把研究做成交互式展示、补充材料或教学工具",
-        "en": "I need interactive research demos, supplements, or teaching tools"
+        "zh": "我要把结果写成论文、投稿，并准备回应审稿人",
+        "en": "I need to write, submit, and respond to reviewers"
       },
       "shortTitle": {
-        "zh": "科研展示",
-        "en": "Research artifacts"
+        "zh": "论文与投稿",
+        "en": "Manuscript and submission"
       },
       "description": {
-        "zh": "把复杂模型、数据结果、方法流程或抽象概念做成可分享的交互式网页、演示材料和视觉封面。",
-        "en": "Turn models, results, methods, or abstract concepts into shareable interactive pages, demos, and visual covers."
+        "zh": "从论证结构、英文润色、引用与数据可用性，到投稿前预审和逐点回复，覆盖论文走向发表的后半程。",
+        "en": "Cover the publication half of the journey: argument structure, English polish, citation and data availability, pre-submission review, and point-by-point responses."
       },
-      "stage": "communication",
+      "stage": "publication",
       "targetUsers": [
         {
-          "zh": "课程教师",
-          "en": "Course instructors"
+          "zh": "正在写 manuscript 的作者",
+          "en": "Manuscript authors"
         },
         {
-          "zh": "科研传播作者",
-          "en": "Research communication authors"
+          "zh": "准备高影响力期刊投稿的人",
+          "en": "High-impact journal submitters"
         },
         {
-          "zh": "项目展示负责人",
-          "en": "Project demo leads"
-        },
-        {
-          "zh": "论文补充材料作者",
-          "en": "Supplementary material authors"
+          "zh": "收到审稿意见的团队",
+          "en": "Teams responding to reviewers"
         }
       ],
       "inputMaterials": [
         {
-          "zh": "研究结果",
-          "en": "Research results"
+          "zh": "论文草稿或中文初稿",
+          "en": "Manuscript draft or Chinese draft"
         },
         {
-          "zh": "数据表",
-          "en": "Data tables"
+          "zh": "图表和主要 claim",
+          "en": "Figures and main claims"
         },
         {
-          "zh": "方法流程",
-          "en": "Method workflow"
+          "zh": "目标期刊或 reviewer comments",
+          "en": "Target journal or reviewer comments"
         },
         {
-          "zh": "展示目标",
-          "en": "Presentation goal"
-        },
-        {
-          "zh": "视觉风格偏好",
-          "en": "Visual style preference"
+          "zh": "参考文献和数据仓库信息",
+          "en": "References and repository information"
         }
       ],
       "skillIds": [
-        "web-artifacts-builder",
-        "algorithmic-art",
-        "scientific-visualization",
-        "learn"
+        "ns.nature-writing",
+        "ns.nature-polishing",
+        "ns.nature-reviewer",
+        "ns.nature-response",
+        "ns.nature-data"
       ],
       "workflow": [
         {
           "step": {
-            "zh": "确定展示逻辑",
-            "en": "Define the presentation logic"
+            "zh": "重建论文论证",
+            "en": "Rebuild the manuscript argument"
           },
-          "skillId": "learn",
+          "skillId": "ns.nature-writing",
           "prompt": {
-            "zh": "/learn 请把这个研究主题拆成适合非本领域读者理解的概念路径、互动问题和最小背景知识。",
-            "en": "/learn Break this research topic into a concept path, interactive questions, and minimal prerequisites for non-specialist readers."
+            "zh": "用 nature-writing 基于 claims、结果和图表重建论文主线，明确摘要、引言、结果叙事和讨论各段承担的论证任务。",
+            "en": "Use nature-writing to rebuild the manuscript argument from claims, results, and figures, assigning argumentative jobs to abstract, introduction, results, and discussion sections."
           },
           "expectedOutput": [
             {
-              "zh": "概念路径",
-              "en": "Concept path"
+              "zh": "论文主线",
+              "en": "Manuscript throughline"
             },
             {
-              "zh": "互动问题",
-              "en": "Interactive questions"
+              "zh": "章节蓝图",
+              "en": "Section blueprint"
             },
             {
-              "zh": "背景知识",
-              "en": "Background knowledge"
+              "zh": "段落任务",
+              "en": "Paragraph jobs"
             }
           ]
         },
         {
           "step": {
-            "zh": "构建交互式 artifact",
-            "en": "Build an interactive artifact"
+            "zh": "润色语言和投稿风险",
+            "en": "Polish language and submission risks"
           },
-          "skillId": "web-artifacts-builder",
+          "skillId": "ns.nature-polishing",
           "prompt": {
-            "zh": "/web-artifacts-builder 基于这些数据和讲解路径，构建一个单文件交互式科研展示，包含图表、状态切换和可分享说明。",
-            "en": "/web-artifacts-builder Build a single-file interactive research artifact from these data and explanation path, with charts, state controls, and shareable notes."
+            "zh": "用 nature-polishing 润色目标段落，保留事实边界，提升学术英语表达，并列出可能被 reviewer 攻击的夸张或证据不足之处。",
+            "en": "Use nature-polishing to polish target sections while preserving factual boundaries, improving academic English, and listing claims that may be overstated or under-supported."
           },
           "expectedOutput": [
             {
-              "zh": "交互页面",
-              "en": "Interactive page"
+              "zh": "润色稿",
+              "en": "Polished draft"
             },
             {
-              "zh": "状态控件",
-              "en": "State controls"
+              "zh": "风险 claim",
+              "en": "Risky claims"
             },
             {
-              "zh": "可分享文件",
-              "en": "Shareable file"
+              "zh": "替代表述",
+              "en": "Alternative wording"
             }
           ]
         },
         {
           "step": {
-            "zh": "生成抽象视觉或封面",
-            "en": "Generate abstract visuals or cover art"
+            "zh": "模拟审稿并准备回复",
+            "en": "Simulate review and prepare responses"
           },
-          "skillId": "algorithmic-art",
+          "skillId": "ns.nature-reviewer",
           "prompt": {
-            "zh": "/algorithmic-art 为这个研究主题生成可调参数和随机种子的 p5.js 抽象视觉，用于展示封面或互动背景。",
-            "en": "/algorithmic-art Create seeded, parameterized p5.js abstract visuals for this research theme as a demo cover or interactive background."
+            "zh": "用 nature-reviewer 做投稿前预审，输出 3 份 reviewer report 和综合整改表；若已有意见，再用 nature-response 起草逐点回复。",
+            "en": "Use nature-reviewer for pre-submission review with three reviewer reports and a revision table; if comments already exist, use nature-response to draft point-by-point replies."
           },
           "expectedOutput": [
             {
-              "zh": "视觉概念",
-              "en": "Visual concept"
+              "zh": "预审报告",
+              "en": "Mock review reports"
             },
             {
-              "zh": "p5.js 草图",
-              "en": "p5.js sketch"
+              "zh": "整改表",
+              "en": "Revision table"
             },
             {
-              "zh": "参数说明",
-              "en": "Parameter notes"
+              "zh": "逐点回复",
+              "en": "Point-by-point response"
             }
           ]
         }
       ],
       "nextScenarioSlugs": [
-        "publication-figures",
-        "research-learning-path"
+        "figures-slides-posters",
+        "literature-to-evidence"
       ]
     },
     {
-      "slug": "research-learning-path",
+      "slug": "figures-slides-posters",
       "title": {
-        "zh": "我要学习一个理论、方法或工具，而不是马上产出结果",
-        "en": "I need to learn a theory, method, or tool before producing results"
+        "zh": "我要把结果做成图、机制示意图、幻灯片或会议海报",
+        "en": "I need figures, mechanism schematics, slides, or conference posters"
       },
       "shortTitle": {
-        "zh": "科研学习",
-        "en": "Research learning"
+        "zh": "图表与展示",
+        "en": "Figures and presentations"
       },
       "description": {
-        "zh": "把陌生概念拆成可学习路径、先修知识、例题、测验和与当前项目相关的练习。",
-        "en": "Break unfamiliar concepts into learning paths, prerequisites, examples, quizzes, and project-relevant exercises."
+        "zh": "不只是画图，而是把结论、证据、版式、期刊格式和演讲叙事统一到可交付的科研视觉材料里。",
+        "en": "Unify claims, evidence, layout, venue formats, and talk narrative into deliverable research visuals."
       },
-      "stage": "learning",
+      "stage": "research-visuals",
       "targetUsers": [
         {
-          "zh": "跨领域学习者",
-          "en": "Cross-domain learners"
+          "zh": "准备论文图组的人",
+          "en": "Authors preparing figure panels"
         },
         {
-          "zh": "研究生",
-          "en": "Graduate students"
+          "zh": "做组会/答辩/会议汇报的人",
+          "en": "Group meeting, defense, or conference presenters"
         },
         {
-          "zh": "新加入课题组成员",
-          "en": "New lab members"
-        },
-        {
-          "zh": "需要补方法课的人",
-          "en": "Researchers filling method gaps"
+          "zh": "需要机制图或海报的人",
+          "en": "Researchers needing schematics or posters"
         }
       ],
       "inputMaterials": [
         {
-          "zh": "想学的概念",
-          "en": "Concept to learn"
+          "zh": "数据表、图片或已有图",
+          "en": "Data tables, images, or existing figures"
         },
         {
-          "zh": "当前水平",
-          "en": "Current level"
+          "zh": "每张图要证明的结论",
+          "en": "The claim each figure must prove"
         },
         {
-          "zh": "目标任务",
-          "en": "Target task"
+          "zh": "目标期刊/会议格式",
+          "en": "Target journal or conference format"
         },
         {
-          "zh": "已有教材或论文",
-          "en": "Existing textbooks or papers"
+          "zh": "演讲时长或海报尺寸",
+          "en": "Talk duration or poster size"
         }
       ],
       "skillIds": [
-        "learn",
-        "literature-review",
-        "pdf-explore"
+        "sa.scientific-visualization",
+        "cs.figure-composer",
+        "sa.scientific-schematics",
+        "sa.scientific-slides",
+        "sa.latex-posters"
       ],
       "workflow": [
         {
           "step": {
-            "zh": "建立学习路径",
-            "en": "Build the learning path"
+            "zh": "先定义图要证明什么",
+            "en": "Define what the figure must prove"
           },
-          "skillId": "learn",
+          "skillId": "cs.figure-composer",
           "prompt": {
-            "zh": "/learn 我想学“这个概念/方法”，请按先修知识、核心直觉、常见误区、例题、练习和项目应用给我一条学习路径。",
-            "en": "/learn I want to learn this concept or method. Give me a path with prerequisites, core intuition, common confusions, examples, exercises, and project applications."
+            "zh": "用 figure-composer 从一句话结论和数据来源反推多面板图大纲，列出每个 panel 的证据功能、标签预算和失败风险。",
+            "en": "Use figure-composer to derive a multi-panel outline from the claim and data sources, listing each panel's evidence job, label budget, and failure risks."
           },
           "expectedOutput": [
             {
-              "zh": "学习路径",
-              "en": "Learning path"
+              "zh": "图组大纲",
+              "en": "Figure outline"
             },
             {
-              "zh": "先修清单",
-              "en": "Prerequisite list"
+              "zh": "panel 任务",
+              "en": "Panel jobs"
             },
             {
-              "zh": "练习题",
-              "en": "Practice exercises"
+              "zh": "标签预算",
+              "en": "Label budget"
             }
           ]
         },
         {
           "step": {
-            "zh": "找出最值得读的原始材料",
-            "en": "Find the original materials worth reading most"
+            "zh": "生成发表级图表",
+            "en": "Generate publication-ready plots"
           },
-          "skillId": "literature-review",
+          "skillId": "sa.scientific-visualization",
           "prompt": {
-            "zh": "/literature-review 为这条学习路径筛选入门论文、经典论文和最新综述，并说明每篇应该读什么部分。",
-            "en": "/literature-review Select introductory papers, classics, and recent reviews for this learning path, and say which sections to read in each."
+            "zh": "用 scientific-visualization 根据数据和目标期刊生成多面板图，包含色盲友好配色、误差线、显著性标注、PDF/SVG/TIFF 导出和渲染后 QA。",
+            "en": "Use scientific-visualization to generate multi-panel plots with colorblind-safe palettes, error bars, significance markers, PDF/SVG/TIFF export, and post-render QA."
           },
           "expectedOutput": [
             {
-              "zh": "阅读清单",
-              "en": "Reading list"
+              "zh": "发表级图",
+              "en": "Publication figures"
             },
             {
-              "zh": "阅读重点",
-              "en": "Reading focus"
+              "zh": "导出文件",
+              "en": "Export files"
             },
             {
-              "zh": "学习顺序",
-              "en": "Learning sequence"
+              "zh": "QA 清单",
+              "en": "QA checklist"
             }
           ]
         },
         {
           "step": {
-            "zh": "精读材料中的关键段落",
-            "en": "Read key passages deeply"
+            "zh": "转成汇报或海报",
+            "en": "Turn results into a talk or poster"
           },
-          "skillId": "pdf-explore",
+          "skillId": "sa.scientific-slides",
           "prompt": {
-            "zh": "/pdf-explore 在这些 PDF 中定位定义、算法、假设、实验设置和限制部分，并整理成学习笔记。",
-            "en": "/pdf-explore Locate definitions, algorithms, assumptions, experimental settings, and limitations in these PDFs, then turn them into study notes."
+            "zh": "用 scientific-slides 或 latex-posters 把论文主线转成组会/会议幻灯片或海报，控制叙事节奏、图表选择和版式可读性。",
+            "en": "Use scientific-slides or latex-posters to turn the manuscript narrative into slides or a poster, controlling pacing, figure selection, and layout readability."
           },
           "expectedOutput": [
             {
-              "zh": "关键页码",
-              "en": "Key pages"
+              "zh": "幻灯片结构",
+              "en": "Slide structure"
             },
             {
-              "zh": "学习笔记",
-              "en": "Learning notes"
+              "zh": "海报版式",
+              "en": "Poster layout"
             },
             {
-              "zh": "问题清单",
-              "en": "Question list"
+              "zh": "讲稿备注",
+              "en": "Speaker notes"
             }
           ]
         }
       ],
       "nextScenarioSlugs": [
-        "field-entry",
-        "custom-research-agent"
+        "manuscript-and-submission",
+        "custom-research-workflows"
       ]
     },
     {
-      "slug": "custom-research-agent",
+      "slug": "custom-research-workflows",
       "title": {
-        "zh": "我想把课题组重复流程沉淀成自己的科研 Agent",
-        "en": "I want to turn repeated lab workflows into a custom research agent"
+        "zh": "我想把课题组反复做的事沉淀成自己的科研 Agent",
+        "en": "I want to turn repeated lab work into my own research agent"
       },
       "shortTitle": {
         "zh": "自定义科研 Agent",
-        "en": "Custom agent"
+        "en": "Custom research agents"
       },
       "description": {
-        "zh": "当任务反复出现时，把提示词、判断标准、工具调用、评测样例和复盘日志沉淀为可复用技能或 agent profile。",
-        "en": "When a workflow repeats, turn prompts, criteria, tool calls, eval cases, and audit logs into reusable skills or agent profiles."
+        "zh": "从观察重复流程、组合已有 skill、编写新 skill、记录项目记忆，到形成可交给新人和团队复用的 agent 工作台。",
+        "en": "Observe repeated workflows, compose existing skills, write new skills, record project memory, and build reusable agents for the team."
       },
-      "stage": "workflow",
+      "stage": "custom-workflow",
       "targetUsers": [
         {
-          "zh": "PI",
-          "en": "PIs"
+          "zh": "课题组负责人",
+          "en": "Lab leads"
         },
         {
-          "zh": "课题组工程师",
-          "en": "Lab engineers"
+          "zh": "希望自动化重复流程的研究者",
+          "en": "Researchers automating repeated workflows"
         },
         {
-          "zh": "方法平台维护者",
-          "en": "Method platform maintainers"
-        },
-        {
-          "zh": "经常做重复科研任务的人",
-          "en": "People with repeated research tasks"
+          "zh": "管理多个项目的 RA/工程同学",
+          "en": "RAs or engineers managing multiple projects"
         }
       ],
       "inputMaterials": [
         {
-          "zh": "重复任务描述",
-          "en": "Repeated task description"
+          "zh": "一段重复工作流程描述",
+          "en": "A repeated workflow description"
         },
         {
-          "zh": "成功样例",
-          "en": "Successful examples"
+          "zh": "已有 prompt、SOP 或脚本",
+          "en": "Existing prompts, SOPs, or scripts"
         },
         {
-          "zh": "失败样例",
-          "en": "Failure examples"
+          "zh": "希望调用的工具和数据边界",
+          "en": "Tools and data boundaries"
         },
         {
-          "zh": "评测标准",
-          "en": "Evaluation criteria"
-        },
-        {
-          "zh": "已有 prompt 或脚本",
-          "en": "Existing prompts or scripts"
+          "zh": "交付物样例",
+          "en": "Example deliverables"
         }
       ],
       "skillIds": [
-        "skill-creator",
-        "customize",
-        "self-awareness",
-        "learn"
+        "sa.autoskill",
+        "cs.customize",
+        "cs.skill-creator",
+        "air.research-manager",
+        "cs.learn"
       ],
       "workflow": [
         {
           "step": {
-            "zh": "把经验写成技能",
-            "en": "Turn the experience into a skill"
+            "zh": "识别重复流程和缺口",
+            "en": "Identify repeated workflows and gaps"
           },
-          "skillId": "skill-creator",
+          "skillId": "sa.autoskill",
           "prompt": {
-            "zh": "/skill-creator 基于这个重复科研任务，起草一个新 skill，包含触发条件、输入输出、流程、失败模式和 5 个评测 prompt。",
-            "en": "/skill-creator Draft a new skill for this repeated research task, including triggers, inputs, outputs, workflow, failure modes, and five eval prompts."
+            "zh": "用 autoskill 或人工梳理最近 5 次类似任务，归纳触发条件、输入材料、判断规则、交付物和现有 skill 覆盖情况。",
+            "en": "Use autoskill or manual review to summarize the last five similar tasks: triggers, inputs, judgment rules, deliverables, and existing skill coverage."
           },
           "expectedOutput": [
             {
-              "zh": "SKILL.md 草稿",
+              "zh": "流程地图",
+              "en": "Workflow map"
+            },
+            {
+              "zh": "触发条件",
+              "en": "Trigger conditions"
+            },
+            {
+              "zh": "缺口清单",
+              "en": "Gap list"
+            }
+          ]
+        },
+        {
+          "step": {
+            "zh": "组合或创建 skill",
+            "en": "Compose or create skills"
+          },
+          "skillId": "cs.skill-creator",
+          "prompt": {
+            "zh": "用 skill-creator 把缺口写成新的 SKILL.md，或把多个现有 skill 编排成组合 recipe，并加入测试样例。",
+            "en": "Use skill-creator to write a new SKILL.md for gaps, or compose multiple existing skills into a recipe with test examples."
+          },
+          "expectedOutput": [
+            {
+              "zh": "SKILL.md 草案",
               "en": "SKILL.md draft"
             },
             {
-              "zh": "评测样例",
-              "en": "Evaluation examples"
+              "zh": "组合 recipe",
+              "en": "Composition recipe"
             },
             {
-              "zh": "失败模式",
-              "en": "Failure modes"
+              "zh": "测试样例",
+              "en": "Test cases"
             }
           ]
         },
         {
           "step": {
-            "zh": "配置专用 agent profile",
-            "en": "Configure a dedicated agent profile"
+            "zh": "沉淀项目记忆和交接方式",
+            "en": "Record project memory and handoff"
           },
-          "skillId": "customize",
+          "skillId": "air.research-manager",
           "prompt": {
-            "zh": "/customize 为这个课题组流程创建 agent profile，绑定必要 skills、连接器和权限边界，并说明何时不应触发。",
-            "en": "/customize Create an agent profile for this lab workflow, attach required skills, connectors, and permission boundaries, and state when it should not trigger."
+            "zh": "用 research-manager 在每次会话结束时记录决策、实验、失败路径和关键证据，形成新人可接手的项目脉络。",
+            "en": "Use research-manager at session close to record decisions, experiments, failed paths, and key evidence so new teammates can pick up the project context."
           },
           "expectedOutput": [
             {
-              "zh": "agent profile",
-              "en": "Agent profile"
+              "zh": "项目记忆",
+              "en": "Project memory"
             },
             {
-              "zh": "技能组合",
-              "en": "Skill bundle"
+              "zh": "交接摘要",
+              "en": "Handoff summary"
             },
             {
-              "zh": "边界说明",
-              "en": "Boundary notes"
-            }
-          ]
-        },
-        {
-          "step": {
-            "zh": "复盘长期运行记录",
-            "en": "Review long-running logs"
-          },
-          "skillId": "self-awareness",
-          "prompt": {
-            "zh": "/self-awareness 查询最近相关会话的工具调用、生成文件和失败点，整理成下一轮 skill 优化清单。",
-            "en": "/self-awareness Query recent related sessions for tool calls, generated files, and failure points, then summarize the next skill-improvement list."
-          },
-          "expectedOutput": [
-            {
-              "zh": "运行记录",
-              "en": "Run logs"
-            },
-            {
-              "zh": "失败点",
-              "en": "Failure points"
-            },
-            {
-              "zh": "优化清单",
-              "en": "Optimization list"
+              "zh": "复用清单",
+              "en": "Reuse checklist"
             }
           ]
         }
       ],
       "nextScenarioSlugs": [
         "compute-and-model-infra",
-        "research-learning-path"
+        "lab-protocol-automation"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "research-flow",
+      "title": {
+        "zh": "从问题到证据",
+        "en": "From Question to Evidence"
+      },
+      "description": {
+        "zh": "把想法、文献、研究设计和数据分析串成可复查的科研判断。",
+        "en": "Turn ideas, literature, study design, and analysis into reviewable research judgment."
+      },
+      "slugs": [
+        "literature-to-evidence",
+        "research-design-and-statistics",
+        "data-analysis-pipeline"
+      ]
+    },
+    {
+      "id": "computational-research",
+      "title": {
+        "zh": "计算科研与学科工具",
+        "en": "Computational Research and Domain Tools"
+      },
+      "description": {
+        "zh": "覆盖 AI/ML 实验、生命科学、蛋白分子材料、地理空间和物理科学等高频科研计算场景。",
+        "en": "Cover AI/ML experiments, life science, proteins and molecules, materials, geospatial, and physical science workflows."
+      },
+      "slugs": [
+        "ai-model-experiments",
+        "life-science-omics",
+        "protein-molecule-materials",
+        "geospatial-physical-science"
+      ]
+    },
+    {
+      "id": "execution-environment",
+      "title": {
+        "zh": "实验、算力与可复用工作流",
+        "en": "Lab, Compute, and Reusable Workflows"
+      },
+      "description": {
+        "zh": "把实验平台、远程算力、模型端点和课题组重复流程沉淀成可执行、可交接的工作台。",
+        "en": "Turn lab platforms, remote compute, model endpoints, and repeated team workflows into executable, handoff-ready workbenches."
+      },
+      "slugs": [
+        "lab-protocol-automation",
+        "compute-and-model-infra",
+        "custom-research-workflows"
+      ]
+    },
+    {
+      "id": "publication-communication",
+      "title": {
+        "zh": "发表与科研传播",
+        "en": "Publication and Communication"
+      },
+      "description": {
+        "zh": "把结果推进到论文、审稿回复、数据可用性声明、图组、幻灯片和会议海报。",
+        "en": "Move results into manuscripts, reviewer responses, data availability statements, figure panels, slides, and posters."
+      },
+      "slugs": [
+        "manuscript-and-submission",
+        "figures-slides-posters"
       ]
     }
   ]

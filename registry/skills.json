@@ -14,8 +14,7 @@
         "field-entry"
       ],
       "scenarios": [
-        "field-entry",
-        "topic-to-question"
+        "research-design-and-statistics"
       ],
       "tags": [
         "topic",
@@ -48,9 +47,8 @@
         "literature"
       ],
       "scenarios": [
-        "field-entry",
-        "topic-to-question",
-        "evidence-synthesis"
+        "literature-to-evidence",
+        "research-design-and-statistics"
       ],
       "tags": [
         "gap",
@@ -83,8 +81,7 @@
         "field-entry"
       ],
       "scenarios": [
-        "field-entry",
-        "evidence-synthesis"
+        "literature-to-evidence"
       ],
       "tags": [
         "literature",
@@ -117,8 +114,7 @@
         "literature"
       ],
       "scenarios": [
-        "field-entry",
-        "evidence-synthesis"
+        "literature-to-evidence"
       ],
       "tags": [
         "citation",
@@ -150,8 +146,7 @@
         "writing"
       ],
       "scenarios": [
-        "manuscript-polish",
-        "submission-fit"
+        "manuscript-and-submission"
       ],
       "tags": [
         "abstract",
@@ -184,8 +179,7 @@
         "submission"
       ],
       "scenarios": [
-        "manuscript-polish",
-        "submission-fit"
+        "manuscript-and-submission"
       ],
       "tags": [
         "review",
@@ -218,8 +212,8 @@
         "submission"
       ],
       "scenarios": [
-        "manuscript-polish",
-        "submission-fit"
+        "literature-to-evidence",
+        "manuscript-and-submission"
       ],
       "tags": [
         "citation",
@@ -251,7 +245,7 @@
         "submission"
       ],
       "scenarios": [
-        "submission-fit"
+        "manuscript-and-submission"
       ],
       "tags": [
         "journal",
@@ -284,8 +278,7 @@
         "tracking"
       ],
       "scenarios": [
-        "field-entry",
-        "evidence-synthesis"
+        "literature-to-evidence"
       ],
       "tags": [
         "tracking",
