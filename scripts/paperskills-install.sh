@@ -147,7 +147,7 @@ install_skill_dir() {
   echo "Installed $install_id"
 }
 
-python3 - "$PLAN_FILE" <<'PY' | while IFS=$'\t' read -r skill_id method url ref sparse_path; do
+python3 - "$PLAN_FILE" <<'PY' | while IFS=$'\037' read -r skill_id method url ref sparse_path; do
 import json
 import sys
 
@@ -155,7 +155,7 @@ with open(sys.argv[1], encoding="utf-8") as handle:
     plan = json.load(handle)
 
 for item in plan:
-    print("\t".join([
+    print("\x1f".join([
         item["id"],
         item.get("method") or "",
         item.get("url") or "",
