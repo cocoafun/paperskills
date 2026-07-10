@@ -94,7 +94,8 @@ curl -sSL https://paperskills.com/scripts/paperskills-install.sh | bash -s -- \
 
 ### Cursor
 
-Cursor uses rules/prompt installation in the current MVP.
+Cursor discovers Agent Skills from `.cursor/skills` at project level and
+`~/.cursor/skills` at user level.
 
 ```bash
 curl -sSL https://paperskills.com/scripts/paperskills-install.sh | bash -s -- \

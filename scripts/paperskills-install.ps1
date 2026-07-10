@@ -14,7 +14,7 @@ switch ($Tool) {
   "claude" { $targetRoot = Join-Path $HOME ".claude\skills" }
   "codex" { $targetRoot = Join-Path $HOME ".codex\skills" }
   "opencode" { $targetRoot = Join-Path $HOME ".opencode\skills" }
-  "cursor" { $targetRoot = Join-Path $HOME ".cursor\rules" }
+  "cursor" { $targetRoot = Join-Path $HOME ".cursor\skills" }
   default {
     Write-Error "Unsupported tool: $Tool"
     exit 2
@@ -154,10 +154,6 @@ try {
       $childId = Split-Path $childSource -Leaf
       Install-SkillDirectory -InstallId $childId -SourceDir $childSource
     }
-  }
-
-  if ($Tool -eq "cursor") {
-    Write-Host "Cursor uses rules/prompt installation in this MVP. Review imported files under $targetRoot."
   }
 
   Write-Host "Done."
