@@ -147,6 +147,46 @@ install_skill_dir() {
   echo "Installed $install_id"
 }
 
+clone_with_retry() {
+  local skill_id="$1"
+  local workdir="$2"
+  local sparse_path="$3"
+  shift 3
+
+  local attempts="${PAPERSKILLS_GIT_CLONE_ATTEMPTS:-3}"
+  local delays=(2 5 10)
+  local attempt delay_index delay
+
+  case "$attempts" in
+    ''|*[!0-9]*) attempts=3 ;;
+  esac
+  if (( attempts < 1 )); then
+    attempts=1
+  fi
+
+  for ((attempt = 1; attempt <= attempts; attempt++)); do
+    rm -rf "$workdir"
+    if git -c http.version=HTTP/1.1 clone "$@" "$workdir" >/dev/null; then
+      if [[ -z "$sparse_path" ]] || (
+        cd "$workdir"
+        git sparse-checkout set "$sparse_path" >/dev/null
+      ); then
+        return 0
+      fi
+    fi
+
+    if (( attempt >= attempts )); then
+      echo "Git checkout failed for $skill_id after $attempts attempts." >&2
+      return 1
+    fi
+
+    delay_index=$((attempt - 1))
+    delay="${delays[$delay_index]:-${delays[2]}}"
+    echo "Git checkout failed for $skill_id (attempt $attempt/$attempts). Retrying in ${delay}s..." >&2
+    sleep "$delay"
+  done
+}
+
 python3 - "$PLAN_FILE" <<'PY' | while IFS=$'\037' read -r skill_id method url ref sparse_path; do
 import json
 import sys
@@ -180,7 +220,7 @@ PY
     if [[ -n "$ref" ]]; then
       clone_args+=(--branch "$ref")
     fi
-    git -c http.version=HTTP/1.1 clone "${clone_args[@]}" "$url" "$workdir" >/dev/null
+    clone_with_retry "$skill_id" "$workdir" "" "${clone_args[@]}" "$url"
     source_dir="$workdir"
   else
     if [[ -z "$sparse_path" ]]; then
@@ -192,11 +232,7 @@ PY
     if [[ -n "$ref" ]]; then
       clone_args+=(--branch "$ref")
     fi
-    git -c http.version=HTTP/1.1 clone "${clone_args[@]}" "$url" "$workdir" >/dev/null
-    (
-      cd "$workdir"
-      git sparse-checkout set "$sparse_path" >/dev/null
-    )
+    clone_with_retry "$skill_id" "$workdir" "$sparse_path" "${clone_args[@]}" "$url"
     source_dir="$workdir/$sparse_path"
   fi
 
